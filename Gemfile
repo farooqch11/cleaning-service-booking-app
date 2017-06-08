@@ -88,6 +88,7 @@ group :production do
   gem 'lograge'
 end
 
+gem 'entypo-rails'
 gem 'bootstrap-sass'
 gem 'modernizr-rails'
 gem 'meta-tags', require: 'meta_tags'

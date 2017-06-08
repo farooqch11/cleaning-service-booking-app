@@ -1,17 +1,68 @@
-.container
-  .row
-    .profile.center
-      = panel title: 'Log in', context: :primary do
-        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
-          .panel-body
-            = f.error_notification
+-#.container
+-#  .row
+-#    .profile.center
+-#      = panel title: 'Log in', context: :primary do
+-#        = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+-#          .panel-body
+-#            = f.error_notification
+-#
+-#            = f.input :email, required: true, autofocus: true
+-#            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+-#            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+-#          .panel-footer
+-#            .buttons
+-#              = f.button :submit, "Log in", class: "btn-primary"
+-#
+-#            .links
+-#              = render "devise/shared/links"
 
-            = f.input :email, required: true, autofocus: true
-            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-          .panel-footer
-            .buttons
-              = f.button :submit, "Log in", class: "btn-primary"
 
-            .links
-              = render "devise/shared/links"
+/ This is needed when you send requests via Ajax
+.login-container
+  .login-header.login-caret
+    .login-content
+      %a.logo{:href => "index.html"}
+        = image_tag('logo_1.png',class: 'img', width:'130')
+      %p.description Dear user, log in to access the admin area!
+      .login-progressbar-indicator
+        %h3 43%
+        %span logging in...
+  .login-progressbar
+    %div
+  .login-form
+    .login-content
+      .form-login-error
+        %h3 Invalid login
+        %p
+          Enter
+          = succeed "/" do
+            %strong demo
+          %strong demo
+          as login and password.
+
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'form_login' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+        .form-group
+          .input-group
+            .input-group-addon
+              %i.entypo-user
+                = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
+        .form-group
+          .input-group
+            .input-group-addon
+              %i.entypo-key
+                = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
+
+        .form-group
+          = f.button :submit, "Login In",id:'button', class: "btn btn-primary btn-block btn-login " do
+            %i.entypo-login
+
+        -#.form-group
+        -#  %em - or -
+        -#.form-group
+        -#  %button.btn.btn-default.btn-lg.btn-block.btn-icon.icon-left.facebook-button{:type => "button"}
+        -#    Login with Facebook
+        -#    %span
+        -#      %i.entypo-facebook
+
+      .login-bottom-links
+        %a.link{:href => "extra-forgot-password.html"} Forgot your password?

@@ -1,0 +1,639 @@
+.page-container
+  / add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always
+  .sidebar-menu
+    .sidebar-menu-inner
+      %header.logo-env
+        / logo
+        .logo
+          %a{:href => "index.html"}
+            = image_tag('logo_1.png',:width=>'120',class:'img')
+        / logo collapse icon
+        .sidebar-collapse
+          %a.sidebar-collapse-icon{:href => "#"}
+            / add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition
+            %i.entypo-menu
+        / open/close menu icon (do not remove if you want to enable menu on mobile devices)
+        .sidebar-mobile-menu.visible-xs
+          %a.with-animation{:href => "#"}
+            / add class "with-animation" to support animation
+            %i.entypo-menu
+      %ul#main-menu.main-menu
+        / add class "multiple-expanded" to allow multiple submenus to open
+        / class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active"
+        %li.active.opened.active.has-sub
+          %a{:href => "/dashboard"}
+            %i.entypo-gauge
+            %span.title Dashboard
+        -#  %ul.visible
+        -#    %li.active
+        -#      %a{:href => "index.html"}
+        -#        %span.title Dashboard 1
+        -#    %li
+        -#      %a{:href => "dashboard-2.html"}
+        -#        %span.title Dashboard 2
+        -#    %li
+        -#      %a{:href => "dashboard-3.html"}
+        -#        %span.title Dashboard 3
+        -#    %li.has-sub
+        -#      %a{:href => "skin-black.html"}
+        -#        %span.title Skins
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "skin-black.html"}
+        -#            %span.title Black Skin
+        -#        %li
+        -#          %a{:href => "skin-white.html"}
+        -#            %span.title White Skin
+        -#        %li
+        -#          %a{:href => "skin-purple.html"}
+        -#            %span.title Purple Skin
+        -#        %li
+        -#          %a{:href => "skin-cafe.html"}
+        -#            %span.title Cafe Skin
+        -#        %li
+        -#          %a{:href => "skin-red.html"}
+        -#            %span.title Red Skin
+        -#        %li
+        -#          %a{:href => "skin-green.html"}
+        -#            %span.title Green Skin
+        -#        %li
+        -#          %a{:href => "skin-yellow.html"}
+        -#            %span.title Yellow Skin
+        -#        %li
+        -#          %a{:href => "skin-blue.html"}
+        -#            %span.title Blue Skin
+        -#        %li
+        -#          %a{:href => "skin-facebook.html"}
+        -#            %span.title Facebook Skin
+        -#            %span.badge.badge-secondary.badge-roundless New
+        -#    %li
+        -#      %a{:href => "highlights.html"}
+        -#        %span.title What's New
+        -#        %span.badge.badge-success.badge-roundless v2.0
+        -#%li.has-sub
+        -#  %a{:href => "layout-api.html"}
+        -#    %i.entypo-layout
+        -#    %span.title Layouts
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "layout-api.html"}
+        -#        %span.title Layout API
+        -#    %li
+        -#      %a{:href => "layout-collapsed-sidebar.html"}
+        -#        %span.title Collapsed Sidebar
+        -#    %li
+        -#      %a{:href => "layout-fixed-sidebar.html"}
+        -#        %span.title Fixed Sidebar
+        -#    %li
+        -#      %a{:href => "layout-chat-open.html"}
+        -#        %span.title Chat Open
+        -#    %li
+        -#      %a{:href => "layout-horizontal-menu-boxed.html"}
+        -#        %span.title Horizontal Menu Boxed
+        -#    %li
+        -#      %a{:href => "layout-horizontal-menu-fluid.html"}
+        -#        %span.title Horizontal Menu Fluid
+        -#    %li
+        -#      %a{:href => "layout-mixed-menus.html"}
+        -#        %span.title Mixed Menus
+        -#    %li
+        -#      %a{:href => "layout-right-sidebar.html"}
+        -#        %span.title Right Sidebar
+        -#    %li
+        -#      %a{:href => "layout-both-menus-right-sidebar.html"}
+        -#        %span.title Both Menus (Right Sidebar)
+        -#    %li.has-sub
+        -#      %a{:href => "layout-page-transition-fade.html"}
+        -#        %span.title Page Enter Transitions
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "layout-page-transition-fade.html"}
+        -#            %span.title Fade Scale
+        -#        %li
+        -#          %a{:href => "layout-page-transition-left-in.html"}
+        -#            %span.title Left In
+        -#        %li
+        -#          %a{:href => "layout-page-transition-right-in.html"}
+        -#            %span.title Right In
+        -#        %li
+        -#          %a{:href => "layout-page-transition-fade-only.html"}
+        -#            %span.title Fade Only
+        -#    %li
+        -#      %a{:href => "layout-boxed.html"}
+        -#        %span.title Boxed Layout
+        -#%li
+        -#  %a{:href => "index.html", :target => "_blank"}
+        -#    %i.entypo-monitor
+        -#    %span.title Frontend
+        -#%li.has-sub
+        -#  %a{:href => "ui-panels.html"}
+        -#    %i.entypo-newspaper
+        -#    %span.title UI Elements
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "ui-panels.html"}
+        -#        %span.title Panels
+        -#    %li
+        -#      %a{:href => "ui-tiles.html"}
+        -#        %span.title Tiles
+        -#    %li
+        -#      %a{:href => "forms-buttons.html"}
+        -#        %span.title Buttons
+        -#    %li
+        -#      %a{:href => "ui-typography.html"}
+        -#        %span.title Typography
+        -#    %li
+        -#      %a{:href => "ui-tabs-accordions.html"}
+        -#        %span.title Tabs & Accordions
+        -#    %li
+        -#      %a{:href => "ui-tooltips-popovers.html"}
+        -#        %span.title Tooltips & Popovers
+        -#    %li
+        -#      %a{:href => "ui-navbars.html"}
+        -#        %span.title Navbars
+        -#    %li
+        -#      %a{:href => "ui-breadcrumbs.html"}
+        -#        %span.title Breadcrumbs
+        -#    %li
+        -#      %a{:href => "ui-badges-labels.html"}
+        -#        %span.title Badges & Labels
+        -#    %li
+        -#      %a{:href => "ui-progress-bars.html"}
+        -#        %span.title Progress Bars
+        -#    %li
+        -#      %a{:href => "ui-modals.html"}
+        -#        %span.title Modals
+        -#    %li
+        -#      %a{:href => "ui-blockquotes.html"}
+        -#        %span.title Blockquotes
+        -#    %li
+        -#      %a{:href => "ui-alerts.html"}
+        -#        %span.title Alerts
+        -#    %li
+        -#      %a{:href => "ui-pagination.html"}
+        -#        %span.title Pagination
+        -#%li.has-sub
+        -#  %a{:href => "mailbox.html"}
+        -#    %i.entypo-mail
+        -#    %span.title Mailbox
+        -#    %span.badge.badge-secondary 8
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "mailbox.html"}
+        -#        %i.entypo-inbox
+        -#        %span.title Inbox
+        -#    %li
+        -#      %a{:href => "mailbox-compose.html"}
+        -#        %i.entypo-pencil
+        -#        %span.title Compose Message
+        -#    %li
+        -#      %a{:href => "mailbox-message.html"}
+        -#        %i.entypo-attach
+        -#        %span.title View Message
+        -#%li.has-sub
+        -#  %a{:href => "forms-main.html"}
+        -#    %i.entypo-doc-text
+        -#    %span.title Forms
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "forms-main.html"}
+        -#        %span.title Basic Elements
+        -#    %li
+        -#      %a{:href => "forms-advanced.html"}
+        -#        %span.title Advanced Plugins
+        -#    %li
+        -#      %a{:href => "forms-wizard.html"}
+        -#        %span.title Form Wizard
+        -#    %li
+        -#      %a{:href => "forms-validation.html"}
+        -#        %span.title Data Validation
+        -#    %li
+        -#      %a{:href => "forms-masks.html"}
+        -#        %span.title Input Masks
+        -#    %li
+        -#      %a{:href => "forms-sliders.html"}
+        -#        %span.title Sliders
+        -#    %li
+        -#      %a{:href => "forms-file-upload.html"}
+        -#        %span.title File Upload
+        -#    %li
+        -#      %a{:href => "forms-wysiwyg.html"}
+        -#        %span.title Editors
+        -#%li.has-sub
+        -#  %a{:href => "tables-main.html"}
+        -#    %i.entypo-window
+        -#    %span.title Tables
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "tables-main.html"}
+        -#        %span.title Basic Tables
+        -#    %li
+        -#      %a{:href => "tables-datatable.html"}
+        -#        %span.title Data Tables
+        -#%li.has-sub
+        -#  %a{:href => "extra-icons.html"}
+        -#    %i.entypo-bag
+        -#    %span.title Extra
+        -#    %span.badge.badge-info.badge-roundless New Items
+        -#  %ul
+        -#    %li.has-sub
+        -#      %a{:href => "extra-icons.html"}
+        -#        %span.title Icons
+        -#        %span.badge.badge-success 3
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "extra-icons.html"}
+        -#            %span.title Font Awesome
+        -#        %li
+        -#          %a{:href => "extra-icons-entypo.html"}
+        -#            %span.title Entypo
+        -#        %li
+        -#          %a{:href => "extra-icons-glyphicons.html"}
+        -#            %span.title Glyph Icons
+        -#    %li
+        -#      %a{:href => "extra-portlets.html"}
+        -#        %span.title Portlets
+        -#    %li.has-sub
+        -#      %a{:href => "extra-google-maps.html"}
+        -#        %span.title Maps
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "extra-google-maps.html"}
+        -#            %span.title Google Maps
+        -#        %li
+        -#          %a{:href => "extra-vector-maps.html"}
+        -#            %span.title Vector Maps
+        -#    %li
+        -#      %a{:href => "extra-chat-api.html"}
+        -#        %span.title Chat API
+        -#    %li
+        -#      %a{:href => "extra-calendar.html"}
+        -#        %span.title Calendar
+        -#    %li
+        -#      %a{:href => "extra-calendar-2.html"}
+        -#        %span.title Calendar 2
+        -#        %span.badge.badge-secondary.badge-roundless New
+        -#    %li
+        -#      %a{:href => "extra-notes.html"}
+        -#        %span.title Notes
+        -#    %li
+        -#      %a{:href => "extra-lockscreen.html"}
+        -#        %span.title Lockscreen
+        -#    %li
+        -#      %a{:href => "extra-login.html"}
+        -#        %span.title Login
+        -#    %li
+        -#      %a{:href => "extra-register.html"}
+        -#        %span.title Register
+        -#    %li
+        -#      %a{:href => "extra-invoice.html"}
+        -#        %span.title Invoice
+        -#    %li.has-sub
+        -#      %a{:href => "extra-gallery.html"}
+        -#        %span.title Gallery
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "extra-gallery.html"}
+        -#            %span.title Albums
+        -#        %li
+        -#          %a{:href => "extra-gallery-single.html"}
+        -#            %span.title Single Album
+        -#    %li
+        -#      %a{:href => "extra-members.html"}
+        -#        %span.title Members
+        -#    %li
+        -#      %a{:href => "extra-profile.html"}
+        -#        %span.title Profile
+        -#    %li
+        -#      %a{:href => "extra-404.html"}
+        -#        %span.title 404 Page
+        -#    %li
+        -#      %a{:href => "extra-blank-page.html"}
+        -#        %span.title Blank Page
+        -#    %li
+        -#      %a{:href => "extra-timeline.html"}
+        -#        %span.title Timeline
+        -#    %li
+        -#      %a{:href => "extra-comments.html"}
+        -#        %span.title Comments
+        -#    %li
+        -#      %a{:href => "extra-timeline-centered.html"}
+        -#        %span.title Timeline Centered
+        -#    %li
+        -#      %a{:href => "extra-tocify.html"}
+        -#        %span.title Tocify
+        -#    %li
+        -#      %a{:href => "ui-notifications.html"}
+        -#        %span.title Notifications
+        -#    %li
+        -#      %a{:href => "extra-new-post.html"}
+        -#        %span.title New Post
+        -#    %li
+        -#      %a{:href => "extra-settings.html"}
+        -#        %span.title Settings
+        -#    %li
+        -#      %a{:href => "extra-scrollbox.html"}
+        -#        %span.title Scrollbox
+        -#    %li
+        -#      %a{:href => "extra-image-crop.html"}
+        -#        %span.title Image Crop
+        -#    %li
+        -#      %a{:href => "extra-search.html"}
+        -#        %span.title Search Page
+        -#    %li
+        -#      %a{:href => "extra-language-selector.html"}
+        -#        %span.title Language Selector
+        -#    %li
+        -#      %a{:href => "extra-nestable.html"}
+        -#        %span.title Nestable Lists
+        -#    %li
+        -#      %a{:href => "extra-file-tree.html"}
+        -#        %span.title File Tree
+        -#    %li
+        -#      %a{:href => "extra-load-progress.html"}
+        -#        %span.title Load Progress
+        -#%li
+        -#  %a{:href => "charts.html"}
+        -#    %i.entypo-chart-bar
+        -#    %span.title Charts
+        -#%li.has-sub
+        -#  %a{:href => "#"}
+        -#    %i.entypo-flow-tree
+        -#    %span.title Menu Levels
+        -#  %ul
+        -#    %li
+        -#      %a{:href => "#"}
+        -#        %i.entypo-flow-line
+        -#        %span.title Menu Level 1.1
+        -#    %li
+        -#      %a{:href => "#"}
+        -#        %i.entypo-flow-line
+        -#        %span.title Menu Level 1.2
+        -#    %li.has-sub
+        -#      %a{:href => "#"}
+        -#        %i.entypo-flow-line
+        -#        %span.title Menu Level 1.3
+        -#      %ul
+        -#        %li
+        -#          %a{:href => "#"}
+        -#            %i.entypo-flow-parallel
+        -#            %span.title Menu Level 2.1
+        -#        %li.has-sub
+        -#          %a{:href => "#"}
+        -#            %i.entypo-flow-parallel
+        -#            %span.title Menu Level 2.2
+        -#          %ul
+        -#            %li.has-sub
+        -#              %a{:href => "#"}
+        -#                %i.entypo-flow-cascade
+        -#                %span.title Menu Level 3.1
+        -#              %ul
+        -#                %li
+        -#                  %a{:href => "#"}
+        -#                    %i.entypo-flow-branch
+        -#                    %span.title Menu Level 4.1
+        -#            %li
+        -#              %a{:href => "#"}
+        -#                %i.entypo-flow-cascade
+        -#                %span.title Menu Level 3.2
+        -#        %li
+        -#          %a{:href => "#"}
+        -#            %i.entypo-flow-parallel
+        -#            %span.title Menu Level 2.3
+  .main-content
+    .row
+      / Profile Info and Notifications
+      .col-md-6.col-sm-8.clearfix
+        %ul.user-info.pull-left.pull-none-xsm
+          / Profile Info
+          %li.profile-info.dropdown
+            / add class "pull-right" if you want to place this from right
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = image_tag('thumb-1@2x.png',width:'44',class:'img img-circle')
+              John Henderson
+            %ul.dropdown-menu
+              / Reverse Caret
+              %li.caret
+              / Profile sub-links
+              %li
+                %a{:href => "extra-timeline.html"}
+                  %i.entypo-user
+                  Edit Profile
+              %li
+                %a{:href => "mailbox.html"}
+                  %i.entypo-mail
+                  Inbox
+              %li
+                %a{:href => "extra-calendar.html"}
+                  %i.entypo-calendar
+                  Calendar
+              %li
+                %a{:href => "#"}
+                  %i.entypo-clipboard
+                  Tasks
+        %ul.user-info.pull-left.pull-right-xs.pull-none-xsm
+          / Raw Notifications
+          %li.notifications.dropdown
+            %a.dropdown-toggle{"data-close-others" => "true", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+              %i.entypo-attention
+              %span.badge.badge-info 6
+            %ul.dropdown-menu
+              %li.top
+                %p.small
+                  %a.pull-right{:href => "#"} Mark all Read
+                  You have
+                  %strong 3
+                  new notifications.
+              %li
+                %ul.dropdown-menu-list.scroller
+                  %li.unread.notification-success
+                    %a{:href => "#"}
+                      %i.entypo-user-add.pull-right
+                      %span.line
+                        %strong New user registered
+                      %span.line.small
+                        30 seconds ago
+                  %li.unread.notification-secondary
+                    %a{:href => "#"}
+                      %i.entypo-heart.pull-right
+                      %span.line
+                        %strong Someone special liked this
+                      %span.line.small
+                        2 minutes ago
+                  %li.notification-primary
+                    %a{:href => "#"}
+                      %i.entypo-user.pull-right
+                      %span.line
+                        %strong Privacy settings have been changed
+                      %span.line.small
+                        3 hours ago
+                  %li.notification-danger
+                    %a{:href => "#"}
+                      %i.entypo-cancel-circled.pull-right
+                      %span.line
+                        John cancelled the event
+                      %span.line.small
+                        9 hours ago
+                  %li.notification-info
+                    %a{:href => "#"}
+                      %i.entypo-info.pull-right
+                      %span.line
+                        The server is status is stable
+                      %span.line.small
+                        yesterday at 10:30am
+                  %li.notification-warning
+                    %a{:href => "#"}
+                      %i.entypo-rss.pull-right
+                      %span.line
+                        New comments waiting approval
+                      %span.line.small
+                        last week
+              %li.external
+                %a{:href => "#"} View all notifications
+          / Message Notifications
+          %li.notifications.dropdown
+            %a.dropdown-toggle{"data-close-others" => "true", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+              %i.entypo-mail
+              %span.badge.badge-secondary 10
+            %ul.dropdown-menu
+              %li
+                %form.top-dropdown-search
+                  .form-group
+                    %input.form-control{:name => "s", :placeholder => "Search anything...", :type => "text"}/
+                %ul.dropdown-menu-list.scroller
+                  %li.active
+                    %a{:href => "#"}
+                      %span.image.pull-right
+                        = image_tag('thumb-1@2x.png',class:'img-circle img', width:'44')
+                      %span.line
+                        %strong Luc Chartier
+                        \- yesterday
+                      %span.line.desc.small
+                        This ain’t our first item, it is the best of the rest.
+                  %li.active
+                    %a{:href => "#"}
+                      %span.image.pull-right
+                        = image_tag('thumb-2@2x.png',class:'img-circle img', width:'44')
+
+                      %span.line
+                        %strong Salma Nyberg
+                        \- 2 days ago
+                      %span.line.desc.small
+                        Oh he decisively impression attachment friendship so if everything.
+                  %li
+                    %a{:href => "#"}
+                      %span.image.pull-right
+                        = image_tag('thumb-3@2x.png',class:'img-circle img', width:'44')
+
+                      %span.line
+                        Hayden Cartwright
+                        \- a week ago
+                      %span.line.desc.small
+                        Whose her enjoy chief new young. Felicity if ye required likewise so doubtful.
+                  %li
+                    %a{:href => "#"}
+                      %span.image.pull-right
+                        = image_tag('thumb-4@2x.png',class:'img-circle img', width:'44')
+                      %span.line
+                        Sandra Eberhardt
+                        \- 16 days ago
+                      %span.line.desc.small
+                        On so attention necessary at by provision otherwise existence direction.
+              %li.external
+                %a{:href => "mailbox.html"} All Messages
+          / Task Notifications
+          %li.notifications.dropdown
+            %a.dropdown-toggle{"data-close-others" => "true", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+              %i.entypo-list
+              %span.badge.badge-warning 1
+            %ul.dropdown-menu
+              %li.top
+                %p You have 6 pending tasks
+              %li
+                %ul.dropdown-menu-list.scroller
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc Procurement
+                        %span.percent 27%
+                      %span.progress
+                        %span.progress-bar.progress-bar-success{:style => "width: 27%;"}
+                          %span.sr-only 27% Complete
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc App Development
+                        %span.percent 83%
+                      %span.progress.progress-striped
+                        %span.progress-bar.progress-bar-danger{:style => "width: 83%;"}
+                          %span.sr-only 83% Complete
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc HTML Slicing
+                        %span.percent 91%
+                      %span.progress
+                        %span.progress-bar.progress-bar-success{:style => "width: 91%;"}
+                          %span.sr-only 91% Complete
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc Database Repair
+                        %span.percent 12%
+                      %span.progress.progress-striped
+                        %span.progress-bar.progress-bar-warning{:style => "width: 12%;"}
+                          %span.sr-only 12% Complete
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc Backup Create Progress
+                        %span.percent 54%
+                      %span.progress.progress-striped
+                        %span.progress-bar.progress-bar-info{:style => "width: 54%;"}
+                          %span.sr-only 54% Complete
+                  %li
+                    %a{:href => "#"}
+                      %span.task
+                        %span.desc Upgrade Progress
+                        %span.percent 17%
+                      %span.progress.progress-striped
+                        %span.progress-bar.progress-bar-important{:style => "width: 17%;"}
+                          %span.sr-only 17% Complete
+              %li.external
+                %a{:href => "#"} See all tasks
+      / Raw Links
+      .col-md-6.col-sm-4.clearfix.hidden-xs
+        %ul.list-inline.links-list.pull-right
+          / Language Selector
+          %li.dropdown.language-selector
+            Language:  
+            %a.dropdown-toggle{"data-close-others" => "true", "data-toggle" => "dropdown", :href => "#"}
+              = image_tag('flags/flag-uk.png',class:'img',width:16)
+            %ul.dropdown-menu.pull-right
+              %li
+                %a{:href => "#"}
+                  = image_tag('flags/flag-de.png',class:'img',width:16)
+                  %span Deutsch
+              %li.active
+                %a{:href => "#"}
+                  = image_tag('flags/flag-uk.png',class:'img',width:16)
+                  %span English
+              %li
+                %a{:href => "#"}
+                  = image_tag('flags/flag-fr.png',class:'img',width:16)
+                  %span François
+              %li
+                %a{:href => "#"}
+                  = image_tag('flags/flag-al.png',class:'img',width:16)
+                  %span Shqip
+              %li
+                %a{:href => "#"}
+                  = image_tag('flags/flag-es.png',class:'img',width:16)
+                  %span Español
+          %li.sep
+          %li
+            %i.entypo-logout.right
+              = link_to 'Log  Out', destroy_user_session_path, :method=>:delete
+
+
+
