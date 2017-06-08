@@ -1,0 +1,15 @@
+!!! 5
+%html.no-js
+  = render 'devise/shared/head'
+
+  %body{ :class => "#{ controller.controller_name }" }
+    = render 'devise/shared/chromeframe'
+    = render 'devise/shared/header'
+    = render 'devise/shared/flashes'
+
+    = yield
+
+    = render 'devise/shared/footer'
+
+    -# Javascript at the bottom for fast page loading
+    = render 'devise/shared/javascripts'
