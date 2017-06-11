@@ -3,7 +3,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    sign_in(Admin.last)
     super
   end
 

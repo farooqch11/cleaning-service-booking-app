@@ -30,6 +30,6 @@
             = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
 
         .form-group
-          = f.button raw("<i class='entypo-login'></i>Login In"), class: "btn btn-primary btn-block btn-login "
+          = f.button raw("<i class='entypo-login'></i>Login In"), id:'button',class: "btn btn-primary btn-block btn-login "
 
       = render "devise/shared/links"
