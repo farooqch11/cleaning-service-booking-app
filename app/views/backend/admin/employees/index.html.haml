@@ -5,7 +5,7 @@
       %i.fa-home>
       Home
   %li.active
-    %a{:href => "extra-icons.html"} Employees
+    %a{:href => "#{admin_employees_path}"} Employees
 .row
   .col-md-9.col-sm-7
     %h2 Employees
@@ -16,65 +16,36 @@
         %i.entypo-search
 / Member Entries
 / Single Member
-.member-entry
-  %a.member-img{:href => "extra-timeline.html"}
-    %img.img-rounded{:src => "assets/images/member-1.jpg"}/
-    %i.entypo-forward
-  .member-details
-    %h4
-      %a{:href => "extra-timeline.html"} Johnnie Linton
-    / Details with Icons
-    .row.info-list
-      .col-sm-4
-        %i.entypo-briefcase
-        Co-Founder at
-        %a{:href => "#"} Complete Tech
-      .col-sm-4
-        %i.entypo-twitter
-        %a{:href => "#"} @johnnie
-      .col-sm-4
-        %i.entypo-facebook
-        %a{:href => "#"} fb.me/johnnie
-      .clear
-      .col-sm-4
-        %i.entypo-location
-        %a{:href => "#"} Prishtina
-      .col-sm-4
-        %i.entypo-mail
-        %a{:href => "#"} john@gmail.com
-      .col-sm-4
-        %i.entypo-linkedin
-        %a{:href => "#"} johnkennedy
-/ Single Member
-.member-entry
-  %a.member-img{:href => "extra-timeline.html"}
-    %img.img-rounded{:src => "assets/images/member-1.jpg"}/
-    %i.entypo-forward
-  .member-details
-    %h4
-      %a{:href => "extra-timeline.html"} Laura Fassett
-    / Details with Icons
-    .row.info-list
-      .col-sm-4
-        %i.entypo-briefcase
-        Dental Surgery Doctor at
-        %a{:href => "#"} Omni Realty
-      .col-sm-4
-        %i.entypo-twitter
-        %a{:href => "#"} @laurajFassett
-      .col-sm-4
-        %i.entypo-facebook
-        %a{:href => "#"} fb.me/Willne
-      .clear
-      .col-sm-4
-        %i.entypo-location
-        %a{:href => "#"} London
-      .col-sm-4
-        %i.entypo-mail
-        %a{:href => "#"} lara@inbox.com
-      .col-sm-4
-        %i.entypo-linkedin
-        %a{:href => "#"} LauraJFassett
+- Employee.all.each do |employee|
+  .member-entry
+    %a.member-img{:href => "#{admin_employee_path(employee)}"}
+      = image_tag employee.image , class: 'img-rounded'
+      %i.entypo-forward
+    .member-details
+      %h4
+        %a{:href => "#{admin_employee_path(employee)}"}= employee.full_name
+      / Details with Icons
+      .row.info-list
+        .col-sm-4
+          %i.entypo-briefcase
+          Co-Founder at
+          %a{:href => "#"} Complete Tech
+        .col-sm-4
+          %i.entypo-twitter
+          %a{:href => "#"} @johnnie
+        .col-sm-4
+          %i.entypo-facebook
+          %a{:href => "#"} fb.me/johnnie
+        .clear
+        .col-sm-4
+          %i.entypo-location
+          %a{:href => "#"} Prishtina
+        .col-sm-4
+          %i.entypo-mail
+          %a{:href => "#"}= employee.email
+        .col-sm-4
+          %i.entypo-linkedin
+          %a{:href => "#"} johnkennedy
 / Pager for search results
 .row
   .col-md-12

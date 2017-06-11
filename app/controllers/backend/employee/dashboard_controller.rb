@@ -1,4 +1,4 @@
-class Backend::Employee::DashboardController < ApplicationController
+class Backend::Employee::DashboardController < Backend::Employee::EmployeesController
   def index
   end
 end

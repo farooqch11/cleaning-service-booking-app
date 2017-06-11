@@ -6,8 +6,8 @@
       %li.profile-info.dropdown
         / add class "pull-right" if you want to place this from right
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-          = image_tag('thumb-1@2x.png',width:'44',class:'img img-circle')
-          John Henderson
+          = image_tag(current_user.image ,width:'44',class:'img img-circle')
+          = current_user.email
         %ul.dropdown-menu
           / Reverse Caret
           %li.caret
@@ -201,32 +201,6 @@
   / Raw Links
   .col-md-6.col-sm-4.clearfix.hidden-xs
     %ul.list-inline.links-list.pull-right
-      / Language Selector
-      %li.dropdown.language-selector
-        Language:  
-        %a.dropdown-toggle{"data-close-others" => "true", "data-toggle" => "dropdown", :href => "#"}
-          = image_tag('flags/flag-uk.png',class:'img',width:16)
-        %ul.dropdown-menu.pull-right
-          %li
-            %a{:href => "#"}
-              = image_tag('flags/flag-de.png',class:'img',width:16)
-              %span Deutsch
-          %li.active
-            %a{:href => "#"}
-              = image_tag('flags/flag-uk.png',class:'img',width:16)
-              %span English
-          %li
-            %a{:href => "#"}
-              = image_tag('flags/flag-fr.png',class:'img',width:16)
-              %span François
-          %li
-            %a{:href => "#"}
-              = image_tag('flags/flag-al.png',class:'img',width:16)
-              %span Shqip
-          %li
-            %a{:href => "#"}
-              = image_tag('flags/flag-es.png',class:'img',width:16)
-              %span Español
       %li.sep
       %li
         %i.entypo-logout.right
