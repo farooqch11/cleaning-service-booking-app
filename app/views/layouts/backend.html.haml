@@ -4,10 +4,12 @@
 
   %body.page-body.page-fade
     = render 'backend/shared/chromeframe'
-    = render 'backend/shared/header'
     = render 'backend/shared/flashes'
-
-    = yield
+    .page-container
+      = render 'backend/admin/shared/left_sidebar'
+      .main-content
+        = render 'backend/shared/header'
+        = yield
 
     = render 'backend/shared/footer'
     = render 'backend/shared/flashes'

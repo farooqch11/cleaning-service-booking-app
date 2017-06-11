@@ -1,4 +1,4 @@
-class Backend::DashboredController < BackendController
+class Backend::DashboredController < Backend::BackendController
 
   def index
   end
