@@ -20,10 +20,14 @@ Rails.application.routes.draw do
 
   scope module: :backend do
     namespace :admin do
-      get    "dashboard",  to: "dashbored#index"
+      get    "dashboard",  to: "dashboard#index"
       resources :employees
       resources :customers
       resource  :calender
+    end
+
+    namespace :employee do
+      get    "dashboard",  to: "dashboard#index"
     end
   end
 
