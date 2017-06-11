@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
   namespace :backend do
+    namespace :employee do
+      get 'dashboard/index'
+    end
+  end
+
+  namespace :backend do
     namespace :admin do
       get 'calenders/index'
     end
