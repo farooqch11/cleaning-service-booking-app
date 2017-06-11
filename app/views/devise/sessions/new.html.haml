@@ -18,6 +18,11 @@
 
 
 / This is needed when you send requests via Ajax
+
+/ This is needed when you send requests via Ajax
+:javascript
+  var baseurl = '';
+
 .login-container
   .login-header.login-caret
     .login-content
@@ -32,30 +37,22 @@
   .login-form
     .login-content
       .form-login-error
-        %h3 Invalid login
-        %p
-          Enter
-          = succeed "/" do
-            %strong demo
-          %strong demo
-          as login and password.
+        = render 'devise/shared/flashes'
 
-      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { id: 'form_login' }, wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes, boolean: :horizontal_boolean } ) do |f|
+      = form_for resource, as: resource_name, url: session_path(resource_name), html: { id: 'form_login' } do |f|
         .form-group
           .input-group
             .input-group-addon
               %i.entypo-user
-                = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
+            = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
         .form-group
           .input-group
             .input-group-addon
               %i.entypo-key
-                = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
+            = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
 
         .form-group
-          = f.button :submit, "Login In",id:'button', class: "btn btn-primary btn-block btn-login " do
-            %i.entypo-login
-
+          = f.button raw("<i class='entypo-login'></i>Login In"), class: "btn btn-primary btn-block btn-login "
         -#.form-group
         -#  %em - or -
         -#.form-group
@@ -65,4 +62,4 @@
         -#      %i.entypo-facebook
 
       .login-bottom-links
-        %a.link{:href => "extra-forgot-password.html"} Forgot your password?
+        %a.link{:href => "#"} Forgot your password?

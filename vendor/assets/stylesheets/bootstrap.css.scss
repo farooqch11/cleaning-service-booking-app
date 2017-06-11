@@ -254,8 +254,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.eot');
-  src: font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.woff2') format('woff2'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.woff') format('woff'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.ttf') format('truetype'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: font-url('glyphicons/glyphicons-halflings-regular.eot');
+  src: font-url('glyphicons/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.woff2') format('woff2'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.woff') format('woff'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.ttf') format('truetype'), font_path('../css/font-icons/glyphicons/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;

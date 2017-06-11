@@ -397,8 +397,8 @@ select[multiple].input-lg {
   transform: rotate(180deg);
 }
 .panel .blockUI.blockOverlay {
-  background-image: url(../images/loader-1.gif);
-  background-image: url(../images/loader-2.gif);
+  background-image: image-url('loader-1.gif');
+  background-image: image-url('loader-2.gif');
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -12007,14 +12007,14 @@ body.page-fade-only-init > .page-container {
   }
 }
 .boxed-layout {
-  background: url(../images/boxed-pattern-3.png);
+  background: image-url('boxed-pattern-3.png');
   padding-bottom: 0px;
 }
 .boxed-layout.page-fade,
 .boxed-layout.page-fade-only,
 .boxed-layout.page-left-in,
 .boxed-layout.page-right-in {
-  background: url(../images/boxed-pattern-3.png);
+  background: image-url('boxed-pattern-3.png');
 }
 .boxed-layout .page-container {
   position: relative;
