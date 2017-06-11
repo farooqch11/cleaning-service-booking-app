@@ -1,0 +1,11 @@
+%hr/
+%h1.margin-bottom New Employee
+%ol.breadcrumb.2
+  %li
+    %a{:href => "#{admin_dashboard_path}"}
+      %i.fa-home>
+      Home
+  %li.active
+    %strong New Employee
+%br/
+= render 'backend/admin/employees/partials/form'

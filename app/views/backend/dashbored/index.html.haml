@@ -3,7 +3,7 @@
     .tile-stats.tile-red
       .icon
         %i.entypo-users
-      .num{"data-delay" => "0", "data-duration" => "1500", "data-end" => "83", "data-postfix" => "", "data-start" => "0"} 83
+      .num{"data-delay" => "0", "data-duration" => "1500", "data-end" => "#{Employee.all.count}", "data-postfix" => "", "data-start" => "0"}= Employee.all.count
       %h3 Employees
       %p so far in our blog, and our website.
   .col-sm-3.col-xs-6

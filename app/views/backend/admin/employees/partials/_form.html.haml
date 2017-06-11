@@ -1,0 +1,34 @@
+= form_for @employee , class: 'form-horizontal form-groups-bordered validate' do |f|
+  .row
+    .col-md-12
+      .panel.panel-primary{"data-collapsed" => "0"}
+        .panel-heading
+          .panel-title
+            Employee Details
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.entypo-down-open
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.entypo-arrows-ccw
+        .panel-body{:style => "display: block;"}
+          .form-group
+            %label.col-sm-3.control-label{:for => "field-1"} Site title
+            .col-sm-5
+              %input#field-1.form-control{:type => "text", :value => "Neon"}/
+          .form-group
+            %label.col-sm-3.control-label{:for => "field-2"} Tagline
+            .col-sm-5
+              %input#field-2.form-control{:type => "text", :value => "Bootstrap Admin Theme"}/
+              %span.description Few words that will describe your site.
+          .form-group
+            %label.col-sm-3.control-label{:for => "field-3"} Site URL
+            .col-sm-5
+              %input#field-3.form-control{"data-validate" => "required,url", :name => "site-url", :type => "text", :value => "http://exampledomain.com/neon"}/
+          .form-group
+            %label.col-sm-3.control-label{:for => "field-4"} Email address
+            .col-sm-5
+              %input#field-4.form-control{"data-validate" => "required,email", :name => "email", :type => "text", :value => "john@doe.com"}/
+              %span.description Here you will receive site notifications.
+  .form-group.default-padding
+    %button.btn.btn-success{:type => "submit"} Save Changes
+    %button.btn{:type => "reset"} Reset Previous

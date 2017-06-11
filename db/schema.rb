@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607232921) do
+ActiveRecord::Schema.define(version: 20170611031913) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20170607232921) do
     t.string   "invited_by_type"
     t.integer  "invited_by_id"
     t.integer  "invitations_count",      default: 0
+    t.string   "type"
+    t.datetime "deleted_at"
+    t.integer  "status",                 default: 0
+    t.string   "image"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "gender"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

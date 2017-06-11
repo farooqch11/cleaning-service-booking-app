@@ -10,9 +10,5 @@
       .main-content
         = render 'backend/shared/header'
         = yield
-
-    = render 'backend/shared/footer'
-    = render 'backend/shared/flashes'
-
-    -# Javascript at the bottom for fast page loading
+        = render 'backend/shared/footer'
     = render 'backend/shared/javascripts'
