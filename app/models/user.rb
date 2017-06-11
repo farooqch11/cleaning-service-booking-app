@@ -12,6 +12,12 @@ class User < ApplicationRecord
     super.present? ?  super : "gravatar/gravatar_#{(1..15).to_a.sample(1).first}.png"
   end
 
+  def admin?
+    self.type == "Admin"
+  end
+  def employee?
+    self.type == "Employee"
+  end
   def full_name
     self.first_name + " " + self.last_name
   end

@@ -1,35 +1,19 @@
-:javascript
-  var baseurl = '';
+.form-login-error
+  = render 'devise/shared/flashes'
 
-.login-container
-  .login-header.login-caret
-    .login-content
-      %a.logo{:href => "#{root_path}"}
-        = image_tag('logo_1.png',class: 'img', width:'130')
-      %p.description Dear user, log in to access the admin area!
-      .login-progressbar-indicator
-        %h3 43%
-        %span logging in...
-  .login-progressbar
-    %div
-  .login-form
-    .login-content
-      .form-login-error
-        = render 'devise/shared/flashes'
+= form_for resource, as: resource_name, url: session_path(resource_name), html: { id: 'form_login' } do |f|
+  .form-group
+    .input-group
+      .input-group-addon
+        %i.entypo-user
+      = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
+  .form-group
+    .input-group
+      .input-group-addon
+        %i.entypo-key
+      = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
 
-      = form_for resource, as: resource_name, url: session_path(resource_name), html: { id: 'form_login' } do |f|
-        .form-group
-          .input-group
-            .input-group-addon
-              %i.entypo-user
-            = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
-        .form-group
-          .input-group
-            .input-group-addon
-              %i.entypo-key
-            = f.password_field :password, required: true,class:'form-control',id:'password', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) ,:placeholder => "Password",:autocomplete => "off",label: 'Password'
+  .form-group
+    = f.button raw("<i class='entypo-login'></i>Login In"), id:'button',class: "btn btn-primary btn-block btn-login "
 
-        .form-group
-          = f.button raw("<i class='entypo-login'></i>Login In"), id:'button',class: "btn btn-primary btn-block btn-login "
-
-      = render "devise/shared/links"
+= render "devise/shared/links"

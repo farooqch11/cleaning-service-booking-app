@@ -5,8 +5,23 @@
   %body.page-body.login-page.login-form-fall
     = render 'devise/shared/chromeframe'
     = render 'devise/shared/header'
+    :javascript
+      var baseurl = '';
 
-    = yield
+    .login-container
+      .login-header.login-caret
+        .login-content
+          %a.logo{:href => "#{root_path}"}
+            = image_tag('logo_1.png',class: 'img', width:'130')
+          %p.description Dear user, log in to access the admin area!
+          .login-progressbar-indicator
+            %h3 43%
+            %span logging in...
+      .login-progressbar
+        %div
+      .login-form
+        .login-content
+          = yield
 
     = render 'devise/shared/footer'
     -#= render 'devise/shared/flashes'
