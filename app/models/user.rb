@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   enum role: [:user, :admin]
   enum gender: [:male, :female]
+  enum status: [:pending, :accepted , :canceled]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,

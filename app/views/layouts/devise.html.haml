@@ -13,7 +13,7 @@
         .login-content
           %a.logo{:href => "#{root_path}"}
             = image_tag('logo_1.png',class: 'img', width:'130')
-          %p.description Dear user, log in to access the admin area!
+          %p.description= yield :title
           .login-progressbar-indicator
             %h3 43%
             %span logging in...
