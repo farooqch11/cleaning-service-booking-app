@@ -3,7 +3,7 @@
     %header.logo-env
       / logo
       .logo
-        %a{:href => "index.html"}
+        %a{:href => "#{admin_dashboard_path}"}
           = image_tag('logo_1.png',:width=>'120',class:'img')
       / logo collapse icon
       .sidebar-collapse
@@ -24,11 +24,11 @@
           %span.title Dashboard
       %li
         = link_to admin_calender_path do
-          %i.entypo-calender
+          %i.entypo-bag
           %span.title Calender
       %li
         = link_to admin_employees_path do
-          %i.entypo-users
+          %i.entypo-user
           %span.title Employees
       %li
         = link_to admin_customers_path do

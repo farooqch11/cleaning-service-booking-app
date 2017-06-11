@@ -8,7 +8,7 @@
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           = image_tag(current_user.image ,width:'44',class:'img img-circle')
           = current_user.email
-        %ul.dropdown-menu
+        -#%ul.dropdown-menu
           / Reverse Caret
           %li.caret
           / Profile sub-links
@@ -28,7 +28,7 @@
             %a{:href => "#"}
               %i.entypo-clipboard
               Tasks
-    %ul.user-info.pull-left.pull-right-xs.pull-none-xsm
+    -#%ul.user-info.pull-left.pull-right-xs.pull-none-xsm
       / Raw Notifications
       %li.notifications.dropdown
         %a.dropdown-toggle{"data-close-others" => "true", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
