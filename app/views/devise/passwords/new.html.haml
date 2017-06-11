@@ -1,4 +1,4 @@
-.container
+-#.container
   .row
     .profile.center
       = panel title: 'Forgot your password?', context: :primary do
@@ -14,3 +14,31 @@
 
             .links
               = render "devise/shared/links"
+:javascript
+  var baseurl = '';
+
+.login-container
+  .login-header.login-caret
+    .login-content
+      %a.logo{:href => "index.html"}
+        = image_tag('logo_1.png',class: 'img', width:'130')
+      %p.description Dear user, log in to access the admin area!
+      .login-progressbar-indicator
+        %h3 43%
+        %span logging in...
+  .login-progressbar
+    %div
+  .login-form
+    .login-content
+      .form-login-error
+        = render 'devise/shared/flashes'
+
+      = form_for resource, as: resource_name, url: password_path(resource_name), html: { id: 'form_login' } do |f|
+        .form-group
+          .input-group
+            .input-group-addon
+              %i.entypo-user
+            = f.email_field :email, required: true, autofocus: true,class:'form-control' ,id:'username',:placeholder => "Email" , label: 'Email'
+        .form-group
+          = f.button raw("<i class='entypo-login'></i>Send me reset password instructions"), class: "btn btn-primary btn-block btn-login "
+      = render "devise/shared/links"

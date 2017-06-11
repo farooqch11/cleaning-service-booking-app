@@ -53,13 +53,5 @@
 
         .form-group
           = f.button raw("<i class='entypo-login'></i>Login In"), class: "btn btn-primary btn-block btn-login "
-        -#.form-group
-        -#  %em - or -
-        -#.form-group
-        -#  %button.btn.btn-default.btn-lg.btn-block.btn-icon.icon-left.facebook-button{:type => "button"}
-        -#    Login with Facebook
-        -#    %span
-        -#      %i.entypo-facebook
 
-      .login-bottom-links
-        %a.link{:href => "#"} Forgot your password?
+      = render "devise/shared/links"
