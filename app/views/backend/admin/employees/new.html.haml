@@ -5,7 +5,11 @@
     %a{:href => "#{admin_dashboard_path}"}
       %i.fa-home>
       Home
+  %li
+    %a{:href => "#{admin_employees_path}"}
+      %i.fa-users>
+      Employees
   %li.active
-    %strong New Employee
+    %strong New
 %br/
 = render 'backend/admin/employees/partials/form'

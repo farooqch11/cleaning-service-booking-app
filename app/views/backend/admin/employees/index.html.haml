@@ -1,19 +1,24 @@
 %hr/
 %ol.breadcrumb.bc-3
   %li
-    %a{:href => "index.html"}
+    %a{:href => "#{admin_dashboard_path}"}
       %i.fa-home>
       Home
   %li.active
     %a{:href => "#{admin_employees_path}"} Employees
 .row
-  .col-md-9.col-sm-7
+  .col-md-6.col-sm-7
     %h2 Employees
-  .col-md-3.col-sm-5
-    %form.search-form-full{:method => "get", :role => "form"}
-      .form-group
-        %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
-        %i.entypo-search
+  .col-md-6.col-sm-5{style: 'margin-top: 20px;'}
+    -#.col-md-3
+      %form.search-form-full{:method => "get", :role => "form"}
+        .form-group
+          %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
+          %i.entypo-search
+    %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-right{href: "#{new_admin_employee_path}"}
+      %i.entypo-user-add
+      New Employee
+
 / Member Entries
 / Single Member
 - Employee.all.each do |employee|

@@ -11,18 +11,23 @@
             %a{"data-rel" => "reload", :href => "#"}
               %i.entypo-arrows-ccw
         .panel-body{:style => "display: block;"}
-          .form-group
-            %label.col-sm-2.control-label.text-right{:for => "field-1"} First name
-            .col-sm-10
-              =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter your first name'
-          .form-group
-            %label.col-sm-2.control-label.text-right{:for => "field-1"} Last name
-            .col-sm-10
-              =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter your Last name'
-          .form-group
-            %label.col-sm-2.control-label.text-right{:for => "field-1"} Email
-            .col-sm-10
-              =f.email_field :email , class: 'form-control' , placeholder: 'Enter your Email Address'
-  .form-group.default-padding.pull-right
-    = f.submit "Save Changes" , class: 'btn btn-success'
-    %button.btn{:type => "reset"} Reset Previous
+
+          .tab-content
+            #tab2-1.tab-pane.active
+              .row
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} First name
+                    =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name' , data: {"validate": "required"}
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Last name
+                    =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name' , data: {"validate": "required"}
+              .row
+                .col-md-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Email
+                    =f.email_field :email , class: 'form-control' , placeholder: 'Enter email' , data: {"validate": "required"}
+        .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
+          = f.submit "Submit" , class: 'btn btn-success'
+          %button.btn{:type => "reset"} Reset

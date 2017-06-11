@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :first_name , :last_name , presence: true
+
   def image
     super.present? ?  super : "gravatar/gravatar_#{(1..15).to_a.sample(1).first}.png"
   end
