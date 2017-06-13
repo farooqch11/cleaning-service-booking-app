@@ -20,6 +20,9 @@
 //= require  rickshaw.min
 //= require  toastr
 //= require TweenMax.min
+//= require moment.min
+//= require fullcalendar-2/fullcalendar.min
+//= require neon-calendar-2
 
 
 jQuery(document).ready(function($) {
