@@ -23,6 +23,7 @@
 //= require moment.min
 //= require fullcalendar-2/fullcalendar.min
 //= require neon-calendar-2
+//= require full_calender
 
 
 jQuery(document).ready(function($) {
