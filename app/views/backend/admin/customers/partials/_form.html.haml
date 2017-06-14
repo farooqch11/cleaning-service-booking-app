@@ -1,0 +1,33 @@
+= form_for [:admin ,@employee ] , class: 'form-horizontal form-groups-bordered validate' do |f|
+  .row
+    .col-md-12
+      .panel.panel-primary{"data-collapsed" => "0"}
+        .panel-heading
+          .panel-title
+            Employee Details
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.entypo-down-open
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.entypo-arrows-ccw
+        .panel-body{:style => "display: block;"}
+
+          .tab-content
+            #tab2-1.tab-pane.active
+              .row
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} First name
+                    =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name' , data: {"validate": "required"}
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Last name
+                    =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name' , data: {"validate": "required"}
+              .row
+                .col-md-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Email
+                    =f.email_field :email , class: 'form-control' , placeholder: 'Enter email' , data: {"validate": "required"}
+        .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
+          = f.submit "Submit" , class: 'btn btn-success'
+          %button.btn{:type => "reset"} Reset

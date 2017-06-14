@@ -24,26 +24,4 @@
 //= require fullcalendar-2/fullcalendar.min
 //= require neon-calendar-2
 //= require full_calender
-
-
-jQuery(document).ready(function($) {
-    setTimeout(function () {
-        var opts = {
-            "closeButton": true,
-            "debug": false,
-            "positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
-            "toastClass": "black",
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
-
-        toastr.success("Welcome to Your Dashboard", opts);
-    }, 3000);
-});
+//= require flash

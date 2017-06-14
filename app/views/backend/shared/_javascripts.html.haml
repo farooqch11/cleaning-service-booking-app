@@ -1,6 +1,5 @@
 = javascript_include_tag 'backend'
-
--#  Append your own using content_for :javascripts
+= render 'backend/shared/flashes'
 = yield :javascripts
 
 -# Google Analytics
