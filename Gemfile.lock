@@ -114,6 +114,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
@@ -132,6 +134,8 @@ GEM
     fakeredis (0.6.0)
       redis (~> 3.2)
     ffi (1.9.18)
+    figaro (1.1.1)
+      thor (~> 0.14)
     formatador (0.2.5)
     gherkin (4.1.3)
     globalid (0.4.0)
@@ -174,6 +178,8 @@ GEM
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     i18n (0.8.4)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -186,6 +192,7 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
+    libv8 (3.16.14.19-x86_64-linux)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -198,6 +205,8 @@ GEM
     lumberjack (1.0.12)
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
+    mailgun-ruby (1.1.6)
+      rest-client (~> 2.0)
     meta-tags (2.4.1)
       actionpack (>= 3.2.0, < 5.2)
     method_source (0.8.2)
@@ -210,6 +219,7 @@ GEM
     multi_json (1.12.1)
     multi_test (0.1.2)
     nenv (0.3.0)
+    netrc (0.11.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -272,9 +282,14 @@ GEM
       ffi (>= 0.5.0)
     rdiscount (2.2.0.1)
     redis (3.3.3)
+    ref (2.0.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -330,13 +345,22 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.3.13)
     temple (0.8.0)
+    therubyracer (0.12.3)
+      libv8 (~> 3.16.14.15)
+      ref
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    turbolinks (5.0.1)
+      turbolinks-source (~> 5)
+    turbolinks-source (5.0.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.4)
     vcr (3.0.3)
     warden (1.2.7)
       rack (>= 1.0)
@@ -376,6 +400,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fakeredis
+  figaro
   guard-cucumber
   guard-rspec (~> 4.6.4)
   haml-rails
@@ -386,6 +411,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   lograge
+  mailgun-ruby (~> 1.1.6)
   meta-tags
   modernizr-rails
   nokogiri
@@ -406,6 +432,8 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  therubyracer
+  turbolinks (~> 5.x)
   tzinfo-data
   uglifier (>= 1.3.0)
   vcr

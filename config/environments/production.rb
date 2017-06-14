@@ -87,4 +87,13 @@ end
   config.active_record.dump_schema_after_migration = false
   config.lograge.enabled = true
   config.assets.quiet = true
+
+  config.action_mailer.default_url_options = { :host => ENV['DOMAIN_URL'] }
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: ENV["MAILGUN_API_KEY"],
+      domain: ENV["MAILGUN_DOMAIN"]
+  }
+
 end
