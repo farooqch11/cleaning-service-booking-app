@@ -7,5 +7,6 @@
 //= require neon-custom
 //= require neon-demo
 //= require neon-login
+//= require neon-register
 //= require resizeable
 //= require TweenMax.min

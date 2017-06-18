@@ -6,68 +6,73 @@
   .form-register-success
     %i.entypo-check
     %h3 You have been successfully registered.
-    %p We have emailed you the confirmation link for your account.
+    %p Now Log On to the Your Account to Acess the Dashboard.
   .form-steps
     #step-1.step.current
-      -#.form-group
+      .form-group
         .input-group
           .input-group-addon
             %i.entypo-user
-          = f.text_field :first_name , class: 'form-control' , placeholder: "Your first name" , autocomplete: "off"
-      -#.form-group
+          = f.text_field :first_name , class: 'form-control' , placeholder: "Your Name" , autocomplete: "off",name:"name"
+      .form-group
         .input-group
           .input-group-addon
             %i.entypo-user
-          = f.text_field :last_name , class: 'form-control' , placeholder: "Your first name" , autocomplete: "off"
-      .form-group
-        .input-group
-          .input-group-addon
-            %i.entypo-lock
-          = f.password_field :password , class: 'form-control' , placeholder: "Password" , autocomplete: "off"
-      .form-group
-        .input-group
-          .input-group-addon
-            %i.entypo-lock
-          = f.password_field :password_confirmation , class: 'form-control' , placeholder: "Confirm Password" , autocomplete: "off"
-      .form-group
-        = f.button raw("<i class='entypo-right-open-mini'></i>Complete Onboarding"), class: 'btn btn-success btn-block btn-login'
+          = f.text_field :last_name , class: 'form-control' , placeholder: "Your Sur-Name" , autocomplete: "off",name:'sur_name'
 
-      -#.form-group
-        .input-group
-          .input-group-addon
-            %i.entypo-phone
-          = f.text_field :phone , class: 'form-control' , placeholder: "Phone Number" , autocomplete: "off" , data:{"mask": "phone"}
-      -#.form-group
-        .input-group
-          .input-group-addon
-            %i.entypo-calendar
-          = f.text_field :phone , class: 'form-control' , placeholder: "Date of Birth (DD/MM/YYYY)" , autocomplete: "off" , data:{"mask": "date"}
-      -#.form-group
-        %button.btn.btn-primary.btn-block.btn-login{"data-step" => "step-2", :type => "button"}
-          %i.entypo-right-open-mini
-          Next Step
-      -#.form-group
-        Step 1 of 2
-    -##step-2.step
-      .form-group
-        .input-group
-          .input-group-addon
-            %i.entypo-user-add
-          %input#username.form-control{:autocomplete => "off", "data-is-regex" => "true", "data-mask" => "[a-zA-Z0-1\\.]+", :name => "username", :placeholder => "Username", :type => "text"}/
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-mail
-          %input#email.form-control{:autocomplete => "off", "data-mask" => "email", :name => "email", :placeholder => "E-mail", :type => "text"}/
+          = f.text_field :email , class: 'form-control' , placeholder: "Email " , autocomplete: "off" ,:disabled => true
+
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-lock
-          %input#password.form-control{:autocomplete => "off", :name => "password", :placeholder => "Choose Password", :type => "password"}/
+          = f.password_field :password , class: 'form-control' , placeholder: "Password" , autocomplete: "off",name:'password'
       .form-group
-        %button.btn.btn-success.btn-block.btn-login{:type => "submit"}
+        .input-group
+          .input-group-addon
+            %i.entypo-lock
+          = f.password_field :password_confirmation , class: 'form-control' , placeholder: "Confirm Password" , autocomplete: "off",name:'c_password'
+
+      .form-group
+        %button.btn.btn-primary.btn-block.btn-login{"data-step" => "step-2", :type => "button"}
           %i.entypo-right-open-mini
-          Complete Registration
+          Next Step
+      .form-group
+        Step 1 of 2
+    #step-2.step
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-reply-all
+          = f.text_field :hourly_rate , class: 'form-control' , placeholder: "Hourly Rate " , autocomplete: "off" ,:disabled=> true
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-phone
+          = f.text_field :phone , class: 'form-control' , placeholder: "Phone " , autocomplete: "off" ,name:'phone',"data-mask"=>"phone"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :street , class: 'form-control' , placeholder: "Street " , autocomplete: "off" ,name:'street'
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :city , class: 'form-control' , placeholder: "City " , autocomplete: "off" ,name:'city'
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :postcode , class: 'form-control' , placeholder: "Postal Code " , autocomplete: "off" ,name:'code'
+
+      .form-group
+        = f.button raw("<i class='entypo-right-open-mini'></i>Complete Onboarding"), class: 'btn btn-success btn-block btn-login',id:'button'
+
       .form-group
         Step 2 of 2
 .login-bottom-links
@@ -78,3 +83,4 @@
   %a{:href => "#"} ToS
   \-
   %a{:href => "#"} Privacy Policy
+
