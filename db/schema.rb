@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614213745) do
+ActiveRecord::Schema.define(version: 20170616223202) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -31,8 +31,27 @@ ActiveRecord::Schema.define(version: 20170614213745) do
     t.datetime "start"
     t.datetime "end"
     t.string   "color"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "employee_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_events_on_customer_id"
+    t.index ["employee_id"], name: "index_events_on_employee_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "customer_id"
+    t.integer  "employee_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "status"
+    t.integer  "priority"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_jobs_on_customer_id"
+    t.index ["employee_id"], name: "index_jobs_on_employee_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,6 +85,11 @@ ActiveRecord::Schema.define(version: 20170614213745) do
     t.integer  "gender"
     t.string   "dob"
     t.string   "phone"
+    t.string   "street"
+    t.string   "city"
+    t.string   "postcode"
+    t.float    "hourly_rate"
+    t.string   "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

@@ -7,7 +7,7 @@
     = render 'devise/shared/header'
     :javascript
       var baseurl = '';
-
+    = render 'devise/shared/flashes'
     .login-container
       .login-header.login-caret
         .login-content
@@ -24,7 +24,6 @@
           = yield
 
     = render 'devise/shared/footer'
-    -#= render 'devise/shared/flashes'
 
     -# Javascript at the bottom for fast page loading
     = render 'devise/shared/javascripts'

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { sessions: 'users/sessions'}, skip: [:sessions]
+  resources :events
+  devise_for :users, :controllers => { sessions: 'users/sessions' , invitations: 'users/invitations'}, skip: [:sessions]
 
   devise_scope :user do
     get    "sign-in",  to: "devise/sessions#new",         as: :new_user_session

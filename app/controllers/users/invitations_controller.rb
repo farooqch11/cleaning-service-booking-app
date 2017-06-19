@@ -1,19 +1,20 @@
 class Users::InvitationsController < Devise::InvitationsController
 
-  def edit
-  end
+  # def edit
+  #   super
+  # end
 
   def update
     self.resource = resource_class.find_by_invitation_token(update_resource_params[:invitation_token],true)
     if resource.present?
-      resource = resource_class.accept_invitation!(resource_params.merge!(status: User.statuses[:accepted]))
+      resource = resource_class.accept_invitation!(update_resource_params.merge!(status: User.statuses[:accepted]))
       if resource && resource.valid?
         sign_in(resource)
         flash[:notice] = "You have successfully completed your on-boarding."
         redirect_to resource.admin? ? admin_dashboard_path : employee_dashboard_path
       else
         resource.invitation_token = update_resource_params[:invitation_token]
-        flash[:errors] = resource.errors.full_messages
+        puts flash[:errors] = resource.errors.full_messages
         redirect_to :back
       end
     else
@@ -23,9 +24,10 @@ class Users::InvitationsController < Devise::InvitationsController
     end
   end
 
-  private
+  protected
 
-  def resource_params
-    params.require(:user).permit(:invitation_token , :password, :password_confirmation, :dob, :gender, :phone, :image,:first_name, :last_name)
+  private
+  def update_resource_params
+    params.require(:user).permit(:type , :first_name, :last_name , :password, :password_confirmation, :phone , :street , :city , :postcode , :invitation_token, :dob, :gender, :phone , :image)
   end
 end

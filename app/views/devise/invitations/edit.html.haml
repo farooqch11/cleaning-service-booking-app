@@ -3,6 +3,7 @@
 = form_for resource, as: resource_name, url: invitation_path(resource_name) , html: { id: 'form_register' ,method: :put } do |f|
   = devise_error_messages!
   = f.hidden_field :invitation_token
+  = f.hidden_field :type , value: "Employee"
   .form-register-success
     %i.entypo-check
     %h3 You have been successfully registered.
@@ -13,12 +14,12 @@
         .input-group
           .input-group-addon
             %i.entypo-user
-          = f.text_field :first_name , class: 'form-control' , placeholder: "Your Name" , autocomplete: "off",name:"name"
+          = f.text_field :first_name , class: 'form-control' , placeholder: "Your Name" , autocomplete: "off"
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-user
-          = f.text_field :last_name , class: 'form-control' , placeholder: "Your Sur-Name" , autocomplete: "off",name:'sur_name'
+          = f.text_field :last_name , class: 'form-control' , placeholder: "Your Sur-Name" , autocomplete: "off"
 
       .form-group
         .input-group
@@ -30,12 +31,12 @@
         .input-group
           .input-group-addon
             %i.entypo-lock
-          = f.password_field :password , class: 'form-control' , placeholder: "Password" , autocomplete: "off",name:'password'
+          = f.password_field :password , class: 'form-control' , placeholder: "Password" , autocomplete: "off"
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-lock
-          = f.password_field :password_confirmation , class: 'form-control' , placeholder: "Confirm Password" , autocomplete: "off",name:'c_password'
+          = f.password_field :password_confirmation , class: 'form-control' , placeholder: "Confirm Password" , autocomplete: "off"
 
       .form-group
         %button.btn.btn-primary.btn-block.btn-login{"data-step" => "step-2", :type => "button"}
@@ -53,22 +54,22 @@
         .input-group
           .input-group-addon
             %i.entypo-phone
-          = f.text_field :phone , class: 'form-control' , placeholder: "Phone " , autocomplete: "off" ,name:'phone',"data-mask"=>"phone"
+          = f.text_field :phone , class: 'form-control' , placeholder: "Phone " , autocomplete: "off" ,"data-mask"=>"phone"
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-address
-          = f.text_field :street , class: 'form-control' , placeholder: "Street " , autocomplete: "off" ,name:'street'
+          = f.text_field :street , class: 'form-control' , placeholder: "Street " , autocomplete: "off"
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-address
-          = f.text_field :city , class: 'form-control' , placeholder: "City " , autocomplete: "off" ,name:'city'
+          = f.text_field :city , class: 'form-control' , placeholder: "City " , autocomplete: "off"
       .form-group
         .input-group
           .input-group-addon
             %i.entypo-address
-          = f.text_field :postcode , class: 'form-control' , placeholder: "Postal Code " , autocomplete: "off" ,name:'code'
+          = f.text_field :postcode , class: 'form-control' , placeholder: "Postal Code " , autocomplete: "off"
 
       .form-group
         = f.button raw("<i class='entypo-right-open-mini'></i>Complete Onboarding"), class: 'btn btn-success btn-block btn-login',id:'button'
@@ -83,4 +84,3 @@
   %a{:href => "#"} ToS
   \-
   %a{:href => "#"} Privacy Policy
-

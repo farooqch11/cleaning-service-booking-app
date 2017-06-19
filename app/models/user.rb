@@ -22,4 +22,11 @@ class User < ApplicationRecord
   def full_name
     self.first_name + " " + self.last_name
   end
+
+  def full_address
+    return "#{street}, #{city}, #{postcode}" if street && city && postcode
+    return "#{city}, #{postcode}" if city && postcode
+    return "#{street}, #{postcode}" if street && postcode
+    return "#{postcode}" if postcode
+  end
 end

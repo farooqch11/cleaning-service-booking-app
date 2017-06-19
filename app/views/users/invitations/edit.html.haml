@@ -1,28 +1,91 @@
 - content_for :title do
   = t 'devise.invitations.edit.header'
--#.container
-  .row
-    .center-panel
-      .panel.panel-default.only
-
-        .panel-heading
-          %h3.panel-title
-            = @title
-
-        .panel-body
-
-          = form_for resource, as: resource_name, url: invitation_path(resource_name), layout: :horizontal, html: { method: :put } do |f|
-
-            = devise_error_messages!
-
-            = f.hidden_field :invitation_token
-
-            = f.password_field :password
-            = f.password_field :password_confirmation
-
-            = f.submit "Add password"
-
 = form_for resource, as: resource_name, url: invitation_path(resource_name) , html: { id: 'form_register' ,method: :put } do |f|
+  = devise_error_messages!
+  = f.hidden_field :invitation_token
+  .form-register-success
+    %i.entypo-check
+    %h3 You have been successfully registered.
+    %p Now Log On to the Your Account to Acess the Dashboard.
+  .form-steps
+    #step-1.step.current
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-user
+          = f.text_field :first_name , class: 'form-control' , placeholder: "Your Name" , autocomplete: "off"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-user
+          = f.text_field :last_name , class: 'form-control' , placeholder: "Your Sur-Name" , autocomplete: "off"
+
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-mail
+          = f.text_field :email , class: 'form-control' , placeholder: "Email " , autocomplete: "off" ,:disabled => true
+
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-lock
+          = f.password_field :password , class: 'form-control' , placeholder: "Password" , autocomplete: "off"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-lock
+          = f.password_field :password_confirmation , class: 'form-control' , placeholder: "Confirm Password" , autocomplete: "off"
+
+      .form-group
+        %button.btn.btn-primary.btn-block.btn-login{"data-step" => "step-2", :type => "button"}
+          %i.entypo-right-open-mini
+          Next Step
+      .form-group
+        Step 1 of 2
+    #step-2.step
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-reply-all
+          = f.text_field :hourly_rate , class: 'form-control' , placeholder: "Hourly Rate " , autocomplete: "off" ,:disabled=> true
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-phone
+          = f.text_field :phone , class: 'form-control' , placeholder: "Phone " , autocomplete: "off" ,"data-mask"=>"phone"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :street , class: 'form-control' , placeholder: "Street " , autocomplete: "off"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :city , class: 'form-control' , placeholder: "City " , autocomplete: "off"
+      .form-group
+        .input-group
+          .input-group-addon
+            %i.entypo-address
+          = f.text_field :postcode , class: 'form-control' , placeholder: "Postal Code " , autocomplete: "off"
+
+      .form-group
+        = f.button raw("<i class='entypo-right-open-mini'></i>Complete Onboarding"), class: 'btn btn-success btn-block btn-login',id:'button'
+
+      .form-group
+        Step 2 of 2
+.login-bottom-links
+  %a.link{:href =>"#{new_user_session_path}"}
+    %i.entypo-lock
+    Return to Login Page
+  %br/
+  %a{:href => "#"} ToS
+  \-
+  %a{:href => "#"} Privacy Policy
+
+
+-#= form_for resource, as: resource_name, url: invitation_path(resource_name) , html: { id: 'form_register' ,method: :put } do |f|
   = devise_error_messages!
   = f.hidden_field :invitation_token
   .form-register-success
@@ -92,7 +155,7 @@
           Complete Registration
       .form-group
         Step 2 of 2
-.login-bottom-links
+-#.login-bottom-links
   %a.link{:href =>"#{new_user_session_path}"}
     %i.entypo-lock
     Return to Login Page
