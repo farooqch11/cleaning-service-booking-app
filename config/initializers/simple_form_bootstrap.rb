@@ -8,7 +8,6 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
-    b.optional :minlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
@@ -23,7 +22,6 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
-    b.optional :minlength
     b.optional :readonly
     b.use :label, class: 'control-label'
 
@@ -57,7 +55,6 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
-    b.optional :minlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
@@ -74,7 +71,6 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
-    b.optional :minlength
     b.optional :readonly
     b.use :label, class: 'col-sm-3 control-label'
 
@@ -116,7 +112,6 @@ SimpleForm.setup do |config|
     b.use :html5
     b.use :placeholder
     b.optional :maxlength
-    b.optional :minlength
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
@@ -143,12 +138,12 @@ SimpleForm.setup do |config|
   # buttons and other elements.
   config.default_wrapper = :vertical_form
   config.wrapper_mappings = {
-    check_boxes: :vertical_radio_and_checkboxes,
-    radio_buttons: :vertical_radio_and_checkboxes,
-    file: :vertical_file_input,
-    boolean: :vertical_boolean,
-    datetime: :multi_select,
-    date: :multi_select,
-    time: :multi_select
+      check_boxes: :vertical_radio_and_checkboxes,
+      radio_buttons: :vertical_radio_and_checkboxes,
+      file: :vertical_file_input,
+      boolean: :vertical_boolean,
+      datetime: :multi_select,
+      date: :multi_select,
+      time: :multi_select
   }
 end

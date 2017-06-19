@@ -40,7 +40,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
   config.action_mailer.default_url_options = { :host => ENV['DOMAIN_URL'] }
-  
+
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.

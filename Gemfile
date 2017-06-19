@@ -28,6 +28,7 @@ gem 'bh'
 gem 'simple_form'
 gem 'premailer-rails'
 gem 'figaro'
+gem 'momentjs-rails'
 
 #------------------------------------------
 # For Mails
