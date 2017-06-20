@@ -29,7 +29,7 @@ gem 'simple_form'
 gem 'premailer-rails'
 gem 'figaro'
 gem 'momentjs-rails'
-
+gem 'bootstrap3-datetimepicker-rails'
 #------------------------------------------
 # For Mails
 #------------------------------------------
