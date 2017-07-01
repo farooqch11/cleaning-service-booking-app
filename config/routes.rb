@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :employees
       resources :customers
       resource  :calender
+      resources :events
     end
 
     namespace :employee do

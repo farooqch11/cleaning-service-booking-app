@@ -1,0 +1,114 @@
+.panel.minimal.minimal-gray
+  .panel-heading
+    .panel-title
+      %h4 Create Event
+    .panel-options
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#job"} Job
+        %li
+          %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#recurrence"} Recurrence
+        %li
+          %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#cost-item"} Cost Item
+
+  .panel-body
+    .tab-content
+      #job.tab-pane.active
+        = form_for @event , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "full_name"} Cutomer
+                = f.select :customer_id, options_for_select(Customer.all.collect { |s| [s.first_name, s.id] }), {prompt: 'Select Customer(s)'} , class: "form-control"
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "full_name"} Job Title
+                =f.text_field :title , class: 'form-control' , placeholder: 'Job Title'
+          %hr
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "about"} Job Description
+                %textarea#about.form-control.autogrow{"data-validate" => "minlength[10]", :name => "about", :rows => "5", :style => "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"}
+          %hr
+            .row
+              .col-md-8
+                .form-group
+                  %label.control-label{:for => "street"} Street
+                  %input#street.form-control{"data-validate" => "required", :name => "street", :placeholder => "Enter your street address"}/
+              .col-md-4
+                .form-group
+                  %label.control-label{:for => "door_no"} Contact
+                  %input#door_no.form-control{"data-validate" => "number", :name => "door_no", :placeholder => "Contact number"}/
+            .row
+              .col-md-12
+                .form-group
+                  %label.control-label{:for => "address_line_2"} Address Line 2
+                  %input#address_line_2.form-control{:name => "address_line_2", :placeholder => "(Optional) Secondary Address"}/
+            .row
+              .col-md-6
+                .form-group
+                  %label.control-label{:for => "city"} City
+                  %input#city.form-control{"data-validate" => "required", :name => "city", :placeholder => "Current city"}/
+              .col-md-6
+                .form-group
+                  %label.control-label{:for => "zip"} Zip
+                  %input#zip.form-control{"data-mask" => "** *** **", "data-validate" => "required", :name => "zip", :placeholder => "Zip Code"}/
+
+
+          %hr
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "full_name"} Assigned To
+                = f.select :employee_id, options_for_select(Employee.all.collect { |s| [s.full_name, s.id] }), {prompt: 'Select Employee(s)'} , class: "form-control"
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "full_name"} Schedule Date
+                = f.text_field :date_range, class: "form-control input-sm date-range-picker" , style: "position: relative; z-index: 100000;"
+                = f.hidden_field :start, value: Date.today, class: 'form-control input-sm start_hidden'
+                = f.hidden_field :end, value: Date.today, class: 'form-control input-sm end_hidden'
+                -#=f.text_field :start , class: 'form-control datetimepicker'
+            -#.col-md-6
+              .form-group
+                %label.control-label{:for => "full_name"} End
+                =f.text_field :end , class: 'form-control datetimepicker'
+          = f.fields_for :eventable do |e|
+            =f.text_field :eventable_type , value: "Job"
+          -#.row
+          -#  .col-md-6
+          -#    .form-group
+          -#      %label.control-label{:for => "full_name"} Gender
+          -#      = f.select :gender, options_for_select(Customer.genders.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+          -#  .col-md-6
+          -#    .form-group
+          -#      %label.control-label{:for => "full_name"} Telephone
+          -#      =f.text_field :phone , class: 'form-control' , placeholder: 'Enter phone' , data: {"validate": "required"}
+          -#.row
+          -#  .col-md-12
+          -#    .form-group
+          -#      %label.control-label{:for => "full_name"} Address
+          -#      =f.email_field :street , class: 'form-control' , placeholder: 'Enter street address' , data: {"validate": "required"}
+          -#.row
+          -#  .col-md-6
+          -#    .form-group
+          -#      %label.control-label{:for => "full_name"} City
+          -#      =f.text_field :city , class: 'form-control' , placeholder: 'Enter city name' , data: {"validate": "required"}
+          -#  .col-md-6
+          -#    .form-group
+          -#      %label.control-label{:for => "full_name"} Postal Code
+          -#      =f.text_field :postcode , class: 'form-control' , placeholder: 'Enter postcode' , data: {"validate": "required"}
+          .form-actions.default-padding.pull-right
+            = f.submit "Submit" , class: 'btn btn-success'
+            = link_to 'Delete',
+              event,
+              method: :delete,
+              class: 'btn btn-danger',
+              data: { confirm: 'Are you sure?' },
+              remote: true unless @event.new_record?
+      #recurrence.tab-pane
+        %strong Recurrence
+      #cost-item.tab-pane
+        %strong Cost Item

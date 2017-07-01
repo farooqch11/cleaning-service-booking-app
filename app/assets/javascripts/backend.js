@@ -24,6 +24,5 @@
 //= require daterangepicker
 //= require fullcalendar-2/fullcalendar.min
 //= require date_range_picker
-//= require neon-calendar-2
 //= require bootstrap-datetimepicker
 //= require flash
