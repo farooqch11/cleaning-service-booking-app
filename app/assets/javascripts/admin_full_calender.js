@@ -60,6 +60,9 @@ var neonCalendar2 = neonCalendar2 || {};
                     eventLimit: true,
                     events: '/admin/events.json',
 
+                    eventClick: function(event, jsEvent, view) {
+                        $.getScript(event.edit_url, function() {});
+                    },
                     select: function(start, end) {
                         $.getScript('/admin/events/new', function() {
                             $('#event_date_range').val(moment(start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYYY HH:mm"))
@@ -119,16 +122,16 @@ var neonCalendar2 = neonCalendar2 || {};
 
                 $event.find('a').text(text.val()).addClass(_class).attr('data-event-class', _class);
 
-                // $event.appendTo($("#draggable_events"));
-                //
-                // $("#draggable_events li a").draggable({
-                //     zIndex: 999,
-                //     revert: true,
-                //     revertDuration: 0
-                // }).on('click', function()
-                // {
-                //     return false;
-                // });
+                $event.appendTo($("#draggable_events"));
+
+                $("#draggable_events li a").draggable({
+                    zIndex: 999,
+                    revert: true,
+                    revertDuration: 0
+                }).on('click', function()
+                {
+                    return false;
+                });
 
                 fit_calendar_container_height();
 
