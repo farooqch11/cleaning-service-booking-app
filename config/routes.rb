@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     namespace :employee do
       get    "dashboard",  to: "dashboard#index"
+      resources :events , only: [:index]
     end
   end
 

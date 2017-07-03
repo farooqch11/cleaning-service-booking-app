@@ -3,7 +3,7 @@
     %header.logo-env
       / logo
       .logo
-        %a{:href => "#{admin_dashboard_path}"}
+        %a{:href => "#{current_user.admin? ? admin_dashboard_path : employee_dashboard_path }"}
           = image_tag('logo_1.png',:width=>'120',class:'img')
       / logo collapse icon
       .sidebar-collapse
@@ -19,21 +19,22 @@
       / add class "multiple-expanded" to allow multiple submenus to open
       / class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active"
       %li.active.opened.active.has-sub
-        %a{:href => "#{admin_dashboard_path}"}
+        %a{:href => "#{current_user.admin? ? admin_dashboard_path : employee_dashboard_path }"}
           %i.entypo-gauge
           %span.title Dashboard
-      %li
-        = link_to admin_calender_path do
-          %i.entypo-bag
-          %span.title Calender
-      %li
-        = link_to admin_employees_path do
-          %i.entypo-user
-          %span.title Employees
-      %li
-        = link_to admin_customers_path do
-          %i.entypo-users
-          %span.title Customers
+      - if current_user.admin?
+        %li
+          = link_to admin_calender_path do
+            %i.entypo-bag
+            %span.title Calender
+        %li
+          = link_to admin_employees_path do
+            %i.entypo-user
+            %span.title Employees
+        %li
+          = link_to admin_customers_path do
+            %i.entypo-users
+            %span.title Customers
       -#  %ul.visible
       -#    %li.active
       -#      %a{:href => "index.html"}
