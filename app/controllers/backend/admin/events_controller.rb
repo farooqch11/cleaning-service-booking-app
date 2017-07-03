@@ -34,7 +34,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   end
 
   def event_params
-    params.require(:event).permit(:title, :date_range, :start, :end, :color , :customer_id , :employee_id)
+    params.require(:event).permit(:title, :street , :city , :address_line , :contact , :zip , :date_range, :type , :description , :start, :end, :color , :customer_id , :employee_id)
   end
 end
  

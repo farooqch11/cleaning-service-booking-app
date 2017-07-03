@@ -21,7 +21,9 @@
           .panel-body
             .tab-content
               #job.tab-pane.active
-                = form_for [:admin , @event] , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
+                - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
+                = simple_form_for [:admin , @event] , url: url , method: (@event.new_record? ? :post : :patch) , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
+                  = f.hidden_field :type , value: "Job"
                   .row
                     .col-md-12
                       .form-group
@@ -37,32 +39,31 @@
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "about"} Job Description
-                        %textarea#about.form-control.autogrow{"data-validate" => "minlength[10]", :name => "about", :rows => "5", :style => "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"}
+                        =f.text_area :description , class: 'form-control autogrow' , rows: "5" ,placeholder: 'Job Description' , style: "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"
                   %hr
                     .row
                       .col-md-8
                         .form-group
                           %label.control-label{:for => "street"} Street
-                          %input#street.form-control{"data-validate" => "required", :name => "street", :placeholder => "Enter your street address"}/
+                          =f.text_field :street , class: 'form-control' , placeholder: 'Enter your street address'
                       .col-md-4
                         .form-group
                           %label.control-label{:for => "door_no"} Contact
-                          %input#door_no.form-control{"data-validate" => "number", :name => "door_no", :placeholder => "Contact number"}/
+                          =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number'
                     .row
                       .col-md-12
                         .form-group
                           %label.control-label{:for => "address_line_2"} Address Line 2
-                          %input#address_line_2.form-control{:name => "address_line_2", :placeholder => "(Optional) Secondary Address"}/
+                          =f.text_field :address_line , class: 'form-control' , placeholder: '(Optional) Secondary Address'
                     .row
                       .col-md-6
                         .form-group
                           %label.control-label{:for => "city"} City
-                          %input#city.form-control{"data-validate" => "required", :name => "city", :placeholder => "Current city"}/
+                          =f.text_field :city , class: 'form-control' , placeholder: 'Current City'
                       .col-md-6
                         .form-group
                           %label.control-label{:for => "zip"} Zip
-                          %input#zip.form-control{"data-mask" => "** *** **", "data-validate" => "required", :name => "zip", :placeholder => "Zip Code"}/
-
+                          =f.text_field :zip , class: 'form-control' , placeholder: 'Zip Code'
 
                   %hr
                   .row
@@ -74,42 +75,12 @@
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"} Schedule Date
-                        = f.text_field :date_range, class: "form-control input-sm date-range-picker" , style: "position: relative; z-index: 100000;"
-                        = f.hidden_field :start, value: Date.today, class: 'form-control input-sm start_hidden'
-                        = f.hidden_field :end, value: Date.today, class: 'form-control input-sm end_hidden'
-                        -#=f.text_field :start , class: 'form-control datetimepicker'
-                    -#.col-md-6
-                      .form-group
-                        %label.control-label{:for => "full_name"} End
-                        =f.text_field :end , class: 'form-control datetimepicker'
-                  = f.fields_for :eventable do |e|
-                    =f.text_field :eventable_type , value: "Job"
-                  -#.row
-                  -#  .col-md-6
-                  -#    .form-group
-                  -#      %label.control-label{:for => "full_name"} Gender
-                  -#      = f.select :gender, options_for_select(Customer.genders.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
-                  -#  .col-md-6
-                  -#    .form-group
-                  -#      %label.control-label{:for => "full_name"} Telephone
-                  -#      =f.text_field :phone , class: 'form-control' , placeholder: 'Enter phone' , data: {"validate": "required"}
-                  -#.row
-                  -#  .col-md-12
-                  -#    .form-group
-                  -#      %label.control-label{:for => "full_name"} Address
-                  -#      =f.email_field :street , class: 'form-control' , placeholder: 'Enter street address' , data: {"validate": "required"}
-                  -#.row
-                  -#  .col-md-6
-                  -#    .form-group
-                  -#      %label.control-label{:for => "full_name"} City
-                  -#      =f.text_field :city , class: 'form-control' , placeholder: 'Enter city name' , data: {"validate": "required"}
-                  -#  .col-md-6
-                  -#    .form-group
-                  -#      %label.control-label{:for => "full_name"} Postal Code
-                  -#      =f.text_field :postcode , class: 'form-control' , placeholder: 'Enter postcode' , data: {"validate": "required"}
+                        -#= f.text_field :date_range, class: "form-control input-sm date-range-picker" , style: "position: relative; z-index: 100000;"
+                        = f.input :start, value: Date.today, class: 'form-control input-sm start_hidden'
+                        = f.input :end, value: Date.today, class: 'form-control input-sm end_hidden'
                   .form-actions.default-padding.pull-right
                     = f.submit "Submit" , class: 'btn btn-success'
-                    = link_to 'Delete', @event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
+                    -#= link_to 'Delete', @event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
               #recurrence.tab-pane
                 %strong Recurrence
               #cost-item.tab-pane

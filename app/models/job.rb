@@ -1,3 +1,3 @@
-class Job < ApplicationRecord
-  has_one :event, as: :eventable
+class Job < Event
+
 end
