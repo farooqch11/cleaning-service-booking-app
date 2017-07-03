@@ -2,6 +2,8 @@ class Customer < ApplicationRecord
 
   enum gender: [:male , :female]
 
+  has_many :events
+
   validates :first_name , :last_name     , presence: true
   validates :email      , presence: true , uniqueness: true
 

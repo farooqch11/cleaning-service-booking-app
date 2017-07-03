@@ -1,4 +1,8 @@
 class Event < ApplicationRecord
+
+  belongs_to :employee
+  belongs_to :customer
+
   validates :title, presence: true
   attr_accessor :date_range
 

@@ -22,7 +22,7 @@
             .tab-content
               #job.tab-pane.active
                 - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
-                = simple_form_for [:admin , @event] , url: url , method: (@event.new_record? ? :post : :patch) , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
+                = simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch) , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
                   = f.hidden_field :type , value: "Job"
                   .row
                     .col-md-12
