@@ -28,7 +28,7 @@
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"} Cutomer
-                        = f.select :customer_id, options_for_select(Customer.all.collect { |s| [s.first_name, s.id] }), {prompt: 'Select Customer(s)'} , class: "form-control"
+                        = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control"
                   .row
                     .col-md-12
                       .form-group
@@ -70,7 +70,10 @@
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"} Assigned To
-                        = f.select :employee_id, options_for_select(Employee.all.collect { |s| [s.full_name, s.id] }), {prompt: 'Select Employee(s)'} , class: "form-control"
+                        -#= f.association :employee, options_for_select(Employee.all.collect { |s| [s.full_name, s.id] }), prompt: "Choose a Employee"
+                        -#select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })
+
+                        = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control"
                   .row
                     .col-md-12
                       .form-group
