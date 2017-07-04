@@ -1,1 +1,23 @@
-%h1 Welcome #{current_user.full_name}
+.calendar-env
+  / Calendar Body
+  .calendar-body
+    #calendar
+  / Sidebar
+  .calendar-sidebar
+    / new task form
+    .calendar-sidebar-row
+      %form#add_event_form{:role => "form"}
+        .input-group.minimal
+          %input.form-control{:placeholder => "Add event...", :type => "text"}/
+          .input-group-addon
+            %i.entypo-pencil
+    / Events List
+    %ul#draggable_events.events-list
+      %li
+        %p Drag Events to Calendar Dates
+      %li
+        %a.color-blue{"data-event-class" => "color-blue", :href => "#"} Job
+      %li
+        %a.color-orange{"data-event-class" => "color-orange", :href => "#"} Event
+      %li
+        %a.color-primary{"data-event-class" => "color-primary", :href => "#"} Meeting

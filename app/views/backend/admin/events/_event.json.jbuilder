@@ -10,3 +10,4 @@ json.allDay event.all_day_event? ? true : false
 
 json.update_url admin_event_path(event, method: :patch)
 json.edit_url edit_admin_event_path(event)
+puts edit_admin_event_path(event)

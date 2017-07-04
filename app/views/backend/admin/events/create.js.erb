@@ -1,6 +1,6 @@
 $('#calendar').fullCalendar(
   'renderEvent',
-  $.parseJSON("<%=j render(@event, format: :json).html_safe %>"),
+  $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
   true
 );
 $('.modal').modal('hide');
