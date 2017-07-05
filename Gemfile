@@ -63,7 +63,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5.0'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'cucumber-rails', branch: 'rails-5', require: false
+  gem 'cucumber-rails', require: false
   gem 'guard-rspec', '~> 4.6.4', require: false
   gem 'guard-cucumber'
   gem 'database_cleaner'
