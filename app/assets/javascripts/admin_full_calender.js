@@ -59,6 +59,16 @@ var neonCalendar2 = neonCalendar2 || {};
                     editable: true,
                     eventLimit: true,
                     events: '/admin/events.json',
+                    eventRender: function(event, element){
+                        element.popover({
+                            animation:true,
+                            delay: 300,
+                            content: event.title,
+                            trigger: 'hover'
+
+                        });
+
+                    },
 
                     eventDrop: function(event, delta, revertFunc) {
                         var event_data = {
