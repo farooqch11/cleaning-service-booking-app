@@ -50,7 +50,7 @@ var neonCalendar2 = neonCalendar2 || {};
                 calendar.fullCalendar({
                     header: {
                         left: 'title',
-                        right: 'month,agendaWeek,agendaDay today prev,next'
+                        right: 'month,agendaWeek,listWeek,agendaDay today prev,next'
                     },
 
                     //defaultView: 'basicWeek',
