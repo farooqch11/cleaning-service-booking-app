@@ -50,7 +50,7 @@ var neonCalendar2 = neonCalendar2 || {};
                 calendar.fullCalendar({
                     header: {
                         left: 'title',
-                        right: 'month,agendaWeek,agendaDay today prev,next'
+                        right: 'month,agendaWeek,listWeek,agendaDay today prev,next'
                     },
 
                     //defaultView: 'basicWeek',
@@ -60,6 +60,20 @@ var neonCalendar2 = neonCalendar2 || {};
                     eventLimit: true,
                     events: '/admin/events.json',
 
+                    eventDrop: function(event, delta, revertFunc) {
+                        var event_data = {
+                            event: {
+                                id: event.id,
+                                start: event.start.format(),
+                                end: event.end.format()
+                            }
+                        };
+                        $.ajax({
+                            url: event.update_url,
+                            data: event_data,
+                            type: 'PATCH'
+                        });
+                    },
                     eventClick: function(event, jsEvent, view) {
                         $.getScript(event.edit_url, function() {});
                     },
@@ -72,6 +86,13 @@ var neonCalendar2 = neonCalendar2 || {};
                         });
 
                         calendar.fullCalendar('unselect');
+                    },
+                    eventMouseover: function(event, jsEvent, view) {
+                        $('.fc-event-inner', this).append('<div id=\"'+event.id+'\" class=\"hover-end\">'+$.fullCalendar.formatDate(event.end, 'h:mmt')+'</div>');
+                    },
+
+                    eventMouseout: function(event, jsEvent, view) {
+                        $('#'+event.id).remove();
                     },
                     firstDay: 1,
                     height: 600,

@@ -58,7 +58,7 @@ var neonCalendar2 = neonCalendar2 || {};
                     selectHelper: true,
                     editable: true,
                     eventLimit: true,
-                    events: '/events.json',
+                    events: '/admin/events.json',
 
                     select: function(start, end) {
                         $.getScript('/events/new', function() {

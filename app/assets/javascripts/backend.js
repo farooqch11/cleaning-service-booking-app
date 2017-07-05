@@ -22,7 +22,7 @@
 //= require TweenMax.min
 //= require moment.min
 //= require daterangepicker
-//= require fullcalendar-2/fullcalendar.min
+//= require fullcalendar
 //= require date_range_picker
 //= require bootstrap-datetimepicker
 //= require flash
