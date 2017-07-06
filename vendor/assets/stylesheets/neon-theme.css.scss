@@ -7166,3 +7166,165 @@ dd-content,
 .custom-handler .dd-item button + .dd-handle + .dd-content {
   padding-left: 50px;
 }
+
+
+
+
+.fc-event,
+.fc-state-default {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none
+}
+
+.fc-popover,
+.fc-unthemed .fc-popover {
+  width: 250px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: 0 0;
+  border: none
+}
+.fc-popover .fc-header,
+.fc-unthemed .fc-popover .fc-header {
+  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  color: #fff;
+  background: #00a8ff;
+  padding: 6px 10px 6px 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .875rem
+}
+.fc-popover .fc-header .fc-close,
+.fc-unthemed .fc-popover .fc-header .fc-close {
+  color: #fff;
+  font-size: .875rem
+}
+.fc-popover .fc-body,
+.fc-unthemed .fc-popover .fc-body {
+  background: #fbfcfd;
+  border: 1px solid #c5d6de;
+  border-top: none;
+  -webkit-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px
+}
+.fc-popover .fc-event-container,
+.fc-unthemed .fc-popover .fc-event-container {
+  padding: 10px 12px
+}
+.fc-popover .fc-h-event,
+.fc-unthemed .fc-popover .fc-h-event {
+  padding-left: 7px!important;
+  margin-left: 2px!important
+}
+.fc-popover .text-center .btn,
+.fc-unthemed .fc-popover .text-center .btn {
+  margin: 0 4px
+}
+.fc-popover.click {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  z-index: 50;
+  margin-left: -120px;
+  margin-top: 8px;
+  font-size: .9375rem
+}
+.fc-popover.click .fc-header {
+  position: relative;
+  padding-right: 30px
+}
+.fc-popover.click .fc-header:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  margin-left: -9px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 9px 9px;
+  border-color: transparent transparent #00a8ff
+}
+.fc-popover.click .fc-header .cl {
+  border: none;
+  background: 0 0;
+  padding: 0;
+  color: #fff;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -7px
+}
+fc-popover.click .fc-body {
+  padding: 12px
+}
+.fc-popover.click .fc-body p {
+  margin: 0 0 1em
+}
+.fc-popover.click .fc-body .actions {
+  margin: 0 -12px 0 0;
+  zoom: 1
+}
+.fc-popover.click .fc-body .actions:after,
+.fc-popover.click .fc-body .actions:before {
+  content: " ";
+  display: table
+}
+.fc-popover.click .fc-body .actions:after {
+  clear: both
+}
+.fc-popover.click .fc-body .actions li {
+  float: left;
+  margin: 0 12px 0 0
+}
+.fc-popover.click .fc-body .actions li:last-child {
+  margin-right: 0
+}
+.fc-popover.click .fc-body>.btn {
+  margin: 0 10px 0 0
+}
+.fc-popover.click .fc-body .form-control {
+  font-size: .875rem
+}
+.fc-popover.click .fc-body.edit-event,
+.fc-popover.click .fc-body.remove-confirm {
+  display: none
+}
+.fc-popover.click .fc-body {
+  padding: 12px
+}
+.fc-popover.click .fc-body p {
+  margin: 0 0 1em
+}
+.fc-popover.click .fc-body .actions {
+  margin: 0 -12px 0 0;
+  zoom: 1
+}
+.fc-popover.click .fc-body .actions:after,
+.fc-popover.click .fc-body .actions:before {
+  content: " ";
+  display: table
+}
+.fc-popover.click .fc-body .actions:after {
+  clear: both
+}
+.fc-popover.click .fc-body .actions li {
+  float: left;
+  margin: 0 12px 0 0
+}
+.fc-popover.click .fc-body .actions li:last-child {
+  margin-right: 0
+}
+.fc-popover.click .fc-body>.btn {
+  margin: 0 10px 0 0
+}
+.fc-popover.click .fc-body .form-control {
+  font-size: .875rem
+}
+.fc-popover.click .fc-body.edit-event,
+.fc-popover.click .fc-body.remove-confirm {
+  display: none
+}

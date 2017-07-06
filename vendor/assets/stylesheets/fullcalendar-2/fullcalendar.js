@@ -37,7 +37,7 @@ var defaults = {
 
 	weekNumberTitle: 'W',
 	weekNumberCalculation: 'local',
-	
+
 	//editable: false,
 	
 	// event ajax

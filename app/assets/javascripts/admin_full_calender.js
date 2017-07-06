@@ -59,16 +59,16 @@ var neonCalendar2 = neonCalendar2 || {};
                     editable: true,
                     eventLimit: true,
                     events: '/admin/events.json',
-                    eventRender: function(event, element){
-                        element.popover({
-                            animation:true,
-                            delay: 300,
-                            content: event.title,
-                            trigger: 'hover'
-
-                        });
-
-                    },
+                    // eventRender: function(event, element){
+                    //     element.popover({
+                    //         animation:true,
+                    //         delay: 300,
+                    //         content: event.title,
+                    //         trigger: 'hover'
+                    //
+                    //     });
+                    //
+                    // },
 
                     eventDrop: function(event, delta, revertFunc) {
                         var event_data = {
@@ -84,18 +84,140 @@ var neonCalendar2 = neonCalendar2 || {};
                             type: 'PATCH'
                         });
                     },
-                    eventClick: function(event, jsEvent, view) {
-                        $.getScript(event.edit_url, function() {});
-                    },
-                    select: function(start, end) {
-                        $.getScript('/admin/events/new', function() {
-                            $('#event_date_range').val(moment(start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYYY HH:mm"))
-                            date_range_picker();
-                            $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
-                            $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+                    // eventClick: function(event, jsEvent, view) {
+                    //     $.getScript(event.edit_url, function() {});
+                    // },
+                    // select: function(start, end) {
+                    //     $.getScript('/admin/events/new', function() {
+                    //         $('#event_date_range').val(moment(start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYYY HH:mm"))
+                    //         date_range_picker();
+                    //         $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
+                    //         $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+                    //     });
+                    //
+                    //     calendar.fullCalendar('unselect');
+                    // },
+                    eventClick: function(calEvent, jsEvent, view) {
+
+                        var eventEl = $(this);
+
+                        // Add and remove event border class
+                        if (!$(this).hasClass('event-clicked')) {
+                            $('.fc-event').removeClass('event-clicked');
+
+                            $(this).addClass('event-clicked');
+                        }
+
+                        // Add popover
+                        $('body').append(
+                            '<div class="fc-popover click">' +
+                            '<div class="fc-header">' +
+                            moment(calEvent.start).format('dddd • D') +
+                            '<button type="button" class="cl"><i class="font-icon-close-2"></i></button>' +
+                            '</div>' +
+
+                            '<div class="fc-body main-screen">' +
+                            '<p>' +
+                            moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
+                            '</p>' +
+                            '<p class="color-blue-grey"><br/></p>' +
+                            '<ul class="actions">' +
+                            '<li><a href="#">More details</a></li>' +
+                            '<li><a href="#" class="fc-event-action-edit">Edit event</a></li>' +
+                            '<li><a href="#" class="fc-event-action-remove">Remove</a></li>' +
+                            '</ul>' +
+                            '</div>' +
+
+                            '<div class="fc-body remove-confirm">' +
+                            '<p>Are you sure to remove event?</p>' +
+                            '<div class="text-center">' +
+                            '<button type="button" class="btn btn-rounded btn-sm">Yes</button>' +
+                            '<button type="button" class="btn btn-rounded btn-sm btn-default remove-popover">No</button>' +
+                            '</div>' +
+                            '</div>' +
+
+                            '<div class="fc-body edit-event">' +
+                            '<p>Edit event</p>' +
+                            '<div class="form-group">' +
+                            '<div class="input-group date datetimepicker">' +
+                            '<input type="text" class="form-control" />' +
+                            '<span class="input-group-addon"><i class="font-icon font-icon-calend"></i></span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<div class="input-group date datetimepicker-2">' +
+                            '<input type="text" class="form-control" />' +
+                            '<span class="input-group-addon"><i class="font-icon font-icon-clock"></i></span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="form-group">' +
+                            '<textarea class="form-control" rows="2"> </textarea>' +
+                            '</div>' +
+                            '<div class="text-center">' +
+                            '<button type="button" class="btn btn-rounded btn-sm">Save</button>' +
+                            '<button type="button" class="btn btn-rounded btn-sm btn-default remove-popover">Cancel</button>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                        $('.fc-popover.click .datetimepicker').datetimepicker({
+                            widgetPositioning: {
+                                horizontal: 'right'
+                            }
                         });
 
-                        calendar.fullCalendar('unselect');
+                        $('.fc-popover.click .datetimepicker-2').datetimepicker({
+                            widgetPositioning: {
+                                horizontal: 'right'
+                            },
+                            format: 'LT',
+                            debug: true
+                        });
+                        // Position popover
+                        function posPopover(){
+                            $('.fc-popover.click').css({
+                                left: eventEl.offset().left + eventEl.outerWidth()/2,
+                                top: eventEl.offset().top + eventEl.outerHeight()
+                            });
+                        }
+
+                        posPopover();
+
+                        $('.fc-scroller, .calendar-page-content, body').scroll(function(){
+                            posPopover();
+                        });
+
+                        $(window).resize(function(){
+                            posPopover();
+                        });
+
+
+                        // Remove old popover
+                        if ($('.fc-popover.click').length > 1) {
+                            for (var i = 0; i < ($('.fc-popover.click').length - 1); i++) {
+                                $('.fc-popover.click').eq(i).remove();
+                            }
+                        }
+
+                        // Close buttons
+                        $('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function(){
+                            $('.fc-popover.click').remove();
+                            $('.fc-event').removeClass('event-clicked');
+                        });
+                        $('.fc-event-action-edit').click(function(e){
+                            e.preventDefault();
+
+                            $('.fc-popover.click .main-screen').hide();
+                            $('.fc-popover.click .edit-event').show();
+                        });
+
+                        $('.fc-event-action-remove').click(function(e){
+                            e.preventDefault();
+
+                            $('.fc-popover.click .main-screen').hide();
+                            $('.fc-popover.click .remove-confirm').show();
+                        });
+
                     },
                     eventMouseover: function(event, jsEvent, view) {
                         $('.fc-event-inner', this).append('<div id=\"'+event.id+'\" class=\"hover-end\">'+$.fullCalendar.formatDate(event.end, 'h:mmt')+'</div>');
