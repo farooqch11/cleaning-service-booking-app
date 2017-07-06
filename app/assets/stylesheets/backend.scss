@@ -10,8 +10,18 @@
 *= require neon-theme
 *= require jquery-jvectormap-1.2.2
 *= require rickshaw
+*= require fullcalendar
 *= require fullcalendar-2/fullcalendar.min
 *= require daterangepicker
 *= require bootstrap-datetimepicker
 
  */
+.fc-widget-header , .fc-list-heading > .fc-widget-header {
+  color: #FFF !important;
+  background-color: #333 !important;
+  border-color: #222 !important;
+}
+
+.fc-list-heading > .fc-widget-header {
+  padding: 6px 15px 6px 15px;
+}
