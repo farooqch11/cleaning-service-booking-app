@@ -4,6 +4,7 @@
  *	Developed by Arlind Nushi - www.laborator.co
  */
 
+
 var neonCalendar2 = neonCalendar2 || {};
 
 ;(function($, window, undefined)
@@ -115,8 +116,8 @@ var neonCalendar2 = neonCalendar2 || {};
 
                         // Add popover
                         $('body').append(
-                            '<div class="fc-popover click">' +
-                            '<div class="fc-header">' +
+                            '<div class="fc-popover click fc-widget-header">' +
+                            '<div class="fc-header fc-widget-header">' +
                             moment(calEvent.start).format('dddd • D') +
                             '<button type="button" class="cl"><i class="font-icon-close-2"></i></button>' +
                             '</div>' +
@@ -125,11 +126,11 @@ var neonCalendar2 = neonCalendar2 || {};
                             '<p>' +
                             moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
                             '</p>' +
-                            '<p class="color-blue-grey">Name Surname Patient<br/>Surgey ACL left knee</p>' +
+                            '<p class="color-blue-grey">Employee: <br/> Test</p>br><p class="color-blue-grey">Customer: <br/> Farooq Ch</p>' +
                             '<ul class="actions">' +
                             '<li><a href="#">More details</a></li>' +
-                            '<li><a href="#" class="fc-event-action-edit">Edit event</a></li>' +
-                            '<li><a href="#" class="fc-event-action-remove">Remove</a></li>' +
+                            '<li><a href='+ calEvent.update_url +' class="fc-event-action-edit">Edit event</a></li>' +
+                            '<li><a href='+ calEvent.delete_url+' class="fc-event-action-remove">Remove</a></li>' +
                             '</ul>' +
                             '</div>' +
 
@@ -348,3 +349,4 @@ function calendar_toggle_checkbox_status(checked)
 {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked',  ! checked).click();
 }
+;
