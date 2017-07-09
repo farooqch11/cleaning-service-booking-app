@@ -52,7 +52,8 @@ fc-popover, .fc-unthemed .fc-popover {
   box-shadow: 0 2px 6px rgba(0,0,0,.15);
 }
 .fc-popover .fc-header {
-  padding: 2px 4px;
+  padding: 7px 4px;
+  font-size: 14px;
 }
 .fc-popover.click .fc-header .cl {
   border: none;
@@ -80,8 +81,20 @@ fc-popover, .fc-unthemed .fc-popover {
 
 .color-blue-grey {
   color: #6c7a86!important;
+  font-size: 13px;
 }
 .fc-popover.click .fc-body .actions {
   margin: 0 -12px 0 0;
   zoom: 1;
 }
+.fc-event-action-edit {
+  font-size: 13px;
+  font-family: "Comic Sans MS";
+}
+
+.fc-event-action-remove{
+  font-size: 13px;
+  font-family: "Comic Sans MS";
+
+}
+

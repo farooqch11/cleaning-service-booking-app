@@ -117,19 +117,19 @@ var neonCalendar2 = neonCalendar2 || {};
                         $('body').append(
                             '<div class="fc-popover click">' +
                             '<div class="fc-header">' +
-                            moment(calEvent.start).format('dddd • D') +
-                            '<button type="button" class="cl"><i class="font-icon-close-2"></i></button>' +
+                            '<center>'+ moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
+                            '</center>'+
+                            '<button type="button" class="cl"><i class="entypo-close"></i></button>' +
                             '</div>' +
 
                             '<div class="fc-body main-screen">' +
-                            '<p>' +
-                            moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
-                            '</p>' +
-                            '<p class="color-blue-grey">Name Surname Patient<br/>Surgey ACL left knee</p>' +
+                            '<p class="color-blue-grey"> Event:  '+ '<strong>'+ calEvent.title +'</strong>' + '</p>' +
+                            '<p class="color-blue-grey"> Customer:  '+ '<strong>'+ calEvent.customer_id +'</strong>' + '</p>' +
+                            '<p class="color-blue-grey"> Description:  '+ '<strong>'+ calEvent.employee_id +'</strong>' + '</p>' +
                             '<ul class="actions">' +
-                            '<li><a href="#">More details</a></li>' +
+                            '<li><a href="#" class="fc-event-action-remove">View Event </a></li>' +
                             '<li><a href="#" class="fc-event-action-edit">Edit event</a></li>' +
-                            '<li><a href="#" class="fc-event-action-remove">Remove</a></li>' +
+                            '<li><a href="#" class="fc-event-action-remove">Remove Event</a></li>' +
                             '</ul>' +
                             '</div>' +
 
