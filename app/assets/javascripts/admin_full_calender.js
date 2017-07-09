@@ -124,8 +124,8 @@ var neonCalendar2 = neonCalendar2 || {};
 
                             '<div class="fc-body main-screen">' +
                             '<p class="color-blue-grey"> Event:  '+ '<strong>'+ calEvent.title +'</strong>' + '</p>' +
-                            '<p class="color-blue-grey"> Customer:  '+ '<strong>'+ calEvent.customer_id +'</strong>' + '</p>' +
-                            '<p class="color-blue-grey"> Description:  '+ '<strong>'+ calEvent.employee_id +'</strong>' + '</p>' +
+                            '<p class="color-blue-grey"> Customer:  '+ '<strong>'+ calEvent.customer_name +'</strong>' + '</p>' +
+                            '<p class="color-blue-grey"> Employee:  '+ '<strong>'+ calEvent.employee_name +'</strong>' + '</p>' +
                             '<ul class="actions">' +
                             '<li><a href="#" class="fc-event-action-remove">View Event </a></li>' +
                             '<li><a href="#" class="fc-event-action-edit">Edit event</a></li>' +
