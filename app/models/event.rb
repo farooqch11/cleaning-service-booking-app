@@ -4,6 +4,8 @@ class Event < ApplicationRecord
   belongs_to :customer
 
   validates :title, presence: true
+  validates :customer, presence: true
+  validates :employee, presence: true
   attr_accessor :date_range
 
   def all_day_event?

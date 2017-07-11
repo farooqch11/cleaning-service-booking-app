@@ -1,7 +1,14 @@
-$('#calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
-$('#calendar').fullCalendar(
-  'renderEvent',
-    $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
-  true
-);
-$('#edit_event').modal('toggle');
+<% if flash[:errors].present? %>
+    <% flash[:errors].each do |e| %>
+    flash_error("<%= e %>");
+    <% end %>
+<% end %>
+<% if flash[:success].present? %>
+    $('#calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
+    $('#calendar').fullCalendar(
+            'renderEvent',
+            $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
+            true
+    );
+    $('#edit_event').modal('toggle');
+<% end %>
