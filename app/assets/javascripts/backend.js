@@ -1,10 +1,9 @@
-//= require jquery-1.11.3.min
-//= require jquery-ui-1.10.3.minimal.min
 //= require jquery
 //= require jquery_ujs
+//= require jquery-1.11.3.min
+//= require jquery-ui-1.10.3.minimal.min
 //= require bootstrap
 //= require d3.v3
-//= require joinable
 //= require jquery.sparkline.min
 //= require jquery.validate.min
 //= require jquery-jvectormap-1.2.2.min
@@ -19,6 +18,7 @@
 //= require resizeable
 //= require rickshaw.min
 //= require toastr
+//= require joinable
 //= require TweenMax.min
 //= require moment.min
 //= require daterangepicker
