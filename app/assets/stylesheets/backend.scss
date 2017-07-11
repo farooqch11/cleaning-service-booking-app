@@ -19,6 +19,7 @@
   color: #FFF !important;
   background-color: #333 !important;
   border-color: #222 !important;
+
 }
 
 .fc-list-heading > .fc-widget-header {
@@ -39,6 +40,7 @@
   text-transform: uppercase;
   font-weight: 600;
   font-size: .875rem;
+  z-index: 9997;
 }
 fc-popover, .fc-unthemed .fc-popover {
   width: 250px;
@@ -88,13 +90,16 @@ fc-popover, .fc-unthemed .fc-popover {
   zoom: 1;
 }
 .fc-event-action-edit {
+  color: #6c7a86!important;
+
   font-size: 13px;
-  font-family: "Comic Sans MS";
+
 }
 
 .fc-event-action-remove{
+  color: #6c7a86!important;
+
   font-size: 13px;
-  font-family: "Times New Roman";
 
 }
 
