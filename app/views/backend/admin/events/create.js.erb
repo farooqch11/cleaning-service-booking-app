@@ -1,6 +1,14 @@
-$('#calendar').fullCalendar(
-  'renderEvent',
-  $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
-  true
-);
-$('.modal').modal('hide');
+<% if flash[:errors].present? %>
+    <% flash[:errors].each do |e| %>
+        flash_error("<%= e %>");
+    <% end %>
+<% end %>
+<% if flash[:success].present? %>
+    $('#calendar').fullCalendar(
+            'renderEvent',
+            $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
+            true
+    );
+    flash_success("<%= flash[:success] %>");
+    $(".modal").modal("toggle");
+<% end %>

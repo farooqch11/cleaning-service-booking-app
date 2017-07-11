@@ -22,18 +22,22 @@
             .tab-content
               #job.tab-pane.active
                 - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
-                = simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch) , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
+                = simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch) , class: 'validate form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
                   = f.hidden_field :type , value: "Job"
                   .row
                     .col-md-12
                       .form-group
-                        %label.control-label{:for => "full_name"} Cutomer
-                        = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control"
+                        %label.control-label{:for => "full_name"}
+                          Cutomer
+                          %span.text-danger *
+                        = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
                   .row
                     .col-md-12
                       .form-group
-                        %label.control-label{:for => "full_name"} Job Title
-                        =f.text_field :title , class: 'form-control' , placeholder: 'Job Title'
+                        %label.control-label{:for => "full_name"}
+                          Job Title
+                          %span.text-danger *
+                        =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
                   %hr
                   .row
                     .col-md-12
@@ -48,8 +52,10 @@
                           =f.text_field :street , class: 'form-control' , placeholder: 'Enter your street address'
                       .col-md-4
                         .form-group
-                          %label.control-label{:for => "door_no"} Contact
-                          =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number'
+                          %label.control-label{:for => "door_no"}
+                            Contact
+                            %span.text-danger *
+                          =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number' , required: true
                     .row
                       .col-md-12
                         .form-group
@@ -69,10 +75,9 @@
                   .row
                     .col-md-12
                       .form-group
-                        %label.control-label{:for => "full_name"} Assigned To
-                        -#= f.association :employee, options_for_select(Employee.all.collect { |s| [s.full_name, s.id] }), prompt: "Choose a Employee"
-                        -#select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })
-
+                        %label.control-label{:for => "full_name"}
+                          Assigned To
+                          %span.text-danger *
                         = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control"
                   .row
                     .col-md-12
@@ -81,9 +86,11 @@
                         -#= f.text_field :date_range, class: "form-control input-sm date-range-picker" , style: "position: relative; z-index: 100000;"
                         = f.input :start, value: Date.today, class: 'form-control input-sm start_hidden'
                         = f.input :end, value: Date.today, class: 'form-control input-sm end_hidden'
-                  .form-actions.default-padding.pull-right
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
                     = f.submit "Submit" , class: 'btn btn-success'
                     = link_to 'Delete', admin_event_path(@event) , method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
+
               #recurrence.tab-pane
                 %strong Recurrence
               #cost-item.tab-pane
