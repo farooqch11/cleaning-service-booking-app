@@ -1,8 +1,8 @@
 date_format = event.all_day_event? ? '%Y-%m-%d' : '%Y-%m-%dT%H:%M:%S'
 
 json.id event.id
-json.employee_name event.employee.full_name
-json.customer_name event.customer.full_name
+json.employee_name event.employee.full_name unless event.employee.blank?
+json.customer_name event.customer.full_name unless event.customer.blank?
 json.title event.title
 json.start event.start.strftime(date_format)
 json.end event.end.strftime(date_format)

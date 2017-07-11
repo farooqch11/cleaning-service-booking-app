@@ -17,11 +17,19 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def create
     @event = Event.new(event_params)
-    @event.save
+    if @event.save
+      flash[:success] = "Successfully Created."
+    else
+      flash[:errors] = @event.errors.full_messages
+    end
   end
 
   def update
-    @event.update(event_params)
+    if @event.update(event_params)
+      flash[:success] = "Successfully Updated."
+    else
+      flash[:errors] = @event.errors.full_messages
+    end
   end
 
   def destroy

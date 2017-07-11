@@ -10,7 +10,7 @@
     .tile-stats.tile-green
       .icon
         %i.entypo-chart-bar
-      .num{"data-delay" => "600", "data-duration" => "1500", "data-end" => "135", "data-postfix" => "", "data-start" => "0"} 135
+      .num{"data-delay" => "600", "data-duration" => "1500", "data-end" => "#{Customer.all.count}", "data-postfix" => "", "data-start" => "0"} 135
       %h3 Customers
       %p this is the average value.
   .clear.visible-xs
@@ -18,8 +18,8 @@
     .tile-stats.tile-aqua
       .icon
         %i.entypo-mail
-      .num{"data-delay" => "1200", "data-duration" => "1500", "data-end" => "23", "data-postfix" => "", "data-start" => "0"} 23
-      %h3 New Messages
+      .num{"data-delay" => "1200", "data-duration" => "1500", "data-end" => "#{Event.all.count}", "data-postfix" => "", "data-start" => "0"} 23
+      %h3 Events
       %p messages per day.
   .col-sm-3.col-xs-6
     .tile-stats.tile-blue
