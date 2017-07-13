@@ -34,9 +34,9 @@
 }
 .fc-popover .fc-header, .fc-unthemed .fc-popover .fc-header {
   -webkit-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
+  //border-radius: 4px 4px 0 0;
   color: #fff;
-  background: #00a8ff;
+  background: #2d0509;
   padding: 6px 10px 6px 12px;
   text-transform: uppercase;
   font-weight: 600;
@@ -72,7 +72,7 @@ fc-popover, .fc-unthemed .fc-popover {
   padding: 12px;
 }
 .fc-popover .fc-body, .fc-unthemed .fc-popover .fc-body {
-  background: #fbfcfd;
+  background: #ffffff;
   border: 1px solid #c5d6de;
   border-top: none;
   -webkit-border-radius: 0 0 4px 4px;
@@ -91,7 +91,6 @@ fc-popover, .fc-unthemed .fc-popover {
   zoom: 1;
 }
 .fc-event-action-edit {
-  color: #6c7a86!important;
 
   font-size: 13px;
 

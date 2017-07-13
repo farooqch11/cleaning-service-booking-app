@@ -94,3 +94,5 @@ gem 'nokogiri'
 gem 'devise', '~> 4.2'
 gem 'cancancan'
 gem 'devise_invitable', github: 'scambra/devise_invitable'
+gem 'data-confirm-modal'
+
