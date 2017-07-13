@@ -100,82 +100,82 @@ var neonCalendar2 = neonCalendar2 || {};
                     },
 
                     eventClick: function (calEvent, jsEvent, view) {
-
-                        var eventEl = $(this);
-
-                        // Add and remove event border class
-                        if (!$(this).hasClass('event-clicked')) {
-                            $('.fc-event').removeClass('event-clicked');
-
-                            $(this).addClass('event-clicked');
-                        }
-
-                        // Add popover
-                        $('body').append(
-                            '<div class="fc-popover click">' +
-                            '<div class="fc-header">' +
-                            '<center>' + moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
-                            '</center>' +
-                            '<button type="button" class="cl"><i class="entypo-cancel"></i></button>' +
-                            '</div>' +
-
-                            '<div class="fc-body">' +
-                            '<p class="color-blue-grey"> Event:  ' + '<strong>' + calEvent.title + '</strong>' + '</p>' +
-                            '<p class="color-blue-grey"> Customer:  ' + '<strong>' + calEvent.customer_name + '</strong>' + '</p>' +
-                            '<p class="color-blue-grey"> Employee:  ' + '<strong>' + calEvent.employee_name + '</strong>' + '</p>' +
-                            '<ul class="actions">' +
-                            '<li><a href= "#" class="fc-event-action-edit" ,id="home">Edit event</a></li>'
-
-                        );
-
-                        $('.fc-event-action-edit').click(function () {
-                            edit_event(calEvent);
-                            calendar.fullCalendar('unselect');
-                        });
-
-                        // Datepicker init
-                        $('.fc-popover.click .datetimepicker').datetimepicker({
-                            widgetPositioning: {
-                                horizontal: 'right'
-                            }
-                        });
-
-                        $('.fc-popover.click .datetimepicker-2').datetimepicker({
-                            widgetPositioning: {
-                                horizontal: 'right'
-                            },
-                            format: 'LT',
-                            debug: true
-                        });
-
-
-                        // Remove old popover
-                        if ($('.fc-popover.click').length > 1) {
-                            for (var i = 0; i < ($('.fc-popover.click').length - 1); i++) {
-                                $('.fc-popover.click').eq(i).remove();
-                            }
-                        }
-
-                        // Close buttons
-                        $('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function () {
-                            $('.fc-popover.click').remove();
-                            $('.fc-event').removeClass('event-clicked');
-                        });
-
-                        // Actions link
-                        $('.fc-event-action-edit').click(function (e) {
-                            e.preventDefault();
-
-                            $('.fc-popover.click .main-screen').hide();
-                            $('.fc-popover.click .edit-event').show();
-                        });
-
-                        $('.fc-event-action-remove').click(function (e) {
-                            e.preventDefault();
-
-                            $('.fc-popover.click .main-screen').hide();
-                            $('.fc-popover.click .remove-confirm').show();
-                        });
+                        edit_event(calEvent);
+                        //var eventEl = $(this);
+                        //
+                        //// Add and remove event border class
+                        //if (!$(this).hasClass('event-clicked')) {
+                        //    $('.fc-event').removeClass('event-clicked');
+                        //
+                        //    $(this).addClass('event-clicked');
+                        //}
+                        //
+                        //// Add popover
+                        //$('body').append(
+                        //    '<div class="fc-popover click">' +
+                        //    '<div class="fc-header">' +
+                        //    '<center>' + moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
+                        //    '</center>' +
+                        //    '<button type="button" class="cl"><i class="entypo-cancel"></i></button>' +
+                        //    '</div>' +
+                        //
+                        //    '<div class="fc-body">' +
+                        //    '<p class="color-blue-grey"> Event:  ' + '<strong>' + calEvent.title + '</strong>' + '</p>' +
+                        //    '<p class="color-blue-grey"> Customer:  ' + '<strong>' + calEvent.customer_name + '</strong>' + '</p>' +
+                        //    '<p class="color-blue-grey"> Employee:  ' + '<strong>' + calEvent.employee_name + '</strong>' + '</p>' +
+                        //    '<ul class="actions">' +
+                        //    '<li><a href= "#" class="fc-event-action-edit" ,id="home">Edit event</a></li>'
+                        //
+                        //);
+                        //
+                        //$('.fc-event-action-edit').click(function () {
+                        //    edit_event(calEvent);
+                        //    calendar.fullCalendar('unselect');
+                        //});
+                        //
+                        //// Datepicker init
+                        //$('.fc-popover.click .datetimepicker').datetimepicker({
+                        //    widgetPositioning: {
+                        //        horizontal: 'right'
+                        //    }
+                        //});
+                        //
+                        //$('.fc-popover.click .datetimepicker-2').datetimepicker({
+                        //    widgetPositioning: {
+                        //        horizontal: 'right'
+                        //    },
+                        //    format: 'LT',
+                        //    debug: true
+                        //});
+                        //
+                        //
+                        //// Remove old popover
+                        //if ($('.fc-popover.click').length > 1) {
+                        //    for (var i = 0; i < ($('.fc-popover.click').length - 1); i++) {
+                        //        $('.fc-popover.click').eq(i).remove();
+                        //    }
+                        //}
+                        //
+                        //// Close buttons
+                        //$('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function () {
+                        //    $('.fc-popover.click').remove();
+                        //    $('.fc-event').removeClass('event-clicked');
+                        //});
+                        //
+                        //// Actions link
+                        //$('.fc-event-action-edit').click(function (e) {
+                        //    e.preventDefault();
+                        //
+                        //    $('.fc-popover.click .main-screen').hide();
+                        //    $('.fc-popover.click .edit-event').show();
+                        //});
+                        //
+                        //$('.fc-event-action-remove').click(function (e) {
+                        //    e.preventDefault();
+                        //
+                        //    $('.fc-popover.click .main-screen').hide();
+                        //    $('.fc-popover.click .remove-confirm').show();
+                        //});
                     },
 
                     select: function (start, end) {
