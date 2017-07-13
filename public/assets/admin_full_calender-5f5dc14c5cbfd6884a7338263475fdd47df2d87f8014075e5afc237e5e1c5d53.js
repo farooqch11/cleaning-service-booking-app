@@ -3,15 +3,16 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(){
     $.getScript('/admin/events/new', function() {});
 }
 function edit_event(calEvent){
     $.get(calEvent.edit_url , function () {
-        //$('#event_date_range').val(moment(calEvent.start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(calEvent.end).format("MM/DD/YYYY HH:mm"));
-        //date_range_picker();
-        //$('.start_hidden').val(moment(calEvent.start).format('YYYY-MM-DD HH:mm'));
-        //$('.end_hidden').val(moment(calEvent.end).format('YYYY-MM-DD HH:mm'));
+        $('#event_date_range').val(moment(calEvent.start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(calEvent.end).format("MM/DD/YYYY HH:mm"));
+        date_range_picker();
+        $('.start_hidden').val(moment(calEvent.start).format('YYYY-MM-DD HH:mm'));
+        $('.end_hidden').val(moment(calEvent.end).format('YYYY-MM-DD HH:mm'));
     });
 }
 
@@ -81,17 +82,17 @@ var neonCalendar2 = neonCalendar2 || {};
 
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
-                        var event_data = {
-                            event: {
-                                id: event.id,
-                                start: event.start.format(),
-                                end: event.end.format()
-                            }
-                        };
-                        update_event(event , event_data);
+                        //var event_data = {
+                        //    event: {
+                        //        id: event.id,
+                        //        start: event.start.format(),
+                        //        end: event.end.format()
+                        //    }
+                        //};
+                        //update_event(event , event_data);
                         alert(event.title + " end is now " + event.end.format());
 
-                        if (!confirm("Do you really want to update?")) {
+                        if (!confirm("is this okay?")) {
                             revertFunc();
                         }
                     },
@@ -99,8 +100,8 @@ var neonCalendar2 = neonCalendar2 || {};
                         var event_data = {
                             event: {
                                 id: event.id,
-                                start: event.start.format(),
-                                end: event.end.format()
+                                start: event.start,
+                                end: event.end
                             }
                         };
                         update_event(event , event_data);
@@ -279,3 +280,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;
