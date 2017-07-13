@@ -15,19 +15,23 @@ function edit_event(calEvent){
     });
 }
 
-function update_event(event , data){
-    var event_data = {
-        event: {
-            id: event.id,
-            start: event.start.format(),
-            end: event.end.format()
-        }
-    };
-    $.ajax({
-        url: event.update_url,
-        data: event_data,
-        type: 'PATCH'
-    });
+function update_event(event , revertFunc){
+    if (!confirm("Do you really want to update?")) {
+        revertFunc();
+    }else {
+        var event_data = {
+            event: {
+                id: event.id,
+                start: event.start.format(),
+                end: event.end.format()
+            }
+        };
+        $.ajax({
+            url: event.update_url,
+            data: event_data,
+            type: 'PATCH'
+        });
+    }
 }
 var neonCalendar2 = neonCalendar2 || {};
 
@@ -89,16 +93,10 @@ var neonCalendar2 = neonCalendar2 || {};
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
 
-                        update_event(event , event_data);
-                        if (!confirm("Do you really want to update?")) {
-                            revertFunc();
-                        }
+                        update_event(event , revertFunc);
                     },
                     eventDrop: function(event, delta, revertFunc) {
-                        update_event(event , event_data);
-                        if (!confirm("Do you really want to update?")) {
-                            revertFunc();
-                        }
+                        update_event(event , revertFunc);
                     },
 
                     eventClick: function (calEvent, jsEvent, view) {
