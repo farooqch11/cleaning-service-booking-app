@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery-1.11.3.min
-//= require jquery-ui-1.10.3.minimal.min
+//= require jquery-ui.min
+//= require moment.min
 //= require bootstrap
 //= require d3.v3
 //= require jquery.sparkline.min
@@ -20,9 +20,11 @@
 //= require toastr
 //= require joinable
 //= require TweenMax.min
-//= require moment.min
 //= require daterangepicker
 //= require fullcalendar
 //= require date_range_picker
 //= require bootstrap-datetimepicker
 //= require flash
+
+$('.fc-list-table').addClass('table');
+$('.fc-listWeek-button').click(function(){alert('click');})

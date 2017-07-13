@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(){
     $.getScript('/admin/events/new', function() {});
 }
@@ -89,15 +90,7 @@ var neonCalendar2 = neonCalendar2 || {};
                     events: '/admin/events.json',
 
                     eventRender: function (event, element) {
-                        element.popover({
-                            animation: true,
-                            delay: 300,
-                            content: event.title,
-                            trigger: 'hover',
-                            placement: 'left'
 
-
-                        });
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
 
@@ -120,36 +113,25 @@ var neonCalendar2 = neonCalendar2 || {};
 
                         // Add popover
                         $('body').append(
-
-                            '<button type="button" class="close">'+'<span aria-hidden="true">'+'×'+'</span>'+'<span class="sr-only">'+'Close'+'</span></button>'+
                             '<div class="fc-popover click">' +
                             '<div class="fc-header">' +
-                            '<center>' +calEvent.title+
+                            '<center>' + moment(calEvent.start).format('dddd, D YYYY, hh:mma') +
                             '</center>' +
                             '<button type="button" class="cl"><i class="entypo-cancel"></i></button>' +
                             '</div>' +
 
                             '<div class="fc-body">' +
-                            '<p class="color-blue-grey"> Time:  ' + '<strong>' +  moment(calEvent.start).format('dddd, D YYYY, hh:mma')  + '</strong>' + '</p>' +
+                            '<p class="color-blue-grey"> Event:  ' + '<strong>' + calEvent.title + '</strong>' + '</p>' +
                             '<p class="color-blue-grey"> Customer:  ' + '<strong>' + calEvent.customer_name + '</strong>' + '</p>' +
                             '<p class="color-blue-grey"> Employee:  ' + '<strong>' + calEvent.employee_name + '</strong>' + '</p>' +
-                            '&nbsp;'+
-                            '<a href= "#" class="fc-event-action-edit btn btn-primary">Edit event</a>'+
-                            '<a href= "#" class="fc-event-action-delete btn btn-primary">Delete event</a>'
+                            '<ul class="actions">' +
+                            '<li><a href= "#" class="fc-event-action-edit" ,id="home">Edit event</a></li>'
 
                         );
 
                         $('.fc-event-action-edit').click(function () {
                             edit_event(calEvent);
                             calendar.fullCalendar('unselect');
-                        });
-
-                        $('.fc-event-action-delete').click(function () {
-                            $.ajax({
-                                url: "/admin/events/"+calEvent.id,
-                                type: "DELETE",
-                                data: { _method:'DELETE' }
-                            });
                         });
 
                         // Datepicker init
@@ -168,53 +150,34 @@ var neonCalendar2 = neonCalendar2 || {};
                         });
 
 
-                            // Position popover
-                            function posPopover() {
-                                $('.fc-popover.click').css({
-                                    left: eventEl.offset().left + eventEl.outerWidth() / 2,
-                                    top: eventEl.offset().top + eventEl.outerHeight()
-                                });
+                        // Remove old popover
+                        if ($('.fc-popover.click').length > 1) {
+                            for (var i = 0; i < ($('.fc-popover.click').length - 1); i++) {
+                                $('.fc-popover.click').eq(i).remove();
                             }
+                        }
 
-                            posPopover();
+                        // Close buttons
+                        $('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function () {
+                            $('.fc-popover.click').remove();
+                            $('.fc-event').removeClass('event-clicked');
+                        });
 
-                            $('.fc-scroller, .calendar-page-content, body').scroll(function () {
-                                posPopover();
-                            });
+                        // Actions link
+                        $('.fc-event-action-edit').click(function (e) {
+                            e.preventDefault();
 
-                            $(window).resize(function () {
-                                posPopover();
-                            });
+                            $('.fc-popover.click .main-screen').hide();
+                            $('.fc-popover.click .edit-event').show();
+                        });
 
+                        $('.fc-event-action-remove').click(function (e) {
+                            e.preventDefault();
 
-                            // Remove old popover
-                            if ($('.fc-popover.click').length > 1) {
-                                for (var i = 0; i < ($('.fc-popover.click').length - 1); i++) {
-                                    $('.fc-popover.click').eq(i).remove();
-                                }
-                            }
-
-                            // Close buttons
-                            $('.fc-popover.click .cl, .fc-popover.click .remove-popover').click(function () {
-                                $('.fc-popover.click').remove();
-                                $('.fc-event').removeClass('event-clicked');
-                            });
-
-                            // Actions link
-                            $('.fc-event-action-edit').click(function (e) {
-                                e.preventDefault();
-
-                                $('.fc-popover.click .main-screen').hide();
-                                $('.fc-popover.click .edit-event').show();
-                            });
-
-                            $('.fc-event-action-remove').click(function (e) {
-                                e.preventDefault();
-
-                                $('.fc-popover.click .main-screen').hide();
-                                $('.fc-popover.click .remove-confirm').show();
-                            });
-                        },
+                            $('.fc-popover.click .main-screen').hide();
+                            $('.fc-popover.click .remove-confirm').show();
+                        });
+                    },
 
                     select: function (start, end) {
                         new_event();
@@ -304,3 +267,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;
