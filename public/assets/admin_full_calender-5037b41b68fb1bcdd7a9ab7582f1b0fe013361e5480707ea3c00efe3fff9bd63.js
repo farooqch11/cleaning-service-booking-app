@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(){
     $.getScript('/admin/events/new', function() {});
 }
@@ -268,3 +269,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;
