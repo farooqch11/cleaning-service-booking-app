@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(){
     $.getScript('/admin/events/new', function() {});
 }
@@ -89,9 +90,15 @@ var neonCalendar2 = neonCalendar2 || {};
                     events: '/admin/events.json',
 
                     eventRender: function (event, element) {
+                        console.log(element);
+                        console.log(event);
+                        element.find('.fc-list-item').css( "background-color", "red" );
                         if (!event.description == "") {
                             element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
                                 "</span>");
+                        }
+                        if (!event.icon == "" || true) {
+                            element.find('.fc-title').append("<i class='air air-top-right fa fa-users '></i>");
                         }
 
                     },
@@ -104,6 +111,7 @@ var neonCalendar2 = neonCalendar2 || {};
                     },
 
                     eventClick: function (calEvent, jsEvent, view) {
+                        console.log(view);
                         var eventEl = $(this);
 
                         // Add and remove event border class
@@ -299,3 +307,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;
