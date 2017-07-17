@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   validates :email      , presence: true , uniqueness: true
 
   def image
-    super.present? ?  super : "gravatar/gravatar_#{(1..15).to_a.sample(1).first}.png"
+    super.present? ?  super : "gravatar/gravatar_#{(10..15).to_a.sample(1).first}.png"
   end
 
   def full_name

@@ -8,57 +8,63 @@
 .row
   .col-md-6.col-sm-7
     %h2 Employees
+  %br/
+  %br/
   .col-md-6.col-sm-5{style: 'margin-top: 20px;'}
-    -#.col-md-3
-      %form.search-form-full{:method => "get", :role => "form"}
-        .form-group
-          %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
-          %i.entypo-search
-    %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-right{href: "#{new_admin_employee_path}"}
-      %i.entypo-user-add
-      New Employee
+  .container{:style => "margin-top:50px"}
+    %div{:style => "margin:7px"}
+      .col-xs-9
+        %a#add-note.btn.btn-primary.btn-lg.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}"}
+          %i.entypo-user-add
+          New Employee
 
-/ Member Entries
-/ Single Member
-- Employee.all.each do |employee|
-  .member-entry
-    %a.member-img{:href => "#{admin_employee_path(employee)}"}
-      = image_tag employee.image , class: 'img-rounded'
-      %i.entypo-forward
-    .member-details
-      %h4
-        %a{:href => "#{admin_employee_path(employee)}"}= employee.full_name
-      / Details with Icons
-      .row.info-list
-        .col-sm-4
-          %i.entypo-briefcase
-          Co-Founder at
-          %a{:href => "#"} Complete Tech
-        .col-sm-4
-          %i.entypo-twitter
-          %a{:href => "#"} @johnnie
-        .col-sm-4
-          %i.entypo-facebook
-          %a{:href => "#"} fb.me/johnnie
-        .clear
-        .col-sm-4
-          %i.entypo-location
-          %a{:href => "#"}= employee.full_address
-        .col-sm-4
-          %i.entypo-mail
-          %a{:href => "#"}= employee.email
-        .col-sm-4
-          %i.entypo-linkedin
-          %a{:href => "#"} johnkennedy
-/ Pager for search results
-.row
-  .col-md-12
-    %ul.pager
-      %li
-        %a{:href => "#"}
-          %i.entypo-left-thin
-          Previous
-      %li
-        %a{:href => "#"}
-          Next
-          %i.entypo-right-thin
+      .col-xs-3.pull-right.form-group
+        -#%input.form-control{:placeholder => "Search", :style => "border-radius:0px", :type => "text"}/
+        %form.search-form-full{:method => "get", :role => "form"}
+          .form-group
+            %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
+            %i.entypo-search
+
+    .panel-body{:style => "padding:2px;margin-top: 30px;"}
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Telephone
+            %th Address(s)
+            -#%th Role
+            %th Rate per Hour
+            %th Actions
+        %tbody
+        - @employees.each do |employee|
+          %tr
+            %td
+              .col-md-3
+                = image_tag employee.image ,width: '80px', class: 'img-round'
+              .col-md-3{style:'position: absolute; left: 40px;'}
+              %br
+                %ul.user-details
+                  %ul
+                    %a{:href => "#"}
+                      %i.entypo-user
+                      = employee.full_name
+                  %ul
+                    %a{:href => "#"}
+                      %i.entypo-mail
+                      = employee.email
+            %td
+              = employee.phone
+            %td
+              = employee.full_address
+
+            -#%td
+            -#  = employee.role
+            %td
+              = employee.hourly_rate
+            %td
+              = link_to 'Edit', edit_admin_employee_path(employee.id),class: 'btn btn-primary'
+              =link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+
+  %nav.text-center-xs
+    %center
+      = will_paginate @employees,:page_links => false, renderer: BootstrapPagination::Rails

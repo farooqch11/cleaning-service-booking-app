@@ -95,4 +95,7 @@ gem 'devise', '~> 4.2'
 gem 'cancancan'
 gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'data-confirm-modal'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
 

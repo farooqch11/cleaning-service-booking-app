@@ -8,57 +8,60 @@
 .row
   .col-md-6.col-sm-7
     %h2 Customers
+  %br/
+  %br/
   .col-md-6.col-sm-5{style: 'margin-top: 20px;'}
-    -#.col-md-3
-      %form.search-form-full{:method => "get", :role => "form"}
-        .form-group
-          %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
-          %i.entypo-search
-    %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-right{href: "#{new_admin_customer_path}"}
-      %i.entypo-user-add
-      New Customer
+  .container{:style => "margin-top:50px"}
+    %div{:style => "margin:7px"}
+      .col-xs-9
+        %a#add-note.btn.btn-primary.btn-lg.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}"}
+          %i.entypo-user-add
+          New Customer
 
-/ Member Entries
-/ Single Member
-- @customers.each do |customer|
-  .member-entry
-    %a.member-img{:href => "#{admin_customer_path(customer)}"}
-      = image_tag customer.image , class: 'img-rounded'
-      %i.entypo-forward
-    .member-details
-      %h4
-        %a{:href => "#{admin_customer_path(customer)}"}= customer.full_name
-      / Details with Icons
-      .row.info-list
-        .col-sm-4
-          %i.entypo-briefcase
-          Co-Founder at
-          %a{:href => "#"} Complete Tech
-        .col-sm-4
-          %i.entypo-twitter
-          %a{:href => "#"} @johnnie
-        .col-sm-4
-          %i.entypo-facebook
-          %a{:href => "#"} fb.me/johnnie
-        .clear
-        .col-sm-4
-          %i.entypo-location
-          %a{:href => "#"} Prishtina
-        .col-sm-4
-          %i.entypo-mail
-          %a{:href => "#"}= customer.email
-        .col-sm-4
-          %i.entypo-linkedin
-          %a{:href => "#"} johnkennedy
-/ Pager for search results
-.row
-  .col-md-12
-    %ul.pager
-      %li
-        %a{:href => "#"}
-          %i.entypo-left-thin
-          Previous
-      %li
-        %a{:href => "#"}
-          Next
-          %i.entypo-right-thin
+      .col-xs-3.pull-right.form-group
+        -#%input.form-control{:placeholder => "Search", :style => "border-radius:0px", :type => "text"}/
+        %form.search-form-full{:method => "get", :role => "form"}
+          .form-group
+            %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
+            %i.entypo-search
+
+    .panel-body{:style => "padding:2px;margin-top: 30px;"}
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Telephone
+            %th Address(s)
+            -#%th Role
+            %th Actions
+        %tbody
+        - @customers.each do |customer|
+          %tr
+            %td
+              .col-md-3
+                = image_tag customer.image ,width: '80px', class: 'img-round'
+              .col-md-3{style:'position: absolute; left: 40px;'}
+              %br
+                %ul.user-details
+                  %ul
+                    %a{:href => "#"}
+                      %i.entypo-user
+                      = customer.full_name
+                  %ul
+                    %a{:href => "#"}
+                      %i.entypo-mail
+                      = customer.email
+            %td
+              = customer.phone
+            %td
+              = customer.city
+
+            -#%td
+            -#  = employee.role
+            %td
+              = link_to 'Edit', edit_admin_customer_path(customer.id),class: 'btn btn-primary'
+              =link_to 'Delete',admin_customer_path(customer), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+
+  %nav.text-center-xs
+    %center
+      = will_paginate @customers,:page_links => false, renderer: BootstrapPagination::Rails

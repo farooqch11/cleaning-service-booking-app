@@ -27,6 +27,7 @@ class User < ApplicationRecord
     return "#{street}, #{city}, #{postcode}" if street && city && postcode
     return "#{city}, #{postcode}" if city && postcode
     return "#{street}, #{postcode}" if street && postcode
+    return "#{self.city}" if self.city
     return "#{postcode}" if postcode
   end
 end
