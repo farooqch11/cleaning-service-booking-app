@@ -7,7 +7,8 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :first_name , :last_name , presence: true
+  validates :first_name , :last_name , presence: true , length: { maximum: 25 }
+  before_save { self.email = email.downcase }
 
   def image
     super.present? ?  super : "gravatar/gravatar_#{(1..15).to_a.sample(1).first}.png"
