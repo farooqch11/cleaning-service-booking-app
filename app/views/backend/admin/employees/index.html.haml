@@ -14,8 +14,8 @@
   .container{:style => "margin-top:50px"}
     %div{:style => "margin:7px"}
       .col-xs-9
-        %a#add-note.btn.btn-primary.btn-lg.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}"}
-          %i.entypo-user-add
+        %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}"}
+          %i.entypo-plus
           New Employee
 
       .col-xs-3.pull-right.form-group
@@ -26,13 +26,12 @@
             %i.entypo-search
 
     .panel-body{:style => "padding:2px;margin-top: 30px;"}
-      %table.table.table-hover
+      %table.table.table-hover{width: '100px;'}
         %thead
           %tr
             %th Name
             %th Telephone
             %th Address(s)
-            -#%th Role
             %th Rate per Hour
             %th Actions
         %tbody
@@ -40,28 +39,26 @@
           %tr
             %td
               .col-md-3
-                = image_tag employee.image ,width: '80px', class: 'img-round'
+                = image_tag employee.image ,width: '60px', class: 'img-round'
               .col-md-3{style:'position: absolute; left: 40px;'}
               %br
-                %ul.user-details
+                %ul.user-details.font-color
                   %ul
-                    %a{:href => "#"}
-                      %i.entypo-user
-                      = employee.full_name
+                    %i.entypo-user
+                    = employee.full_name
                   %ul
-                    %a{:href => "#"}
-                      %i.entypo-mail
-                      = employee.email
-            %td
+                    %i.entypo-mail
+                    = employee.email
+            %td.padding-top
               = employee.phone
-            %td
+            %td.padding-top
               = employee.full_address
 
             -#%td
             -#  = employee.role
-            %td
+            %td.padding-top
               = employee.hourly_rate
-            %td
+            %td.padding-top
               = link_to 'Edit', edit_admin_employee_path(employee.id),class: 'btn btn-primary'
               =link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
 

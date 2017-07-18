@@ -14,8 +14,8 @@
   .container{:style => "margin-top:50px"}
     %div{:style => "margin:7px"}
       .col-xs-9
-        %a#add-note.btn.btn-primary.btn-lg.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}"}
-          %i.entypo-user-add
+        %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}"}
+          %i.entypo-plus
           New Customer
 
       .col-xs-3.pull-right.form-group
@@ -39,10 +39,10 @@
           %tr
             %td
               .col-md-3
-                = image_tag customer.image ,width: '80px', class: 'img-round'
+                = image_tag customer.image ,width: '60px', class: 'img-round'
               .col-md-3{style:'position: absolute; left: 40px;'}
               %br
-                %ul.user-details
+                %ul.user-details.font-color
                   %ul
                     %a{:href => "#"}
                       %i.entypo-user
@@ -51,14 +51,12 @@
                     %a{:href => "#"}
                       %i.entypo-mail
                       = customer.email
-            %td
+            %td.padding-top
               = customer.phone
-            %td
+            %td.padding-top
               = customer.city
 
-            -#%td
-            -#  = employee.role
-            %td
+            %td.padding-top
               = link_to 'Edit', edit_admin_customer_path(customer.id),class: 'btn btn-primary'
               =link_to 'Delete',admin_customer_path(customer), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
 
