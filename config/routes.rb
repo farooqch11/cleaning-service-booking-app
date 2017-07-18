@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   scope module: :backend do
     namespace :admin do
       get    "dashboard",  to: "dashboard#index"
-      resources :employees
+      resources :employees do
+        match :search, to: 'employees#index', via: [:post , :get ], on: :collection
+      end
       resources :customers
       resource  :calender
       resources :events

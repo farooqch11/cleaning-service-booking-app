@@ -1,16 +1,17 @@
 class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
 
-  require 'will_paginate/array'
-
-  before_action :set_user ,only: [:edit ,:update , :destroy]
+  before_action :set_employee ,only: [:edit ,:update , :destroy , :show]
 
   def index
-   @employees =  User.all.select{ |attachment| attachment.type == 'Employee' }.paginate(:page => params[:page], :per_page => 10)
+    @search    = User.where(type: 'Employee').search(params[:q])
+    @employees = @search.result.paginate(page: params[:page], per_page: 10) || []
+  end
+
+  def show
 
   end
 
   def edit
-
   end
 
 
@@ -32,7 +33,7 @@ class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
   end
 
   def new
-    @employee = User.new(type: 'Employee')
+    @employee = Employee.new
   end
 
   def create
@@ -52,8 +53,8 @@ class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
       params.require(:employee).permit(:first_name, :last_name , :email,:hourly_rate, :street, :city,:postcode,:picture)
     end
 
-  def set_user
-      @employee =  Employee.find(params[:id])
+  def set_employee
+      @employee =  User.find_by_id_and_type(params[:id] , 'Employee')
   end
 
 end

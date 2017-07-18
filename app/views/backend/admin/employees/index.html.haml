@@ -5,13 +5,53 @@
       Home
   %li.active
     %a{:href => "#{admin_employees_path}"} Employees
-.row
-  .col-md-6.col-sm-7
+-#.row
+  .col-md-6.col-sm-6
     %h2 Employees
-  %br/
-  %br/
-  .col-md-6.col-sm-5{style: 'margin-top: 20px;'}
-  .container{:style => "margin-top:50px"}
+.row
+  .col-md-6.col-sm-6
+    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}" , style: 'margin-top: 12px !important;'}
+      %i.entypo-plus
+      New Employee
+  .col-md-6.col-sm-6
+    .search-form-contaner
+      = search_form_for @search , url: search_admin_employees_path , method: :post , class: 'search-form-full' do |f|
+        .form-group
+          = f.text_field :first_name_cont, class: "form-control", placeholder: "Search..."
+          %i.entypo-search
+  %br
+  %br
+  %hr
+  .line
+  .col-md-12
+    %table.table.table-responsive
+      %thead
+        %tr
+          %th= sort_link @search, :first_name, "Name"
+          %th Telephone
+          %th Address
+          %th= sort_link @search, :hourly_rate, "Hourly Rate"
+          %th.text-center Actions
+      %tbody
+        - @employees.each do |employee|
+          %tr
+            %td
+              %aside.user-thumb
+                %a{:href => "#{admin_employee_path(employee)}"}
+                  = image_tag employee.image ,width: '44px', class: 'img-circle'
+                  %b{style: 'margin-left: 5px;'}= employee.full_name
+            %td.user-thumb= employee.phone
+            %td.user-thumb= employee.full_address
+            %td= amount_in_currency employee.hourly_rate
+            %td.padding-top.text-center
+              = link_to 'Edit', edit_admin_employee_path(employee),class: 'btn btn-primary'
+              = link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+    %nav.text-center-xs
+      %center
+        = will_paginate @employees,:page_links => false, renderer: BootstrapPagination::Rails
+
+  -#.col-md-6.col-sm-5{style: 'margin-top: 20px;'}
+  -#.container{:style => "margin-top:50px"}
     %div{:style => "margin:7px"}
       .col-xs-9
         %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}"}
@@ -57,11 +97,11 @@
             -#%td
             -#  = employee.role
             %td.padding-top
-              = employee.hourly_rate
+              = amount_in_currency employee.hourly_rate
             %td.padding-top
               = link_to 'Edit', edit_admin_employee_path(employee.id),class: 'btn btn-primary'
               =link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
 
-  %nav.text-center-xs
+  -#%nav.text-center-xs
     %center
       = will_paginate @employees,:page_links => false, renderer: BootstrapPagination::Rails

@@ -1,7 +1,5 @@
 class Backend::Admin::CustomersController < Backend::Admin::AdminsController
 
-  require 'will_paginate/array'
-
   before_action :set_customer ,only: [:edit ,:update , :destroy]
 
   def index

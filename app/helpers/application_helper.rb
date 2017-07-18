@@ -18,4 +18,8 @@ module ApplicationHelper
   def page_title
     @title || controller_name.gsub( /Controller/, "" ).humanize
   end
+
+  def amount_in_currency(price)
+    number_to_currency(price, :unit => "£")
+  end
 end

@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   def access_denied(exception)
     redirect_to root_path, alert: exception.message
   end
+
   def layout_by_resource
     devise_controller? ? "devise" : false
   end

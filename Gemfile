@@ -30,10 +30,17 @@ gem 'premailer-rails'
 gem 'figaro'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+
 #------------------------------------------
 # For Mails
 #------------------------------------------
 gem 'mailgun-ruby', '~>1.1.6'
+
+#------------------------------------------
+# For Searching
+#------------------------------------------
+gem 'ransack'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
