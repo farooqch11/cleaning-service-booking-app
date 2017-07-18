@@ -31,7 +31,7 @@
                 .col-md-6
                   .form-group
                     %label.control-label{:for => "full_name"} Hourly Rate£
-                    =f.number_field :hourly_rate , class: 'form-control' , placeholder: 'Enter Hourly Rate' , data: {"validate": "required"}
+                    =f.number_field :hourly_rate , class: 'form-control' , step: :any , placeholder: 'Enter Hourly Rate' , data: {"validate": "required"}
         .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
           = f.submit "Submit" , class: 'btn btn-success'
           %button.btn{:type => "reset"} Reset
