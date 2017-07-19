@@ -30,6 +30,8 @@ gem 'premailer-rails'
 gem 'figaro'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
+
 
 #------------------------------------------
 # For Mails

@@ -25,6 +25,3 @@
 //= require date_range_picker
 //= require bootstrap-datetimepicker
 //= require flash
-
-$('.fc-list-table').addClass('table');
-$('.fc-listWeek-button').click(function(){alert('click');})

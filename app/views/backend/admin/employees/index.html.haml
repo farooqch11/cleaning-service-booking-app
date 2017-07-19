@@ -5,12 +5,12 @@
       Home
   %li.active
     %a{:href => "#{admin_employees_path}"} Employees
--#.row
+.row
   .col-md-6.col-sm-6
     %h2 Employees
 .row
   .col-md-6.col-sm-6
-    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}" , style: 'margin-top: 12px !important;'}
+    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}" , style: 'margin-top: 15px !important;'}
       %i.entypo-plus
       New Employee
   .col-md-6.col-sm-6
@@ -24,7 +24,7 @@
   %hr
   .line
   .col-md-12
-    %table.table.table-responsive
+    %table.table.table-responsive.image-table
       %thead
         %tr
           %th= sort_link @search, :first_name, "Name"
@@ -39,11 +39,14 @@
               %aside.user-thumb
                 %a{:href => "#{admin_employee_path(employee)}"}
                   = image_tag employee.image ,width: '44px', class: 'img-circle'
-                  %b{style: 'margin-left: 5px;'}= employee.full_name
+                  %b.publisher
+                    %a{:href => "#"}= employee.full_name
+                  -#%b
+                    %em= employee.email
             %td.user-thumb= employee.phone
             %td.user-thumb= employee.full_address
             %td= amount_in_currency employee.hourly_rate
-            %td.padding-top.text-center
+            %td.text-center
               = link_to 'Edit', edit_admin_employee_path(employee),class: 'btn btn-primary'
               = link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
     %nav.text-center-xs

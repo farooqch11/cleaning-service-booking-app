@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/rubysherpas/paranoia.git
+  revision: d70c4c5a7098d4c8416332489e3f63b0a959ab97
+  branch: rails5
+  specs:
+    paranoia (2.2.0.pre)
+      activerecord (>= 4.0, < 5.1)
+
+GIT
   remote: https://github.com/scambra/devise_invitable.git
   revision: d3a6f6801caf882521d53f57738ebae9c088b5c2
   specs:
@@ -435,6 +443,7 @@ DEPENDENCIES
   modernizr-rails
   momentjs-rails
   nokogiri
+  paranoia!
   pg
   premailer-rails
   puma (~> 3.0)

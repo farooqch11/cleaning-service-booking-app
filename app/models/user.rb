@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+
   enum role: [:user, :admin]
   enum gender: [:male, :female]
   enum status: [:pending, :accepted , :canceled]
