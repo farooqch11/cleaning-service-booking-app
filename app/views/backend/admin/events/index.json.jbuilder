@@ -10,6 +10,6 @@ json.array! @events do |event|
   json.allDay event.all_day_event? ? true : false
   json.update_url admin_event_path(event, method: :patch)
   json.edit_url edit_admin_event_path(event)
-  json.employee_name event.customer.full_name if event.customer.present?
-  json.customer_name event.employee.full_name if event.customer.present?
+  json.employee_name event.employee.first_name if event.employee.present?
+  json.customer_name event.customer.first_name if event.customer.present?
 end

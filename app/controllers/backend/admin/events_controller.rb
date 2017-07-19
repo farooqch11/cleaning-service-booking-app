@@ -38,7 +38,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   private
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id(params[:id])
   end
 
   def event_params
