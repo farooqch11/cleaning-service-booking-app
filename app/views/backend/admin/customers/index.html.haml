@@ -4,62 +4,49 @@
       %i.fa-home>
       Home
   %li.active
-    %a{:href => "#"} Customers
+    %a{:href => "#{admin_customers_path}"} Customers
 .row
-  .col-md-6.col-sm-7
+  .col-md-6.col-sm-6
     %h2 Customers
-  %br/
-  %br/
-  .col-md-6.col-sm-5{style: 'margin-top: 20px;'}
-  .container{:style => "margin-top:50px"}
-    %div{:style => "margin:7px"}
-      .col-xs-9
-        %a#add-note.btn.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}"}
-          %i.entypo-plus
-          New Customer
-
-      .col-xs-3.pull-right.form-group
-        -#%input.form-control{:placeholder => "Search", :style => "border-radius:0px", :type => "text"}/
-        %form.search-form-full{:method => "get", :role => "form"}
-          .form-group
-            %input#search-input.form-control{:name => "s", :placeholder => "Search...", :type => "text"}/
-            %i.entypo-search
-
-    .panel-body{:style => "padding:2px;margin-top: 30px;"}
-      %table.table.table-hover
-        %thead
-          %tr
-            %th Name
-            %th Telephone
-            %th Address(s)
-            -#%th Role
-            %th Actions
-        %tbody
+.row
+  .col-md-6.col-sm-6
+    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}" , style: 'margin-top: 15px !important;'}
+      %i.entypo-plus
+      New Customer
+  .col-md-6.col-sm-6
+    .search-form-contaner
+      = search_form_for @search , url: search_admin_customers_path , method: :post , class: 'search-form-full' do |f|
+        .form-group
+          = f.text_field :first_name_cont, class: "form-control", placeholder: "Search..."
+          %i.entypo-search
+  %br
+  %br
+  %hr
+  .line
+  .col-md-12
+    %table.table.table-responsive.image-table
+      %thead
+        %tr
+          %th= sort_link @search, :first_name, "Name"
+          %th Telephone
+          %th Address
+          %th.text-center Actions
+      %tbody
         - @customers.each do |customer|
           %tr
             %td
-              .col-md-3
-                = image_tag customer.image ,width: '60px', class: 'img-round'
-              .col-md-3{style:'position: absolute; left: 40px;'}
-              %br
-                %ul.user-details.font-color
-                  %ul
-                    %a{:href => "#"}
-                      %i.entypo-user
-                      = customer.full_name
-                  %ul
-                    %a{:href => "#"}
-                      %i.entypo-mail
-                      = customer.email
-            %td.padding-top
-              = customer.phone
-            %td.padding-top
-              = customer.city
-
-            %td.padding-top
-              = link_to 'Edit', edit_admin_customer_path(customer.id),class: 'btn btn-primary'
-              =link_to 'Delete',admin_customer_path(customer), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
-
-  %nav.text-center-xs
-    %center
-      = will_paginate @customers,:page_links => false, renderer: BootstrapPagination::Rails
+              %aside.user-thumb
+                %a{:href => "#"}
+                  = image_tag customer.image ,width: '44px', class: 'img-circle'
+                  %b.publisher
+                    %a{:href => "#"}= customer.full_name
+            -#%b
+                    %em= employee.email
+            %td.user-thumb= customer.phone
+            %td.user-thumb= customer.full_address
+            %td.text-center
+              = link_to 'Edit', edit_admin_customer_path(customer),class: 'btn btn-primary'
+              = link_to 'Delete',admin_customer_path(customer), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+    %nav.text-center-xs
+      %center
+        = will_paginate @customers,:page_links => false, renderer: BootstrapPagination::Rails

@@ -3,7 +3,8 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
   before_action :set_customer ,only: [:edit ,:update , :destroy]
 
   def index
-    @customers = Customer.all.paginate(:page => params[:page], :per_page => 10) || []
+    @search    = Customer.all.search(params[:q])
+    @customers = @search.result.paginate(page: params[:page], per_page: 10) || []
   end
 
   def new

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  concern :paginatable do
+    get '(page/:page)', action: :index, on: :collection
+    match '(search/:q/page/:page)', action: :index, via: [:post , :get ] , on: :collection
+  end
+
   resources :events
   devise_for :users, :controllers => { sessions: 'users/sessions' , invitations: 'users/invitations'}, skip: [:sessions]
 
@@ -16,7 +21,9 @@ Rails.application.routes.draw do
       resources :employees do
         match :search, to: 'employees#index', via: [:post , :get ], on: :collection
       end
-      resources :customers
+      resources :customers do
+        match :search, to: 'customers#index', via: [:post , :get ], on: :collection
+      end
       resource  :calender
       resources :events
     end
