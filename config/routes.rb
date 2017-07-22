@@ -30,7 +30,10 @@ Rails.application.routes.draw do
 
     namespace :employee do
       get    "dashboard",  to: "dashboard#index"
-      resources :events , only: [:index]
+      get    "profile",  to:   "dashboard#profile"
+      get  "profile/setting",  to: "dashboard#edit", as: 'edit'
+      patch  "profile/setting",  to: "dashboard#update"
+      resources :events, only: [:index]
     end
   end
 

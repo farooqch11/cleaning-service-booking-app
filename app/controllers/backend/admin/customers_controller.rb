@@ -1,6 +1,6 @@
 class Backend::Admin::CustomersController < Backend::Admin::AdminsController
 
-  before_action :set_customer ,only: [:edit ,:update , :destroy]
+  before_action :set_customer ,only: [:edit ,:update , :destroy,:show]
 
   def index
     @search    = Customer.all.search(params[:q])
@@ -9,6 +9,10 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
 
   def new
     @customer = Customer.new
+  end
+
+  def show
+
   end
 
   def edit

@@ -1,0 +1,81 @@
+.row
+  .profile-env
+    %header.row
+      .col-sm-2
+        %a.profile-picture{:href => "#"}
+          = image_tag current_user.image , class: 'img-responsive img-circle'
+      .col-sm-7
+        %ul.profile-info-sections
+          %li
+            .profile-name
+              %strong
+                %a{:href => "#"}= current_user.full_name
+                %a.user-status.is-online.tooltip-primary{"data-original-title" => "Online", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#"}
+              / User statuses available classes "is-online", "is-offline", "is-idle", "is-busy"
+              %span
+                %a{:href => "#"} Co-Founder at Joanna
+          %li
+            .profile-stat
+              %h3 643
+              %span
+                %a{:href => "#"} Jobs
+          %li
+            .profile-stat
+              %h3 108
+              %span
+                %a{:href => "#"} Closed
+      .col-sm-3
+        .profile-buttons
+          %a.btn.btn-primary{:href => "#{employee_edit_path}"}
+            %i.entypo-user-add
+            Edit Profile
+    %section.profile-info-tabs
+      .row
+        .col-sm-offset-2.col-sm-10
+          %ul.user-details
+            %li
+              %a{:href => "#"}
+                %i.entypo-location
+                = current_user.full_address
+            %li
+              %a{:href => "#"}
+                %i.entypo-suitcase
+                Works as
+                %span= current_user.role
+            %li
+              %a{:href => "#"}
+                %i.entypo-calendar
+                = current_user.created_at.strftime('%d %B')
+    -#      %ul.nav.nav-tabs
+    -#        %li.active
+    -#          %a{:href => "#profile-info"} Profile
+    -##profile-info.tab-pane.active
+    -#  .container
+    -#    .row
+    -#      .panel
+    -#        .panel-body
+    -#          .col-md-7.col-lg-7
+    -#            %table.table.table-responsive.image-table
+    -#              %tbody
+    -#                %tr
+    -#                  %td First Name:
+    -#                  %td
+    -#                    = current_user.first_name
+    -#                %tr
+    -#                  %td Last Name
+    -#                  %td
+    -#                    = current_user.last_name
+    -#                %tr
+    -#                  %td Hours Rate
+    -#                  %td
+    -#                    = current_user.hourly_rate
+    -#                %tr
+    -#                %tr
+    -#                  %td Phone
+    -#                  %td
+    -#                    = current_user.phone
+    -#                %tr
+    -#                  %td Email
+    -#                  %td
+    -#                    = current_user.email
+

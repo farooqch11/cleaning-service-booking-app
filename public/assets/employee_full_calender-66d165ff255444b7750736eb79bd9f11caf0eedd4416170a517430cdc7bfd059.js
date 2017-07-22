@@ -4,6 +4,7 @@
  *	Developed by Arlind Nushi - www.laborator.co
  */
 
+
 var neonCalendar2 = neonCalendar2 || {};
 
 ;(function($, window, undefined)
@@ -281,3 +282,4 @@ function calendar_toggle_checkbox_status(checked)
 {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked',  ! checked).click();
 }
+;

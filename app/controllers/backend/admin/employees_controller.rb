@@ -37,7 +37,7 @@ class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
   end
 
   def create
-    @employee =  Employee.invite!(employee_params , current_user)
+    @employee = User.where(type: 'Employee').invite!(employee_params , current_user)
     if @employee.errors.any?
       flash[:errors] = @employee.errors.full_messages
       render 'new'

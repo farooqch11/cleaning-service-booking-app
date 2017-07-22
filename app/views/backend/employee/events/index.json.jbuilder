@@ -5,5 +5,7 @@ json.array! @events do |event|
   json.start event.start.strftime(date_format)
   json.end event.end.strftime(date_format)
   json.color event.color unless event.color.blank?
+  json.employee_name event.employee.first_name if event.employee.present?
+  json.customer_name event.customer.first_name if event.customer.present?
   json.allDay event.all_day_event? ? true : false
 end

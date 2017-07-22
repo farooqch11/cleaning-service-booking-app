@@ -39,7 +39,7 @@
                 %a{:href => "#"}
                   = image_tag customer.image ,width: '44px', class: 'img-circle'
                   %b.publisher
-                    %a{:href => "#"}= customer.full_name
+                    %a{:href => "#{admin_customer_path(customer)}"}= customer.full_name
             -#%b
                     %em= employee.email
             %td.user-thumb= customer.phone

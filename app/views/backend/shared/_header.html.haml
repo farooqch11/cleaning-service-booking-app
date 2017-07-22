@@ -7,27 +7,19 @@
         / add class "pull-right" if you want to place this from right
         %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
           = image_tag(current_user.image ,width:'44',class:'img img-circle')
-          = current_user.email
-        -#%ul.dropdown-menu
-          / Reverse Caret
-          %li.caret
-          / Profile sub-links
-          %li
-            %a{:href => "extra-timeline.html"}
-              %i.entypo-user
-              Edit Profile
-          %li
-            %a{:href => "mailbox.html"}
-              %i.entypo-mail
-              Inbox
-          %li
-            %a{:href => "extra-calendar.html"}
-              %i.entypo-calendar
-              Calendar
-          %li
-            %a{:href => "#"}
-              %i.entypo-clipboard
-              Tasks
+          - if current_user.class.name == "Employee"
+            = current_user.full_name.humanize
+          -else
+            = current_user.email
+        - if current_user.class.name == "Employee"
+          %ul.dropdown-menu
+            / Reverse Caret
+            %li.caret
+            / Profile sub-links
+            %li
+              %a{:href => "#{employee_profile_path}"}
+                %i.entypo-user
+                Profile
     -#%ul.user-info.pull-left.pull-right-xs.pull-none-xsm
       / Raw Notifications
       %li.notifications.dropdown
