@@ -11,8 +11,8 @@ class User < ApplicationRecord
 
   validates :first_name , :last_name , presence: true , length: { maximum: 25 }
   validates_inclusion_of :status, in: statuses.keys
-  validates_inclusion_of :role, in: roles.keys
-  validates_inclusion_of :gender, in: genders.keys
+  # validates_inclusion_of :role, in: roles.keys
+  # validates_inclusion_of :gender, in: genders.keys
 
 
   before_save { self.email = email.downcase }
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     self.type == "Employee"
   end
   def full_name
-    self.first_name + " " + self.last_name
+    (self.first_name + " " + self.last_name) || ""
   end
 
   def full_address
