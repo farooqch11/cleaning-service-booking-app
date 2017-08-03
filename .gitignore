@@ -30,3 +30,5 @@
 .pryrc
 app/.DS_Store
 app/assets/.DS_Store
+.idea/joaana-cleaning-service.iml
+.idea/workspace.xml
