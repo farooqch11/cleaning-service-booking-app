@@ -32,6 +32,7 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
 
+gem 'pry-rails', :group => :development
 
 #------------------------------------------
 # For Mails
@@ -106,5 +107,7 @@ gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'data-confirm-modal'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'recurring_select',  git: 'https://github.com/sahild/recurring_select.git', branch: 'master'
+gem 'ice_cube'
 
 

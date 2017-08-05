@@ -25,3 +25,4 @@
 //= require date_range_picker
 //= require bootstrap-datetimepicker
 //= require flash
+//= require recurring_select

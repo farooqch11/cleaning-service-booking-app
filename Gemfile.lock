@@ -7,6 +7,18 @@ GIT
       activerecord (>= 4.0, < 5.1)
 
 GIT
+  remote: https://github.com/sahild/recurring_select.git
+  revision: 08d08c0cd0fd792f4251d31dc90c1f449b83d712
+  branch: master
+  specs:
+    recurring_select (2.0.0)
+      coffee-rails (>= 3.1)
+      ice_cube (>= 0.11)
+      jquery-rails (>= 3.0)
+      rails (>= 3.2)
+      sass-rails (>= 4.0)
+
+GIT
   remote: https://github.com/scambra/devise_invitable.git
   revision: d3a6f6801caf882521d53f57738ebae9c088b5c2
   specs:
@@ -193,6 +205,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.4)
+    ice_cube (0.16.2)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -255,6 +268,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -432,6 +447,7 @@ DEPENDENCIES
   guard-rspec (~> 4.6.4)
   haml-rails
   happy_seed
+  ice_cube
   jbuilder (~> 2.5)
   jquery-rails
   launchy
@@ -446,12 +462,14 @@ DEPENDENCIES
   paranoia!
   pg
   premailer-rails
+  pry-rails
   puma (~> 3.0)
   rails (~> 5.0.3)
   rails-controller-testing
   rails_12factor
   ransack
   rdiscount
+  recurring_select!
   responders (~> 2.0)
   rspec (~> 3.5.0)
   rspec-rails (~> 3.5.0)
@@ -473,4 +491,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.14.6
+   1.15.3

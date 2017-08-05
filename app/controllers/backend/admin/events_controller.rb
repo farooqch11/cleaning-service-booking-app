@@ -3,16 +3,18 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def index
     @events = Event.where(start: params[:start]..params[:end])
+    @calendar_events = @events.flat_map{ |e| e.calendar_events(params[:start])}
   end
 
   def show
   end
 
-  def new
-    @event = Event.new
+  def edit
   end
 
-  def edit
+
+  def new
+    @event = Event.new
   end
 
   def create
@@ -42,7 +44,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   end
 
   def event_params
-    params.require(:event).permit(:title, :street , :city , :address_line , :contact , :zip , :date_range, :type , :description , :start, :end, :color , :customer_id , :employee_id)
+    params.require(:event).permit(:title, :street , :city , :address_line , :contact , :zip , :date_range, :type , :description , :start, :end, :color , :customer_id , :employee_id ,:recurring)
   end
 end
  

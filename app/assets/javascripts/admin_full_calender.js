@@ -93,7 +93,6 @@ var neonCalendar2 = neonCalendar2 || {};
                             element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
                                 "</span>");
                         }
-
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
 

@@ -38,6 +38,13 @@
                           Job Title
                           %span.text-danger *
                         =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
+
+                  .row
+                    .col-md-12
+                      .form-group
+                        %label.control-label{:for => "Recurrence"} Recurrence
+                        = f.select_recurring :recurring , nil,allow_blank: true, class: 'form-control' , placeholder: 'Recurrence'
+
                   %hr
                   .row
                     .col-md-12

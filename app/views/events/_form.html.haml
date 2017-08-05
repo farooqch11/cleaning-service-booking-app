@@ -25,6 +25,12 @@
               .form-group
                 %label.control-label{:for => "full_name"} Job Title
                 =f.text_field :title , class: 'form-control' , placeholder: 'Job Title'
+
+          .row
+            .col-md-12
+              .form-group
+                %label.control-label{:for => "Recurrence"} Recurrence
+                =f.select_recurring :recurring , nil,allow_blank: true, class: 'form-control' , placeholder: 'Job Title'
           %hr
           .row
             .col-md-12

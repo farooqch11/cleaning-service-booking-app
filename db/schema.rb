@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721210323) do
+ActiveRecord::Schema.define(version: 20170803204312) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170721210323) do
     t.string   "street"
     t.string   "zip"
     t.string   "address_line"
+    t.text     "recurring"
     t.index ["customer_id"], name: "index_events_on_customer_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
   end
