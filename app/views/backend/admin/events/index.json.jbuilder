@@ -9,7 +9,7 @@ json.array! @calendar_events do |event|
   # json.color event.color unless event.color.blank?
   # json.className 'color-blue'
   json.backgroundColor event.employee.color if event.employee.present?
-  json.allDay event.all_day_event? ? true : false
+  # json.allDay event.all_day_event? ? true : false
   json.update_url admin_event_path(event, method: :patch)
   json.edit_url edit_admin_event_path(event)
   json.employee_name event.employee.first_name if event.employee.present?
