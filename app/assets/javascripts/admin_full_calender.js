@@ -95,10 +95,11 @@ var neonCalendar2 = neonCalendar2 || {};
                         }
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
-
+                        console.log("Event Resize: " + JSON.stringify(event));
                         update_event(event , revertFunc);
                     },
                     eventDrop: function(event, delta, revertFunc) {
+                        console.log("Event Drop: " + JSON.stringify(event));
                         update_event(event , revertFunc);
                     },
 
