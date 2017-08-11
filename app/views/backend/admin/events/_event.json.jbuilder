@@ -3,7 +3,7 @@ json.id event.id
 json.title event.title
 json.description event.description
 json.start event.start.strftime(date_format)
-json.end event.end.strftime(date_format)
+json.end event.end.blank? ? event.start.strftime(date_format) : event.end.strftime(date_format)
 # json.color event.color unless event.color.blank?
 # json.className 'color-blue'
 json.backgroundColor event.employee.color if event.employee.present?
