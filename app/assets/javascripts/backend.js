@@ -6,13 +6,20 @@
 //= require d3.v3
 //= require jquery.sparkline.min
 //= require jquery.validate.min
+//= require jquery.bootstrap.wizard.min
+//= require jquery.inputmask.bundle
+//= require selectboxit/jquery.selectBoxIt.min
+//= require bootstrap-datepicker
+//= require bootstrap-switch.min
+//= require jquery.multi-select
 //= require jquery-jvectormap-1.2.2.min
 //= require jquery-jvectormap-europe-merc-en
 //= require morris.min
 //= require neon-api
 //= require neon-chat
-//= require neon-custom
-//= require neon-demo
+
+
+
 //= require neon-login
 //= require raphael-min
 //= require resizeable
@@ -26,3 +33,6 @@
 //= require bootstrap-datetimepicker
 //= require flash
 //= require recurring_select
+
+//= require neon-custom
+//= require neon-demo

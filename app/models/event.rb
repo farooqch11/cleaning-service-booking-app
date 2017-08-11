@@ -8,6 +8,9 @@ class Event < ApplicationRecord
   validates :title, presence: true
   validates :customer, presence: true
   validates :employee, presence: true
+  validates :start, presence: true
+  validates :end, presence: true
+  validates_datetime :start , :end
   attr_accessor :date_range
 
   def all_day_event?

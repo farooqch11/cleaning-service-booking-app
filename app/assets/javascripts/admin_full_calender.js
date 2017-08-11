@@ -22,8 +22,8 @@ function update_event(event , revertFunc){
         var event_data = {
             event: {
                 id: event.id,
-                start: event.start.format(),
-                end: event.end.format()
+                start: moment(event.start).format("DD-MM-YYYY HH:mm"),
+                end: moment(event.end).format("DD-MM-YYYY HH:mm")
             }
         };
         $.ajax({
@@ -95,15 +95,16 @@ var neonCalendar2 = neonCalendar2 || {};
                         }
                     },
                     eventResize: function (event, dayDelta, minuteDelta, revertFunc) {
-                        console.log("Event Resize: " + JSON.stringify(event));
+                        console.log("Event Resize: ");
                         update_event(event , revertFunc);
                     },
                     eventDrop: function(event, delta, revertFunc) {
-                        console.log("Event Drop: " + JSON.stringify(event));
+                        console.log("Event Drop: " + event.end);
                         update_event(event , revertFunc);
                     },
 
                     eventClick: function (calEvent, jsEvent, view) {
+                        console.log("Event Click: ");
                         var eventEl = $(this);
 
                         // Add and remove event border class

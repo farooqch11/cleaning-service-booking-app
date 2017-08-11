@@ -43,7 +43,7 @@ gem 'mailgun-ruby', '~>1.1.6'
 # For Searching
 #------------------------------------------
 gem 'ransack'
-
+gem 'validates_timeliness', '~> 4.0'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'

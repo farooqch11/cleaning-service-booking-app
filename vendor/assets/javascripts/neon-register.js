@@ -23,13 +23,7 @@ var neonRegister = neonRegister || {};
 				name: {
 					required: true
 				},
-				sur_name:{
-                    required: true
-				},
-                c_password:{
-                    required: true
-                },
-
+				
 				email: {
 					required: true,
 					email: true
@@ -73,11 +67,60 @@ var neonRegister = neonRegister || {};
 					neonRegister.setPercentage(98, function()
 					{
 						// Send data to the server
-						$('#button').submit();
+						$.ajax({
+							url: baseurl + 'data/sample-register-form.php',
+							method: 'POST',
+							dataType: 'json',
+							data: {
+								name: 		$("input#name").val(),
+								phone: 		$("input#phone").val(),
+								birthdate: 	$("input#birthdate").val(),
+								username: 	$("input#username").val(),
+								email: 		$("input#email").val(),
+								password:	$("input#password").val()
+							},
+							error: function()
+							{
+								alert("An error occoured!");
+							},
+							success: function(response)
+							{
+								// From response you can fetch the data object retured
+								var name = response.submitted_data.name,
+									phone = response.submitted_data.phone,
+									birthdate = response.submitted_data.birthdate,
+									username = response.submitted_data.username,
+									email = response.submitted_data.email,
+									password = response.submitted_data.password;
+								
+								
+								// Form is fully completed, we update the percentage
+								neonRegister.setPercentage(100);
+								
+								
+								// We will give some time for the animation to finish, then execute the following procedures	
+								setTimeout(function()
+								{
+									// Hide the description title
+									$(".login-page .login-header .description").slideUp();
+									
+									// Hide the register form (steps)
+									neonRegister.$steps.slideUp('normal', function()
+									{
+										// Remove loging-in state
+										$(".login-page").removeClass('logging-in');
+										
+										// Now we show the success message
+										$(".form-register-success").slideDown('normal');
+										
+										// You can use the data returned from response variable
+									});
+									
+								}, 1000);
+							}
+						});
 					});
-                    $('#button').submit();
 				});
-                $('#button').submit();
 			}
 		});
 	
