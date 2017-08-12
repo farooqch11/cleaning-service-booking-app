@@ -3,7 +3,8 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def index
     @events = Event.where(start: params[:start]..params[:end])
-    @calendar_events = @events.flat_map{ |e| e.calendar_events(params[:start])}
+    @calendar_events = @events.flat_map{ |e| e.calendar_events(params.fetch(:start, Time.zone.now).to_date) }
+
   end
 
   def show
@@ -39,6 +40,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   end
 
   private
+
   def set_event
     @event = Event.find_by_id(params[:id])
   end

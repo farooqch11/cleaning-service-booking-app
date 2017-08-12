@@ -17,6 +17,7 @@ module JoaanaCleaningService
       g.scaffold_controller "scaffold_controller"
       g.test_framework :rspec, fixture: true, fixture_replacement: :factory_girl, helper_specs: false, view_specs: false, routing_specs: false, controller_specs: false
     end
-  
+    config.time_zone = 'Europe/London'
+    # config.time_zone = 'Asia/Karachi'
   end
 end
