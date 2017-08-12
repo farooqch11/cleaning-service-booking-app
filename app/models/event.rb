@@ -36,14 +36,15 @@ class Event < ApplicationRecord
   end
 
   #
-  def calendar_events(start)
+  def calendar_events(start_date)
     if recurring.empty?
       [self]
     else
-      start_date = start.to_date.beginning_of_month.beginning_of_week
-      end_date = start.to_date.end_of_month.end_of_week
-      schedule(start_date).occurrences(end_date).map do |date|
-        Event.new(id: self.id ,title: self.title,start: date ,customer_id: self.customer_id , employee_id:self.employee_id ,contact: self.contact,end: date,description: self.description,created_at:self.created_at)
+      # start_date = start.to_date.beginning_of_month.beginning_of_week
+      # end_date = start_date.to_date.end_of_month.end_of_week
+      end_date = start_date.end_of_month.end_of_week
+      schedule(start).occurrences(self.end).map do |date|
+        Event.new(id: self.id ,title: self.title,start: date ,customer_id: self.customer_id , employee_id:self.employee_id ,contact: self.contact,description: self.description,created_at:self.created_at)
       end
     end
   end
