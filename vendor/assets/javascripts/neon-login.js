@@ -46,9 +46,10 @@ var neonLogin = neonLogin || {};
 				*/
 				
 				$(".login-page").addClass('logging-in'); // This will hide the login form and init the progress bar
-					
-					
-				// Hide Errors
+                $('#button').submit();
+
+
+                // Hide Errors
 				$(".form-login-error").slideUp('fast');
 
 				// We will wait till the transition ends				
@@ -58,59 +59,60 @@ var neonLogin = neonLogin || {};
 					
 					// The form data are subbmitted, we can forward the progress to 70%
 					neonLogin.setPercentage(40 + random_pct);
-											
+
 					// Send data to the server
-					$.ajax({
-						url: baseurl + 'data/sample-login-form.php',
-						method: 'POST',
-						dataType: 'json',
-						data: {
-							username: $("input#username").val(),
-							password: $("input#password").val(),
-						},
-						error: function()
-						{
-							alert("An error occoured!");
-						},
-						success: function(response)
-						{
-							// Login status [success|invalid]
-							var login_status = response.login_status;
-															
-							// Form is fully completed, we update the percentage
-							neonLogin.setPercentage(100);
-							
-							
-							// We will give some time for the animation to finish, then execute the following procedures	
-							setTimeout(function()
-							{
-								// If login is invalid, we store the 
-								if(login_status == 'invalid')
-								{
-									$(".login-page").removeClass('logging-in');
-									neonLogin.resetProgressBar(true);
-								}
-								else
-								if(login_status == 'success')
-								{
-									// Redirect to login page
-									setTimeout(function()
-									{
-										var redirect_url = baseurl;
-										
-										if(response.redirect_url && response.redirect_url.length)
-										{
-											redirect_url = response.redirect_url;
-										}
-										
-										window.location.href = redirect_url;
-									}, 400);
-								}
-								
-							}, 1000);
-						}
-					});
-						
+					// $.ajax({
+					// 	url: baseurl + 'data/sample-login-form.php',
+					// 	method: 'POST',
+					// 	dataType: 'json',
+					// 	data: {
+					// 		username: $("input#username").val(),
+					// 		password: $("input#password").val(),
+					// 	},
+					// 	error: function()
+					// 	{
+					// 		alert("An error occoured!");
+					// 	},
+					// 	success: function(response)
+					// 	{
+					// 		// Login status [success|invalid]
+					// 		var login_status = response.login_status;
+					//
+					// 		// Form is fully completed, we update the percentage
+					// 		neonLogin.setPercentage(100);
+					//
+					//
+					// 		// We will give some time for the animation to finish, then execute the following procedures
+					// 		setTimeout(function()
+					// 		{
+					// 			// If login is invalid, we store the
+					// 			if(login_status == 'invalid')
+					// 			{
+					// 				$(".login-page").removeClass('logging-in');
+					// 				neonLogin.resetProgressBar(true);
+					// 				$('#button').submit();
+					// 			}
+					// 			else
+					// 			if(login_status == 'success')
+					// 			{
+					// 				// Redirect to login page
+					// 				setTimeout(function()
+					// 				{
+					// 					var redirect_url = baseurl;
+					//
+					// 					if(response.redirect_url && response.redirect_url.length)
+					// 					{
+					// 						redirect_url = response.redirect_url;
+					// 					}
+					//
+					// 					window.location.href = redirect_url;
+					// 				}, 400);
+					// 			}
+					//
+					// 		}, 1000);
+					// 	}
+					// });
+					//
 					
 				}, 650);
 			}
