@@ -30,6 +30,7 @@ function update_event(event , revertFunc){
             url: event.update_url,
             data: event_data,
             type: 'PATCH'
+
         });
     }
 }

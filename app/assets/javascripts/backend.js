@@ -10,6 +10,10 @@
 //= require jquery.inputmask.bundle
 //= require selectboxit/jquery.selectBoxIt.min
 //= require bootstrap-datepicker
+//= require bootstrap-colorpicker.min
+//= require bootstrap-timepicker.min
+//= require typeahead.min
+
 //= require bootstrap-switch.min
 //= require jquery.multi-select
 //= require jquery-jvectormap-1.2.2.min
