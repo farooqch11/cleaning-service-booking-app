@@ -5,7 +5,8 @@
         %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
         %h4.modal-title #{@event.new_record? ? 'Create Event' : 'Edit Event'}
       .modal-body
-        .panel.minimal.minimal-gray
+        = render 'backend/admin/events/partials/wizard'
+        -#.panel.minimal.minimal-gray
           .panel-heading
             -#.panel-title
               %h4 Create Event
@@ -24,14 +25,14 @@
                 - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
                 = simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch) , class: 'validate form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} , remote: true do |f|
                   = f.hidden_field :type , value: "Job"
-                  .row
+                  -#.row
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"}
                           Cutomer
                           %span.text-danger *
                         = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
-                  .row
+                  -#.row
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"}
@@ -39,19 +40,19 @@
                           %span.text-danger *
                         =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
 
-                  .row
+                  -#.row
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "Recurrence"} Recurrence
-                        = f.select_recurring :recurring , nil,allow_blank: true, class: 'form-control' , placeholder: 'Recurrence'
+                        = f.select_recurring :recurring , nil,allow_blank: true  , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
 
-                  %hr
-                  .row
+                  -#%hr
+                  -#.row
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "about"} Job Description
                         =f.text_area :description , class: 'form-control autogrow' , rows: "5" ,placeholder: 'Job Description' , style: "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"
-                  %hr
+                  -#%hr
                     .row
                       .col-md-8
                         .form-group
@@ -78,8 +79,8 @@
                           %label.control-label{:for => "zip"} Zip
                           =f.text_field :zip , class: 'form-control' , placeholder: 'Zip Code'
 
-                  %hr
-                  .row
+                  -#%hr
+                  -#.row
                     .col-md-12
                       .form-group
                         %label.control-label{:for => "full_name"}
@@ -88,7 +89,13 @@
                         = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control"
                   .row
                     .col-md-12
-                      .form-group
+                      -#.form-group
+                        %label.col-sm-3.control-label Start
+                        .col-sm-8
+                          .date-and-time
+                            = f.text_field :start_date, class: "form-control datepicker" , data: { "format": "D, dd MM yyyy"}
+                            = f.text_field :start_time, class: "form-control timepicker" , data: {"template="dropdown" , "show-seconds": "true" , "default-time": "11:25 AM" , "show-meridian": "true" , "minute-step":"5" , "second-step": "5"}
+                      -#.form-group
                         %label.control-label{:for => "full_name"} Schedule Date
                         -#= f.text_field :date_range, class: "form-control input-sm date-range-picker" , style: "position: relative; z-index: 100000;"
                         = f.input :start, value: Date.today, class: 'form-control input-sm start_hidden'
@@ -98,7 +105,7 @@
                     = f.submit "Submit" , class: 'btn btn-success'
                     = link_to 'Delete', admin_event_path(@event) , method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
 
-              #recurrence.tab-pane
-                %strong Recurrence
-              #cost-item.tab-pane
-                %strong Cost Item
+              -##recurrence.tab-pane
+              -#  %strong Recurrence
+              -##cost-item.tab-pane
+              -#  %strong Cost Item

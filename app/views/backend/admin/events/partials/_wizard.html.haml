@@ -1,0 +1,122 @@
+-#%form#rootwizard-2.form-wizard.validate{:action => "", :method => "post"}
+- url = @event.new_record? ? admin_events_path : admin_event_path(@event)
+= simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch)  , html: { class: 'form-wizard form-groups-bordered validate' , id: "rootwizard-2" , novalidate: "novalidate"} , remote: true do |f|
+  = f.hidden_field :type , value: "Job"
+  .steps-progress
+    .progress-indicator
+  %ul
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab2-1"}
+        %span> 1
+        Job
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2-2"}
+        %span> 2
+        Customer
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2-3"}
+        %span> 3
+        Employee
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2-4"}
+        %span> 4
+        Recurrence
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2-5"}
+        %span> 5
+        Cost Item
+  .tab-content
+    #tab2-1.tab-pane.active
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "full_name"}
+              Job Title
+              %span.text-danger *
+            =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "full_name"}
+              Start
+              %span.text-danger *
+            = f.input :start, value: Date.today, class: 'form-control input-sm start_hidden' , label: false
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "full_name"}
+              End
+              %span.text-danger *
+            = f.input :end, value: Date.today, class: 'form-control input-sm end_hidden' , label: false
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "about"} Write Something About Job
+            =f.text_area :description , class: 'form-control autogrow' , rows: "5" ,placeholder: 'Job Description' , style: "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"
+
+    #tab2-2.tab-pane
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "customer"}
+              Cutomer
+              %span.text-danger *
+            = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
+      .row
+        .col-md-8
+          .form-group
+            %label.control-label{:for => "street"}
+              Street
+              %span.text-danger *
+            =f.text_field :street , class: 'form-control' , placeholder: 'Enter your street address'
+        .col-md-4
+          .form-group
+            %label.control-label{:for => "door_no"}
+              Contact
+              %span.text-danger *
+            =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number' , required: true
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "address_line_2"} Address Line 2
+            =f.text_field :address_line , class: 'form-control' , placeholder: '(Optional) Secondary Address'
+      .row
+        .col-md-9
+          .form-group
+            %label.control-label{:for => "city"} City
+            =f.text_field :city , class: 'form-control' , placeholder: 'Current City'
+        .col-md-3
+          .form-group
+            %label.control-label{:for => "zip"} Zip
+            =f.text_field :zip , class: 'form-control' , placeholder: 'Zip Code'
+    #tab2-3.tab-pane
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "full_name"}
+              Assigned To
+              %span.text-danger *
+            = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control"
+    #tab2-4.tab-pane
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "Recurrence"} Recurrence
+            = f.select_recurring :recurring , nil,allow_blank: true  , data: {"validate": "required" , "message-required": "This is custom message for required field."} , html: {class: "form-control" }
+
+    #tab2-5.tab-pane
+      -#.form-group
+        .checkbox.checkbox-replace
+          %input#chk-rules{"data-message-message" => "You must accept rules in order to complete this registration.", "data-validate" => "required", :name => "chk-rules", :type => "checkbox"}/
+          %label{:for => "chk-rules"} By registering I accept terms and conditions.
+      .form-group
+        %button.btn.btn-primary{:type => "submit"} Finish Registration
+    %ul.pager.wizard
+      %li.previous
+        %a{:href => "#"}
+          %i.entypo-left-open
+          Previous
+      %li.next
+        %a{:href => "#"}
+          Next
+          %i.entypo-right-open
