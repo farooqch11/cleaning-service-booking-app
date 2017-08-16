@@ -1,6 +1,6 @@
 -#%form#rootwizard-2.form-wizard.validate{:action => "", :method => "post"}
 - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
-= simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch)  , html: { class: 'form-wizard form-groups-bordered validate' , id: "rootwizard-2" , novalidate: "novalidate"} , remote: true do |f|
+= simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch)  , html: { class: 'form-wizard validate'} , remote: true do |f|
   = f.hidden_field :type , value: "Job"
   .steps-progress
     .progress-indicator

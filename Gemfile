@@ -31,7 +31,6 @@ gem 'figaro'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
-
 gem 'pry-rails', :group => :development
 
 #------------------------------------------
@@ -43,6 +42,10 @@ gem 'mailgun-ruby', '~>1.1.6'
 # For Searching
 #------------------------------------------
 gem 'ransack'
+
+#------------------------------------------
+# Validations
+#------------------------------------------
 gem 'validates_timeliness', '~> 4.0'
 
 # Use Redis adapter to run Action Cable in production

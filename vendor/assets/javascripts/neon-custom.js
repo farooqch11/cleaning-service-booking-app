@@ -548,7 +548,7 @@ var public_vars = public_vars || {};
 					});
 
 					var $handles = $this.find('.ui-slider-handle');
-						//$fill = $('<div class="ui-fill"></div>');
+					//$fill = $('<div class="ui-fill"></div>');
 
 					$label_1.html((prefix ? prefix : '') + value + (postfix ? postfix : ''));
 					$handles.html( $label_1 );
@@ -569,8 +569,8 @@ var public_vars = public_vars || {};
 		{
 
 			$('.make-switch.is-radio').on('switch-change', function () {
-		        $('.make-switch.is-radio').bootstrapSwitch('toggleRadioState');
-		    });
+				$('.make-switch.is-radio').bootstrapSwitch('toggleRadioState');
+			});
 		}
 
 
@@ -1122,40 +1122,40 @@ var public_vars = public_vars || {};
 
 				// Validation
 				var checkFormWizardValidaion = function(tab, navigation, index)
+				{
+					if($this.hasClass('validate'))
 					{
-			  			if($this.hasClass('validate'))
-			  			{
-							var $valid = $this.valid();
+						var $valid = $this.valid();
 
-							if( ! $valid)
-							{
-								$this.data('validator').focusInvalid();
-								return false;
-							}
+						if( ! $valid)
+						{
+							$this.data('validator').focusInvalid();
+							return false;
 						}
+					}
 
-				  		return true;
-					};
+					return true;
+				};
 
 
 				$this.bootstrapWizard({
 					tabClass: "",
-			  		onTabShow: function($tab, $navigation, index)
-			  		{
+					onTabShow: function($tab, $navigation, index)
+					{
 
 						setCurrentProgressTab($this, $navigation, $tab, $progress, index);
-			  		},
+					},
 
-			  		onNext: checkFormWizardValidaion,
-			  		onTabClick: checkFormWizardValidaion
-			  	});
+					onNext: checkFormWizardValidaion,
+					onTabClick: checkFormWizardValidaion
+				});
 
-			  	$this.data('bootstrapWizard').show( _index );
+				$this.data('bootstrapWizard').show( _index );
 
-			  	/*$(window).on('neon.resize', function()
-			  	{
-			  		$this.data('bootstrapWizard').show( _index );
-			  	});*/
+				/*$(window).on('neon.resize', function()
+				 {
+				 $this.data('bootstrapWizard').show( _index );
+				 });*/
 			});
 		}
 
@@ -1220,11 +1220,11 @@ var public_vars = public_vars || {};
 
 					var o = {pct: 0};
 					TweenLite.to(o, 1, {pct: percentage, ease: Quint.easeInOut, onUpdate: function()
-						{
-							var pct_str = o.pct.toString().substring(0, pct_len);
+					{
+						var pct_str = o.pct.toString().substring(0, pct_len);
 
-							$pct_counter.html(pct_str);
-						}
+						$pct_counter.html(pct_str);
+					}
 					});
 				});
 			}
@@ -1262,9 +1262,9 @@ var public_vars = public_vars || {};
 						var o = {curr: start};
 
 						TweenLite.to(o, duration/1000, {curr: end, ease: Power1.easeInOut, delay: delay/1000, onUpdate: function()
-							{
-								$num.html(prefix + (format ? numberWithCommas( Math.round(o.curr) ) : Math.round(o.curr)) + postfix);
-							}
+						{
+							$num.html(prefix + (format ? numberWithCommas( Math.round(o.curr) ) : Math.round(o.curr)) + postfix);
+						}
 						});
 
 						tile_stats.destroy()
@@ -1551,15 +1551,15 @@ function menu_do_expand($submenu, $this, options)
 	current_height = $submenu.outerHeight();
 
 	var props_from = {
-		opacity: .2,
-		height: 0,
-		top: -20
-	},
-	props_to = {
-		height: current_height,
-		opacity: 1,
-		top: 0
-	};
+			opacity: .2,
+			height: 0,
+			top: -20
+		},
+		props_to = {
+			height: current_height,
+			opacity: 1,
+			top: 0
+		};
 
 	if(isxs())
 	{
@@ -1622,7 +1622,7 @@ function setup_horizontal_menu()
 		$search_input		  = $search.find('.search-input'),
 		$search_submit		  = $search.find('form'),
 		root_level_class 	  = 'root-level'
-		is_multiopen 		  = $nav_bar_menu.hasClass('multiple-expanded'),
+	is_multiopen 		  = $nav_bar_menu.hasClass('multiple-expanded'),
 		submenu_options		  = {
 			submenu_open_delay: 0.5,
 			submenu_open_easing: Sine.easeInOut,
@@ -1828,10 +1828,10 @@ function setCurrentProgressTab($rootwizard, $nav, $tab, $progress, index)
 
 	/*var m = $first_tab.find('span').position().left - $first_tab.find('span').width() / 2;
 
-	$rootwizard.find('.tab-content').css({
-		marginLeft: m,
-		marginRight: m
-	});*/
+	 $rootwizard.find('.tab-content').css({
+	 marginLeft: m,
+	 marginRight: m
+	 });*/
 }
 
 
@@ -2049,25 +2049,25 @@ function show_loading_bar(options)
 	defaults.before(current_pct);
 
 	TweenMax.to($pct, defaults.delay, {css: {width: defaults.pct + '%'}, delay: defaults.wait, ease: is_regress ? Expo.easeOut : Expo.easeIn,
-	onStart: function()
-	{
-		$loading_bar.removeClass('progress-is-hidden');
-	},
-	onComplete: function()
-	{
-		var pct = $pct.data('pct');
-
-		if(pct == 100 && defaults.resetOnEnd)
+		onStart: function()
 		{
-			hide_loading_bar();
-		}
+			$loading_bar.removeClass('progress-is-hidden');
+		},
+		onComplete: function()
+		{
+			var pct = $pct.data('pct');
 
-		defaults.finish(pct);
-	},
-	onUpdate: function()
-	{
-		$pct.data('pct', parseInt($pct.get(0).style.width, 10));
-	}});
+			if(pct == 100 && defaults.resetOnEnd)
+			{
+				hide_loading_bar();
+			}
+
+			defaults.finish(pct);
+		},
+		onUpdate: function()
+		{
+			$pct.data('pct', parseInt($pct.get(0).style.width, 10));
+		}});
 }
 
 function hide_loading_bar()
@@ -2081,9 +2081,9 @@ function hide_loading_bar()
 }
 
 function numberWithCommas(x) {
-    x = x.toString();
-    var pattern = /(-?\d+)(\d{3})/;
-    while (pattern.test(x))
-        x = x.replace(pattern, "$1,$2");
-    return x;
+	x = x.toString();
+	var pattern = /(-?\d+)(\d{3})/;
+	while (pattern.test(x))
+		x = x.replace(pattern, "$1,$2");
+	return x;
 }
