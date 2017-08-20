@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
 
+  acts_as_tree order: "created_at"
   serialize :recurring, Hash
 
   belongs_to :employee
@@ -12,6 +13,8 @@ class Event < ApplicationRecord
   validates :end, presence: true
   validates_datetime :start , :end
   attr_accessor :date_range
+
+  after_create :add_schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
 
   def all_day_event?
     self.start == self.start.midnight && self.end == self.end.midnight ? true : false
@@ -28,6 +31,9 @@ class Event < ApplicationRecord
   def rule
     IceCube::Rule.from_hash recurring
   end
+  def recurring?
+    recurring.present?
+  end
   #
   def schedule(start)
     schedule = IceCube::Schedule.new(start)
@@ -35,6 +41,11 @@ class Event < ApplicationRecord
     schedule
   end
 
+  def add_schedule_events
+    schedule(start).occurrences(self.end).map do |date|
+      self.children.create({start: date , end: date , recurring: recurring , title: title , customer_id: self.customer_id , employee_id:self.employee_id ,contact: self.contact,description: self.description})
+    end
+  end
   #
   def calendar_events(start_date)
     if recurring.empty?
