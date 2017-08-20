@@ -4,11 +4,13 @@
     <% end %>
 <% end %>
 <% if flash[:success].present? %>
-    $('#calendar').fullCalendar(
-            'renderEvent',
-            $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
-            true
-    );
+    <% @calendar_events.each do |event| %>
+        $('#calendar').fullCalendar(
+                'renderEvent',
+                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>"),
+                true
+        );
+    <% end %>
     flash_success("<%= flash[:success] %>");
     $(".modal").modal("toggle");
 <% end %>

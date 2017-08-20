@@ -2,8 +2,8 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.where(start: params[:start]..params[:end])
-    @calendar_events = @events.flat_map{ |e| e.calendar_events(params.fetch(:start, Time.zone.now).to_date) }
+    # @events = Event.where(start: params[:start]..params[:end])
+    @calendar_events = Event.where(start: params[:start]..params[:end])
 
   end
 
@@ -20,8 +20,15 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def create
     @event = Event.new(event_params)
+    @calendar_events = nil
     if @event.save
+      if @event.recurring?
+        @calendar_events = @event.children
+      else
+        @calendar_events = [@event]
+      end
       flash.now[:success] = "Successfully Created."
+      # @calendar_events = @event.calendar_events(params.fetch(:start, Time.zone.now).to_date)
     else
       flash.now[:errors] = @event.errors.full_messages
     end
@@ -30,6 +37,8 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   def update
     if @event.update(event_params)
       flash.now[:success] = "Successfully Updated."
+      @calendar_events = @event.calendar_events(params.fetch(:start, Time.zone.now).to_date)
+
     else
       flash.now[:errors] = @event.errors.full_messages
     end

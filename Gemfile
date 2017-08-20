@@ -42,6 +42,7 @@ gem 'mailgun-ruby', '~>1.1.6'
 # For Searching
 #------------------------------------------
 gem 'ransack'
+gem 'acts_as_tree'
 
 #------------------------------------------
 # Validations

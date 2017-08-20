@@ -40,14 +40,14 @@
             %label.control-label{:for => "full_name"}
               Start
               %span.text-danger *
-            = f.input :start, value: Date.today, class: 'form-control input-sm start_hidden' , label: false
+            = f.input :start, class: 'form-control input-sm start_hidden' , label: false
       .row
         .col-md-12
           .form-group
             %label.control-label{:for => "full_name"}
               End
               %span.text-danger *
-            = f.input :end, value: Date.today, class: 'form-control input-sm end_hidden' , label: false
+            = f.input :end, class: 'form-control input-sm end_hidden' , label: false
       .row
         .col-md-12
           .form-group
