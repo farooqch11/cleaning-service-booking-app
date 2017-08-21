@@ -59,7 +59,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   end
 
   def event_params
-    params.require(:event).permit(:title, :street , :city , :address_line , :contact , :zip , :date_range, :type , :description , :start, :end, :color , :customer_id , :employee_id ,:recurring)
+    params.require(:event).permit(:title, :street , :city , :total_cost , :cost_type ,  :address_line , :contact , :zip , :date_range, :type , :description , :start, :end, :color , :customer_id , :employee_id ,:recurring)
   end
 end
  

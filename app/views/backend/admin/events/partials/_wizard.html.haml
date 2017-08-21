@@ -105,6 +105,18 @@
             = f.select_recurring :recurring , nil,allow_blank: true  , data: {"validate": "required" , "message-required": "This is custom message for required field."} , html: {class: "form-control" }
 
     #tab2-5.tab-pane
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "Recurrence"} Cost Type
+            = f.select :cost_type, options_for_select(Event.cost_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "Recurrence"} Cost
+            =f.number_field :total_cost , class: 'form-control' , placeholder: "#{amount_in_currency 0.0}"
+
       -#.form-group
         .checkbox.checkbox-replace
           %input#chk-rules{"data-message-message" => "You must accept rules in order to complete this registration.", "data-validate" => "required", :name => "chk-rules", :type => "checkbox"}/

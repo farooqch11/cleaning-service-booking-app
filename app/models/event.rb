@@ -1,10 +1,14 @@
 class Event < ApplicationRecord
 
+  enum cost_type: [:whole , :hourly]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
 
   belongs_to :employee
   belongs_to :customer
+
+  validates_inclusion_of :cost_type, in: cost_types.keys
+  validates_numericality_of :event_cost , :total_cost , greater_than_or_equal_to: 0.0
 
   validates :title, presence: true
   validates :customer, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170819234103) do
+ActiveRecord::Schema.define(version: 20170821211947) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170819234103) do
     t.string   "color"
     t.integer  "employee_id"
     t.integer  "customer_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "eventable_id"
     t.string   "eventable_type"
     t.integer  "created_by"
@@ -52,6 +52,9 @@ ActiveRecord::Schema.define(version: 20170819234103) do
     t.time     "end_time"
     t.datetime "run_at"
     t.integer  "parent_id"
+    t.integer  "cost_type",      default: 0
+    t.decimal  "total_cost",     default: "0.0"
+    t.decimal  "event_cost",     default: "0.0"
     t.index ["customer_id"], name: "index_events_on_customer_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
   end
