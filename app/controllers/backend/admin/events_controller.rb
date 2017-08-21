@@ -37,7 +37,11 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   def update
     if @event.update(event_params)
       flash.now[:success] = "Successfully Updated."
-      @calendar_events = @event.calendar_events(params.fetch(:start, Time.zone.now).to_date)
+      if @event.recurring?
+        @calendar_events = @event.children
+      else
+        @calendar_events = [@event]
+      end
 
     else
       flash.now[:errors] = @event.errors.full_messages

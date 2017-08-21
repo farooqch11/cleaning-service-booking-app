@@ -5,11 +5,13 @@
 <% end %>
 <% if flash[:success].present? %>
     $('#calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
-    $('#calendar').fullCalendar(
-            'renderEvent',
-            $.parseJSON("<%=j render('backend/admin/events/event' , event: @event).html_safe %>"),
-            true
-    );
+    <% @calendar_events.each do |event| %>
+        $('#calendar').fullCalendar(
+                'renderEvent',
+                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>"),
+                true
+        );
+    <% end %>
     $('#edit_event').modal('toggle');
     flash_success("<%= flash[:success] %>");
 <% end %>

@@ -14,7 +14,8 @@ class Event < ApplicationRecord
   validates_datetime :start , :end
   attr_accessor :date_range
 
-  after_create :add_schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
+  after_create :schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
+  after_update :set_future_events , if: Proc.new { |event| event.recurring? && event.recurring_changed?}
 
   def all_day_event?
     self.start == self.start.midnight && self.end == self.end.midnight ? true : false
@@ -41,10 +42,21 @@ class Event < ApplicationRecord
     schedule
   end
 
-  def add_schedule_events
-    schedule(start).occurrences(self.end).map do |date|
+  def schedule_events start_date = nil , end_date = nil
+    s_date = start_date.nil? ? start : start_date
+    e_date = end_date.nil? ? self.end : end_date
+    schedule(s_date).occurrences(e_date).map do |date|
       self.children.create({start: date , end: date , recurring: recurring , title: title , customer_id: self.customer_id , employee_id:self.employee_id ,contact: self.contact,description: self.description})
     end
+  end
+
+  def delete_future_schedule_events_from start_date = nil
+    s_date = start_date.nil? ? start : start_date
+    children_events = children.where("start > ? " , start_date) || []
+    children_events.each do |event|
+      event.destroy
+    end
+
   end
   #
   def calendar_events(start_date)
@@ -59,5 +71,15 @@ class Event < ApplicationRecord
       end
     end
   end
+  private
+
+    def set_future_events
+
+      parent = root? ? self : root
+      parent.update_columns({title: self.title , recurring: self.recurring})
+      parent.reload
+      parent.delete_future_schedule_events_from  Time.now
+      parent.schedule_events  Time.now
+    end
 
 end
