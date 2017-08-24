@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   validates_datetime :start , :end
   attr_accessor :date_range , :is_parent_update
 
-  before_validation :set_event_cost , if: Proc.new { |event| event.fixed? && event.recurring?}
+  before_validation :set_event_cost
   after_create :schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
   after_update :set_future_events , if: Proc.new { |event| event.recurring? && event.recurring_changed?}
 
@@ -88,7 +88,9 @@ class Event < ApplicationRecord
     end
 
     def set_event_cost
+      if hourly?
 
+      end
     end
 
 end

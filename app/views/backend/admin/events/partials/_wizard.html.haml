@@ -53,6 +53,15 @@
           .form-group
             %label.control-label{:for => "about"} Write Something About Job
             =f.text_area :description , class: 'form-control autogrow' , rows: "5" ,placeholder: 'Job Description' , style: "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 99px;"
+      - if not @event.new_record?
+        .row
+          .col-md-12
+            .form-group
+              .checkbox.checkbox-replace.neon-cb-replacement
+              = f.check_box :is_parent_update
+              -#%input#chk-rules{"data-message-message" => "You must accept rules in order to complete this registration.", "data-validate" => "required", :name => "chk-rules", :type => "checkbox"}/
+              -#.checked
+              %label{:for => "chk-rules"} Apply change all future events.
 
     #tab2-2.tab-pane
       .row

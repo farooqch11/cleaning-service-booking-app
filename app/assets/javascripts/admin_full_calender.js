@@ -19,6 +19,7 @@ function update_event(event , revertFunc){
     if (!confirm("Do you really want to update?")) {
         revertFunc();
     }else {
+
         var event_data = {
             event: {
                 id: event.id,
