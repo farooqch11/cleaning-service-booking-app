@@ -1,13 +1,13 @@
 class Event < ApplicationRecord
 
-  enum cost_type: [:whole , :hourly]
+  enum cost_type: [:fixed , :hourly]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
 
   belongs_to :employee
   belongs_to :customer
 
-  validates_inclusion_of :cost_type, in: cost_types.keys
+  validates_inclusion_of    :cost_type  , in: cost_types.keys
   validates_numericality_of :event_cost , :total_cost , greater_than_or_equal_to: 0.0
 
   validates :title, presence: true
@@ -16,8 +16,9 @@ class Event < ApplicationRecord
   validates :start, presence: true
   validates :end, presence: true
   validates_datetime :start , :end
-  attr_accessor :date_range
+  attr_accessor :date_range , :is_parent_update
 
+  before_validation :set_event_cost , if: Proc.new { |event| event.fixed? && event.recurring?}
   after_create :schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
   after_update :set_future_events , if: Proc.new { |event| event.recurring? && event.recurring_changed?}
 
@@ -84,6 +85,10 @@ class Event < ApplicationRecord
       parent.reload
       parent.delete_future_schedule_events_from  Time.now
       parent.schedule_events  Time.now
+    end
+
+    def set_event_cost
+
     end
 
 end

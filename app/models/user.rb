@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   acts_as_paranoid
 
-  enum role: [:user, :admin]
+  enum role: [:owner, :manager , :cleaner]
   enum gender: [:male, :female]
   enum status: [:pending, :accepted , :canceled]
   # Include default devise modules. Others available are:
@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   validates :first_name , :last_name , presence: true , length: { maximum: 25 }
   validates_inclusion_of :status, in: statuses.keys
+  validates_inclusion_of :role, in: roles.keys
   # validates_inclusion_of :role, in: roles.keys
   # validates_inclusion_of :gender, in: genders.keys
 

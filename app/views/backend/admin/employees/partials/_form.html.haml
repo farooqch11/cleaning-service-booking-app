@@ -33,7 +33,11 @@
                     %label.control-label{:for => "full_name"} Hourly Rate£
                     =f.number_field :hourly_rate , class: 'form-control' , step: :any , placeholder: 'Enter Hourly Rate' , data: {"validate": "required"}
               .row
-                .col-md-12
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Role
+                    = f.select :role, options_for_select(User.roles.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+                .col-md-6
                   .form-group
                     %label.control-label{:for => "color"} Color
                     =f.color_field :color , class: 'form-control'
