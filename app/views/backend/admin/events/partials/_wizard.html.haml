@@ -126,11 +126,15 @@
           .form-group
             %label.control-label{:for => "End Recurrence"} End Recurrence
             = f.select :recurring_type, options_for_select(Event.recurring_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
-        .col-md-12
+        .col-md-8.recurring_end_time.hidden
           .form-group
             %label.control-label{:for => "End Recurrence"}
-            = f.text_field :recurring_end_time , class: 'form-controll' , required: true , placeholder: "time(s)"
-            .input_recurrence_wrap
+            = f.text_field :recurring_end_time , class: 'form-control' , required: true , placeholder: "time(s)"
+            time(s)
+        .col-md-12.recurring_end_at.hidden
+          .form-group
+            %label.control-label{:for => "End Recurrence"}
+            = f.input :recurring_end_at, class: 'form-control input-sm' , label: false
     #tab2-5.tab-pane
       .row
         .col-md-12
@@ -165,5 +169,19 @@
     $('.end_recurrence').addClass('hidden');
     }else{
       $('.end_recurrence').removeClass('hidden');
+    }
+  });
+  $('#event_recurring_type').on('change',function(){
+    if($('#event_recurring_type').val() == "never"){
+      $('#event_recurring_end_time').val(0);
+      $('.recurring_end_time').addClass('hidden');
+      $('.recurring_end_at').addClass('hidden');
+    }else if($('#event_recurring_type').val() == "after"){
+      $('.recurring_end_time').removeClass('hidden');
+      $('.recurring_end_at').addClass('hidden');
+    }else if($('#event_recurring_type').val() == "on_date"){
+      $('#event_recurring_end_time').val(0);
+      $('.recurring_end_time').addClass('hidden');
+      $('.recurring_end_at').removeClass('hidden');
     }
   });

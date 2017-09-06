@@ -114,7 +114,7 @@ class Event < ApplicationRecord
     end
 
     def set_recurring_end_date
-      self.recurring_end_at = true ? schedule(start).first(recurring_end_time.to_i).last : start + 2.years
+      self.recurring_end_at = after? ? schedule(start).first(recurring_end_time.to_i).last : start + 2.years
     end
 
     def set_future_events
