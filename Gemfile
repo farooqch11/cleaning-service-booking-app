@@ -49,6 +49,8 @@ gem 'acts_as_tree'
 #------------------------------------------
 gem 'validates_timeliness', '~> 4.0'
 
+gem 'time_difference'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

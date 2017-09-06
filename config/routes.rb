@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       end
       resource  :calender
       resources :events
+      resources :jobs do
+        match :search, to: 'jobs#index', via: [:post , :get ], on: :collection
+      end
     end
 
     namespace :employee do

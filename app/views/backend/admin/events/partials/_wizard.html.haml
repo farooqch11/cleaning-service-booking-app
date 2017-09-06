@@ -35,19 +35,14 @@
               %span.text-danger *
             =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
       .row
-        .col-md-12
+        .col-md-6
           .form-group
-            %label.control-label{:for => "full_name"}
-              Start
-              %span.text-danger *
-            = f.input :start, class: 'form-control input-sm start_hidden' , label: false
-      .row
-        .col-md-12
+            %label.control-label{:for => "Status"} Status
+            = f.select :status, options_for_select(Event.statuses.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+        .col-md-6
           .form-group
-            %label.control-label{:for => "full_name"}
-              End
-              %span.text-danger *
-            = f.input :end, class: 'form-control input-sm end_hidden' , label: false
+            %label.control-label{:for => "Priority"} Priority
+            = f.select :priority, options_for_select(Event.priorities.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
       .row
         .col-md-12
           .form-group
@@ -61,7 +56,7 @@
               = f.check_box :is_parent_update
               -#%input#chk-rules{"data-message-message" => "You must accept rules in order to complete this registration.", "data-validate" => "required", :name => "chk-rules", :type => "checkbox"}/
               -#.checked
-              %label{:for => "chk-rules"} Apply change all future events.
+              %label{:for => "chk-rules"} Apply change to all future events.
 
     #tab2-2.tab-pane
       .row
@@ -110,9 +105,32 @@
       .row
         .col-md-12
           .form-group
+            %label.control-label{:for => "full_name"}
+              Start
+              %span.text-danger *
+            = f.input :start, class: 'form-control input-sm start_hidden' , label: false
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "full_name"}
+              End
+              %span.text-danger *
+            = f.input :end, class: 'form-control input-sm end_hidden' , label: false
+      .row
+        .col-md-12
+          .form-group
             %label.control-label{:for => "Recurrence"} Recurrence
             = f.select_recurring :recurring , nil,allow_blank: true  , data: {"validate": "required" , "message-required": "This is custom message for required field."} , html: {class: "form-control" }
-
+      .row.end_recurrence.hidden
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "End Recurrence"} End Recurrence
+            = f.select :recurring_type, options_for_select(Event.recurring_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "End Recurrence"}
+            = f.text_field :recurring_end_time , class: 'form-controll' , required: true , placeholder: "time(s)"
+            .input_recurrence_wrap
     #tab2-5.tab-pane
       .row
         .col-md-12
@@ -141,3 +159,11 @@
         %a{:href => "#"}
           Next
           %i.entypo-right-open
+:javascript
+  $('#event_recurring').on('change',function(){
+    if($('#event_recurring').val() == "null"){
+    $('.end_recurrence').addClass('hidden');
+    }else{
+      $('.end_recurrence').removeClass('hidden');
+    }
+  });
