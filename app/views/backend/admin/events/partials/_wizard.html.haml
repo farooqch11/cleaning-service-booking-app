@@ -129,8 +129,8 @@
         .col-md-8.recurring_end_time.hidden
           .form-group
             %label.control-label{:for => "End Recurrence"}
-            = f.text_field :recurring_end_time , class: 'form-control' , required: true , placeholder: "time(s)"
-            time(s)
+              = f.number_field :recurring_end_time , class: 'form-control' , required: true , placeholder: "time(s)"
+              time(s)
         .col-md-12.recurring_end_at.hidden
           .form-group
             %label.control-label{:for => "End Recurrence"}

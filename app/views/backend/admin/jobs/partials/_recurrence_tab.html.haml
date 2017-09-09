@@ -1,0 +1,661 @@
+.full99line.mb12.mt20
+  #tab_job_recurring.main-min.new-job-fields.ml28.fleft.tab-pane{:style => "display:none;"}
+    .main-min.ml28.fleft
+      %h2.full-width.actual-h2.mb12
+        %b Test Job
+      .full-width.mb12
+        %span.font80.mr10.font-bold Recurrence
+      #current-setup.full-width.mt25
+        %input#start-repeat-date{:type => "hidden", :value => "Tue, 05 Sep 2017 - 20:15"}
+          %input#end-repeat-date{:type => "hidden", :value => "Wed, 06 Sep 2017 - 04:30"}
+            %input#recurring-repeat{:type => "hidden", :value => "custom"}
+              %input#recurring-repeat-end{:type => "hidden", :value => "never"}
+                %input#recurring-from{:type => "hidden", :value => ""}
+                  %input#custom_frequency{:type => "hidden", :value => "daily"}
+                    %input#custom_every{:type => "hidden", :value => "1"}
+                      %input#custom_date{:type => "hidden", :value => "1-"}
+                        %input#custom_on{:type => "hidden", :value => "1-0"}
+                          %input.day_monthly{:type => "hidden", :value => "1-"}
+                            %input.end-repeat-time{:type => "hidden", :value => ""}
+                              %input#cb-exclude-weekends{:style => "display: none", :type => "checkbox"}
+                                .full-width.recurring-box.font-semi-bold.font16
+                                  %img{:src => "../../assests/images/recurring-grey.png", :style => "width: 17px; vertical-align: top"}
+                                    %div{:style => "display: inline-block;"}
+                                      %div
+                                        %span.recurring-time-and-day Once per day, at 20.15 - 04.30
+                                      .mt10
+                                        %span.starting-ending Starting Tuesday 5 September 2017 - ending in two years after start.
+                                      .mt10.dis-no
+                                        %strong Invoice frequency:
+                                        %span.invoice-frequency
+                                %span#recurring-list-content
+                                  .nvc-table.customer-nvc-sub.full-width
+                                    %input#id_to_search{:type => "hidden", :value => "321300"}
+                                      .job-search-tools.fleft.full-width.mt10
+                                        .search-container
+                                          %form#recurring_search_form.m-b-none{:action => "/jobs/changerecurringlist/w", :method => "get"}
+                                            %input#user-search-recurring.full-width.gr-br-field.looped-field.smally{:name => "q", :placeholder => "Keyword", :type => "text", :value => ""}
+                                        .full-width.font80.thead.img-nvc-removable.mt30
+                                          #recurrences-sort.w15.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=schedule_time.desc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold.top-bott-arr
+                                              Date
+                                          .w17.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=job_status_id.asc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold.top-bott-arr
+                                              Status
+                                          .w15.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=identifier.asc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold.top-bott-arr
+                                              Job number
+                                          .w12.ml15.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=invoice_id.asc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold.top-bott-arr
+                                              Invoice status
+                                          .w15.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=field_workers.asc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold.top-bott-arr
+                                              Assigned to
+                                          .w5.fleft.change-job-recurrence-async{:href => "/jobs/changerecurringlist/321300?page=1&sort=job_status_id.asc", :style => "cursor:pointer"}
+                                            %span.font80.font-bold
+                                          .w5.fleft.change-job-recurrence-async{:style => "cursor:pointer"}
+                                            %span.font80.font-bold
+                                        / Prent Job section
+                                        .full-width.recurrence-parent-job-row{:recurring_id => "321296"}
+                                          .w15.fleft
+                                            .appearable-title.font80.rmvbl Date
+                                            %span.halfbl
+                                              05/09/2017
+                                          .w17.fleft
+                                            .appearable-title.font80.rmvbl Status
+                                            %span.halfbl.work_street
+                                              %i.status-bubble.mr5.fleft.mb-2{:style => "background-color: #F9A326"}
+                                              %text Scheduled
+                                          .w15.fleft
+                                            .appearable-title.font80.rmvbl Job number
+                                            %span.halfbl.work_street
+                                              JCS10
+                                          .w12.ml15.fleft
+                                            .appearable-title.font80.rmvbl Invoice status
+                                            %span.halfbl.work_street
+                                              .full-width
+                                          .w21-important.fleft
+                                            .appearable-title.font80.rmvbl Assigned to
+                                            %span.halfbl
+                                              Bart Senkbeil
+                                          .w5.fleft
+                                            .appearable-title.font80.rmvbl
+                                            %a{:href => "/jobs/view/w?id=321296&parent_id=0&for_job=0"}
+                                              %button.orange-butt.tiny.fright View
+                                          .w1.fleft
+                                            .appearable-title.font80.rmvbl
+                                        / End Parent Job section
+                                        / Child Jobs Section
+                                        .font88.font-bold.recurrence-job-title.recurrences
+                                          Recurrences
+                                        .full-width.tbody{:recurring_id => "321297"}
+                                          .w15.fleft
+                                            .appearable-title.font80.rmvbl Date
+                                            %span.halfbl
+                                              06/09/2017
+                                          .w17.fleft
+                                            .appearable-title.font80.rmvbl Status
+                                            %span.halfbl.work_street
+                                              %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321297", :style => "background-color: #F9A326"}
+                                              %text.text_recurring{:recurring_id => "321297"} Scheduled
+                                          .w15.fleft
+                                            .appearable-title.font80.rmvbl Job number
+                                            %span.halfbl.work_street
+                                              JCS11
+                                          .w12.ml15.fleft
+                                            .appearable-title.font80.rmvbl Invoice status
+                                            %span.halfbl.work_street
+                                              .full-width
+                                          .w21-important.fleft
+                                            .appearable-title.font80.rmvbl Assigned to
+                                            %span.halfbl
+                                              Bart Senkbeil
+                                          .w5.fleft.button_recurring{:recurring_id => "321297"}
+                                            .appearable-title.font80.rmvbl
+                                            %a{:href => "/jobs/view/w?id=321297&parent_id=321296&for_job=0"}
+                                              %button.orange-butt.tiny.fright View
+                                          .w1.fleft
+                                            .appearable-title.font80.rmvbl
+                                            %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321297"}
+                                              %img{:src => "/assests/images/Rejected.png"}/
+                                          .full-width.tbody{:recurring_id => "321298"}
+                                            .w15.fleft
+                                              .appearable-title.font80.rmvbl Date
+                                              %span.halfbl
+                                                07/09/2017
+                                            .w17.fleft
+                                              .appearable-title.font80.rmvbl Status
+                                              %span.halfbl.work_street
+                                                %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321298", :style => "background-color: #F9A326"}
+                                                %text.text_recurring{:recurring_id => "321298"} Scheduled
+                                            .w15.fleft
+                                              .appearable-title.font80.rmvbl Job number
+                                              %span.halfbl.work_street
+                                                JCS12
+                                            .w12.ml15.fleft
+                                              .appearable-title.font80.rmvbl Invoice status
+                                              %span.halfbl.work_street
+                                                .full-width
+                                            .w21-important.fleft
+                                              .appearable-title.font80.rmvbl Assigned to
+                                              %span.halfbl
+                                                Bart Senkbeil
+                                            .w5.fleft.button_recurring{:recurring_id => "321298"}
+                                              .appearable-title.font80.rmvbl
+                                              %a{:href => "/jobs/view/w?id=321298&parent_id=321296&for_job=0"}
+                                                %button.orange-butt.tiny.fright View
+                                            .w1.fleft
+                                              .appearable-title.font80.rmvbl
+                                              %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321298"}
+                                                %img{:src => "/assests/images/Rejected.png"}/
+                                            .full-width.tbody{:recurring_id => "321299"}
+                                              .w15.fleft
+                                                .appearable-title.font80.rmvbl Date
+                                                %span.halfbl
+                                                  08/09/2017
+                                              .w17.fleft
+                                                .appearable-title.font80.rmvbl Status
+                                                %span.halfbl.work_street
+                                                  %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321299", :style => "background-color: #F9A326"}
+                                                  %text.text_recurring{:recurring_id => "321299"} Scheduled
+                                              .w15.fleft
+                                                .appearable-title.font80.rmvbl Job number
+                                                %span.halfbl.work_street
+                                                  JCS13
+                                              .w12.ml15.fleft
+                                                .appearable-title.font80.rmvbl Invoice status
+                                                %span.halfbl.work_street
+                                                  .full-width
+                                              .w21-important.fleft
+                                                .appearable-title.font80.rmvbl Assigned to
+                                                %span.halfbl
+                                                  Bart Senkbeil
+                                              .w5.fleft.button_recurring{:recurring_id => "321299"}
+                                                .appearable-title.font80.rmvbl
+                                                %a{:href => "/jobs/view/w?id=321299&parent_id=321296&for_job=0"}
+                                                  %button.orange-butt.tiny.fright View
+                                              .w1.fleft
+                                                .appearable-title.font80.rmvbl
+                                                %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321299"}
+                                                  %img{:src => "/assests/images/Rejected.png"}/
+                                              .full-width.tbody{:recurring_id => "321300"}
+                                                .w15.fleft
+                                                  .appearable-title.font80.rmvbl Date
+                                                  %span.halfbl
+                                                    09/09/2017
+                                                .w17.fleft
+                                                  .appearable-title.font80.rmvbl Status
+                                                  %span.halfbl.work_street
+                                                    %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321300", :style => "background-color: #F9A326"}
+                                                    %text.text_recurring{:recurring_id => "321300"} Scheduled
+                                                .w15.fleft
+                                                  .appearable-title.font80.rmvbl Job number
+                                                  %span.halfbl.work_street
+                                                    JCS14
+                                                .w12.ml15.fleft
+                                                  .appearable-title.font80.rmvbl Invoice status
+                                                  %span.halfbl.work_street
+                                                    .full-width
+                                                .w21-important.fleft
+                                                  .appearable-title.font80.rmvbl Assigned to
+                                                  %span.halfbl
+                                                    Bart Senkbeil
+                                                .w5.fleft.button_recurring{:recurring_id => "321300"}
+                                                  .appearable-title.font80.rmvbl
+                                                  %a{:href => "/jobs/view/w?id=321300&parent_id=321296&for_job=0"}
+                                                    %button.orange-butt.tiny.fright View
+                                                .w1.fleft
+                                                  .appearable-title.font80.rmvbl
+                                                  %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321300"}
+                                                    %img{:src => "/assests/images/Rejected.png"}/
+                                                .full-width.tbody{:recurring_id => "321301"}
+                                                  .w15.fleft
+                                                    .appearable-title.font80.rmvbl Date
+                                                    %span.halfbl
+                                                      10/09/2017
+                                                  .w17.fleft
+                                                    .appearable-title.font80.rmvbl Status
+                                                    %span.halfbl.work_street
+                                                      %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321301", :style => "background-color: #F9A326"}
+                                                      %text.text_recurring{:recurring_id => "321301"} Scheduled
+                                                  .w15.fleft
+                                                    .appearable-title.font80.rmvbl Job number
+                                                    %span.halfbl.work_street
+                                                  .w12.ml15.fleft
+                                                    .appearable-title.font80.rmvbl Invoice status
+                                                    %span.halfbl.work_street
+                                                      .full-width
+                                                  .w21-important.fleft
+                                                    .appearable-title.font80.rmvbl Assigned to
+                                                    %span.halfbl
+                                                      Bart Senkbeil
+                                                  .w5.fleft.button_recurring{:recurring_id => "321301"}
+                                                    .appearable-title.font80.rmvbl
+                                                    %a{:href => "/jobs/view/w?id=321301&parent_id=321296&for_job=0"}
+                                                      %button.orange-butt.tiny.fright View
+                                                  .w1.fleft
+                                                    .appearable-title.font80.rmvbl
+                                                    %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321301"}
+                                                      %img{:src => "/assests/images/Rejected.png"}/
+                                                  .full-width.tbody{:recurring_id => "321302"}
+                                                    .w15.fleft
+                                                      .appearable-title.font80.rmvbl Date
+                                                      %span.halfbl
+                                                        11/09/2017
+                                                    .w17.fleft
+                                                      .appearable-title.font80.rmvbl Status
+                                                      %span.halfbl.work_street
+                                                        %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321302", :style => "background-color: #F9A326"}
+                                                        %text.text_recurring{:recurring_id => "321302"} Scheduled
+                                                    .w15.fleft
+                                                      .appearable-title.font80.rmvbl Job number
+                                                      %span.halfbl.work_street
+                                                    .w12.ml15.fleft
+                                                      .appearable-title.font80.rmvbl Invoice status
+                                                      %span.halfbl.work_street
+                                                        .full-width
+                                                    .w21-important.fleft
+                                                      .appearable-title.font80.rmvbl Assigned to
+                                                      %span.halfbl
+                                                        Bart Senkbeil
+                                                    .w5.fleft.button_recurring{:recurring_id => "321302"}
+                                                      .appearable-title.font80.rmvbl
+                                                      %a{:href => "/jobs/view/w?id=321302&parent_id=321296&for_job=0"}
+                                                        %button.orange-butt.tiny.fright View
+                                                    .w1.fleft
+                                                      .appearable-title.font80.rmvbl
+                                                      %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321302"}
+                                                        %img{:src => "/assests/images/Rejected.png"}/
+                                                    .full-width.tbody{:recurring_id => "321303"}
+                                                      .w15.fleft
+                                                        .appearable-title.font80.rmvbl Date
+                                                        %span.halfbl
+                                                          12/09/2017
+                                                      .w17.fleft
+                                                        .appearable-title.font80.rmvbl Status
+                                                        %span.halfbl.work_street
+                                                          %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321303", :style => "background-color: #F9A326"}
+                                                          %text.text_recurring{:recurring_id => "321303"} Scheduled
+                                                      .w15.fleft
+                                                        .appearable-title.font80.rmvbl Job number
+                                                        %span.halfbl.work_street
+                                                      .w12.ml15.fleft
+                                                        .appearable-title.font80.rmvbl Invoice status
+                                                        %span.halfbl.work_street
+                                                          .full-width
+                                                      .w21-important.fleft
+                                                        .appearable-title.font80.rmvbl Assigned to
+                                                        %span.halfbl
+                                                          Bart Senkbeil
+                                                      .w5.fleft.button_recurring{:recurring_id => "321303"}
+                                                        .appearable-title.font80.rmvbl
+                                                        %a{:href => "/jobs/view/w?id=321303&parent_id=321296&for_job=0"}
+                                                          %button.orange-butt.tiny.fright View
+                                                      .w1.fleft
+                                                        .appearable-title.font80.rmvbl
+                                                        %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321303"}
+                                                          %img{:src => "/assests/images/Rejected.png"}/
+                                                      .full-width.tbody{:recurring_id => "321304"}
+                                                        .w15.fleft
+                                                          .appearable-title.font80.rmvbl Date
+                                                          %span.halfbl
+                                                            13/09/2017
+                                                        .w17.fleft
+                                                          .appearable-title.font80.rmvbl Status
+                                                          %span.halfbl.work_street
+                                                            %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321304", :style => "background-color: #F9A326"}
+                                                            %text.text_recurring{:recurring_id => "321304"} Scheduled
+                                                        .w15.fleft
+                                                          .appearable-title.font80.rmvbl Job number
+                                                          %span.halfbl.work_street
+                                                        .w12.ml15.fleft
+                                                          .appearable-title.font80.rmvbl Invoice status
+                                                          %span.halfbl.work_street
+                                                            .full-width
+                                                        .w21-important.fleft
+                                                          .appearable-title.font80.rmvbl Assigned to
+                                                          %span.halfbl
+                                                            Bart Senkbeil
+                                                        .w5.fleft.button_recurring{:recurring_id => "321304"}
+                                                          .appearable-title.font80.rmvbl
+                                                          %a{:href => "/jobs/view/w?id=321304&parent_id=321296&for_job=0"}
+                                                            %button.orange-butt.tiny.fright View
+                                                        .w1.fleft
+                                                          .appearable-title.font80.rmvbl
+                                                          %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321304"}
+                                                            %img{:src => "/assests/images/Rejected.png"}/
+                                                        .full-width.tbody{:recurring_id => "321305"}
+                                                          .w15.fleft
+                                                            .appearable-title.font80.rmvbl Date
+                                                            %span.halfbl
+                                                              14/09/2017
+                                                          .w17.fleft
+                                                            .appearable-title.font80.rmvbl Status
+                                                            %span.halfbl.work_street
+                                                              %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321305", :style => "background-color: #F9A326"}
+                                                              %text.text_recurring{:recurring_id => "321305"} Scheduled
+                                                          .w15.fleft
+                                                            .appearable-title.font80.rmvbl Job number
+                                                            %span.halfbl.work_street
+                                                          .w12.ml15.fleft
+                                                            .appearable-title.font80.rmvbl Invoice status
+                                                            %span.halfbl.work_street
+                                                              .full-width
+                                                          .w21-important.fleft
+                                                            .appearable-title.font80.rmvbl Assigned to
+                                                            %span.halfbl
+                                                              Bart Senkbeil
+                                                          .w5.fleft.button_recurring{:recurring_id => "321305"}
+                                                            .appearable-title.font80.rmvbl
+                                                            %a{:href => "/jobs/view/w?id=321305&parent_id=321296&for_job=0"}
+                                                              %button.orange-butt.tiny.fright View
+                                                          .w1.fleft
+                                                            .appearable-title.font80.rmvbl
+                                                            %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321305"}
+                                                              %img{:src => "/assests/images/Rejected.png"}/
+                                                          .full-width.tbody{:recurring_id => "321306"}
+                                                            .w15.fleft
+                                                              .appearable-title.font80.rmvbl Date
+                                                              %span.halfbl
+                                                                15/09/2017
+                                                            .w17.fleft
+                                                              .appearable-title.font80.rmvbl Status
+                                                              %span.halfbl.work_street
+                                                                %i.mr5.status-bubble.bubble_recurring.fleft.mb-2{:recurring_id => "321306", :style => "background-color: #F9A326"}
+                                                                %text.text_recurring{:recurring_id => "321306"} Scheduled
+                                                            .w15.fleft
+                                                              .appearable-title.font80.rmvbl Job number
+                                                              %span.halfbl.work_street
+                                                            .w12.ml15.fleft
+                                                              .appearable-title.font80.rmvbl Invoice status
+                                                              %span.halfbl.work_street
+                                                                .full-width
+                                                            .w21-important.fleft
+                                                              .appearable-title.font80.rmvbl Assigned to
+                                                              %span.halfbl
+                                                                Bart Senkbeil
+                                                            .w5.fleft.button_recurring{:recurring_id => "321306"}
+                                                              .appearable-title.font80.rmvbl
+                                                              %a{:href => "/jobs/view/w?id=321306&parent_id=321296&for_job=0"}
+                                                                %button.orange-butt.tiny.fright View
+                                                            .w1.fleft
+                                                              .appearable-title.font80.rmvbl
+                                                              %a.fleft.ml6.mt10.deleteRecurring{:href => "", :recurring_id => "321306"}
+                                                                %img{:src => "/assests/images/Rejected.png"}/
+                                                            / End Child Jobs Section
+                                                            %footer.panel-footer{:style => "background-color: #fff!important"}
+                                                              .row
+                                                                .full-width.fleft.mt20.center-text
+                                                                  %ul.acc-pagenum.pagination.workLocation-payment-list
+                                                                    %li
+                                                                      %a{:href => ""} Prev
+                                                                    %li
+                                                                      %a{:href => "#"} 1 (73)
+                                                                    %li
+                                                                      %a{:href => "/Jobs/ChangeRecurringList/w?id=321300&page=2"} Next
+                                                          :javascript
+                                                                          $('.workLocation-payment-list li a').unbind('click');
+
+                                                                          $('.workLocation-payment-list li a').click(function () {
+
+                                                                              var href = $(this).attr('Href');
+                                                                              var baseUrl = this.baseURI;
+                                                                              var id = baseUrl.split("id=")[1];
+                                                                              if (!(href.indexOf("id=") >= 0))
+                                                                              {
+                                                                                  var index = href.indexOf("?");
+                                                                                  href = [href.slice(0, index+1), "id="+id+"", href.slice(index+1)].join('');
+                                                                              }
+
+                                                                                          if (href != ''  href != '#') {
+                                                                                              jQuery.ajax({
+                                                                                                  'url': href,
+                                                                                      'type': 'GET',
+                                                                                      'data': {},
+                                                                                      'datatype': 'json',
+                                                                                      'success': function (res) {
+                                                                                          $('#recurring-list-content').html(res);
+                                                                                                  }
+                                                                                              });
+                                                                              }
+
+                                                                              return false;
+                                                                          });
+
+                                                                          $('.change-job-recurrence-async').click(function () {
+                                                                              var href = $(this).attr('Href');
+
+
+                                                                              jQuery.ajax({
+                                                                                  'url': href,
+                                                                                  'type': 'GET',
+                                                                                  'data': {},
+                                                                                  'datatype': 'json',
+                                                                                  'success': function (res) {
+                                                                                      $('#recurring-list-content').html(res);
+                                                                                  }
+                                                                              });
+
+                                                                              return false;
+                                                                          });
+
+
+                                                                          $('.deleteRecurring').click(function () {
+                                                                              if (window.confirm('Are you sure you want to delete this item?')) {
+                                                                                  var url = '/jobs/DeleteRecurringJob';
+                                                                                  var id_recurring = $(this).attr('recurring_id');
+
+                                                                                  jQuery.ajax({
+                                                                                      'url': url,
+                                                                                      'type': 'POST',
+                                                                                      'data': {
+                                                                                          'id': id_recurring,
+                                                                                          'type': 1
+                                                                                      },
+                                                                                      'datatype': 'json',
+                                                                                      'success': function (response) {
+                                                                                          $(".tbody[recurring_id=" + id_recurring + "]").addClass('grayout');
+                                                                                          $(".text_recurring[recurring_id=" + id_recurring + "]").text('Cancelled');
+                                                                                          $(".bubble_recurring[recurring_id=" + id_recurring + "]").addClass('color_bubble_reminder');
+                                                                                          $(".button_recurring[recurring_id=" + id_recurring + "]").hide();
+                                                                                          $(".deleteRecurring[recurring_id=" + id_recurring + "]").hide();
+                                                                                      }
+                                                                                  });
+                                                                              }
+
+                                                                              return false;
+                                                                          });
+
+                                                                          $('#recurring_search_form').submit(function () {
+                                                                              var href = $(this).attr('action') + '?id=' + $('#id_to_search').val() + '=' + '=' + $('#user-search-recurring').val();
+
+                                                                              jQuery.ajax({
+                                                                                  'url': href,
+                                                                                  'type': 'GET',
+                                                                                  'data': {},
+                                                                                  'datatype': 'json',
+                                                                                  'success': function (res) {
+                                                                                      $('#recurring-list-content').html(res);
+                                                                                  }
+                                                                              });
+
+                                                                              return false;
+                                                                          });
+                                                    #tab_job_note_document.main-min.new-job-fields.ml28.fleft.tab-pane{:style => "display:none;"}
+                                                      %form#dynamic_photos.main-popup.bit-small.mb22.upload{:action => "/jobs/insertimages/w", :enctype => "multipart/form-data", :method => "post", :style => "display:none"}
+                                                        .main-popup-biggin
+                                                          .full-width
+                                                            .full-width.upload-popup-header.showHeader{:style => "display:none"}
+                                                              .upload-popup-small.fleft
+                                                                .upload-popup-image.fleft
+                                                                .fleft.ml12.mt10.font14.upload-popup-name-holder.font80 Filename
+                                                              .upload-popup-big.fleft
+                                                                .fleft.ml12.mt10.font14.upload-popup-name-holder.font80 Description
+                                                            :javascript
+                                                                            var indexImage = 0;
+                                                                          %input{:name => "jobId", :type => "hidden", :value => "321300"}
+                                                              .image-new
+                                                              .full-width.mt20
+                                                                .fleft.upload-popup-buttons
+                                                                  %button#new_photo.add-file.nondisable.fleft.mr16 Add files
+                                                                  %input#photo_file_upload_0{:name => "file_photo_0", :onchange => "javascript:uploadImagePhoto(this);", :style => "display:none", :type => "file"}
+                                                                    %a#save_photo_upload.popup-buttons.green.no-mar.showHeader{:href => "#", :style => "display:none"}
+                                                                      %i.clean-upload
+                                                                      %span.ml12 Upload
+                                                                  %a.popup-closer.fontf6.fright.mt10{:href => "javascript:void(0)", :onclick => "popupCloser('upload')"} Close
+                                                                #progress-content.full-width.mt20{:style => "text-align: center;display: none;"}
+                                                                  #progressbox{:style => "width:100%;margin-left:-2px"}
+                                                                    #progressbar
+                                                                    #statustxt 0%
+                                                          #content_images.full-width.fleft.mt30
+                                                            %script{:type => "text/ecmascript"}
+                                                              $('.share-file').hide();
+                                                            %h2.full-width.actual-h2.mb12 Job files
+                                                            .full-width.images_Job
+                                                              .full-width.font80 Use buttons to the left to add your first files
+                                                              %div{:style => "clear:both"}
+                                                              %button.orange-butt.dis-block.mt20.fright.multiple-editor{:style => "display:none"} Share
+                                                              %ul#list_photo_file
+                                                            #lightgallery{:style => "display:none;"}
+                                                            %script{:src => "/assests/js/views/shared/photos.js?v=268435456", :type => "text/javascript"}
+                                                          .full-width.bold.buttons-separator-line.fleft
+                                                          .full-width.font80.ml6.dis-block.mt20 Notes
+                                                          .full-width.font80.ml6.dis-block.mt20
+                                                            %section#list_notes.wrap-notes
+                                                              %ul#document_notes_holder.list-group
+                                                                %li
+                                                                  .ml6{:style => "width: 98%"}
+                                                                    .full-width
+                                                                      %p Job created: JCS14,  Test Job
+                                                                    .full-width.mt10.font4d.font14s
+                                                                      .fleft
+                                                                        %p
+                                                                          %span.font-bold 05/09/2017, 19:22
+                                                                          by Bart Senkbeil
+                                                                %li
+                                                                  .ml6{:style => "width: 98%"}
+                                                                    .full-width
+                                                                      %p
+                                                                        %span.font-bold
+                                                                        total time tracked
+                                                                    .full-width.mt10.font4d.font14s
+                                                                      .fleft
+                                                                %input.idCus{:type => "hidden", :value => "321300"}
+                                                            .dis-iblock.full-width.mt20.font80
+                                                              .dis-iblock.fright.mr5
+                                                                %input#isNotePrivate{:type => "checkbox"} Internal
+                                                                .dis-iblock.ml6.dis-block Add new note
+                                                              %textarea#customr_note_text.bold-border-textarea.fleft.dis-block.mt5
+                                                              %a#custom_info_add_note.orange-butt.dis-block.mt20.pop-cancel.fright{"data-module" => "job", :href => "javascript:void(0)"} Done
+                                                            #tab_job_costpayment.main-min.new-job-fields.ml28.fleft.tab-pane{:style => "display:none;"}
+                                                              .main-min.ml28.fleft
+                                                                %h2.full-width.actual-h2.mb12
+                                                                  %b Test Job
+                                                                .full-width.mb12
+                                                                  %span.font80.mr10 Job ID
+                                                                  %span.font-bold JCS14
+                                                                .full-width.mb12.font-bold Farooq
+                                                                .nvc-table.full-width.mt20.table-costs
+                                                                  .full-width.font80.thead.cost-head
+                                                                    .w37.fleft.mob-removable
+                                                                      %span.ml12 Item
+                                                                    .w27.fleft Qty
+                                                                    .w15.fleft Tax
+                                                                    .w21.fleft Total
+                                                                  .full-width.dropable-field.mb16
+                                                                    %button.add-button.full.font80.new-customer.new-item-cost Add Item +
+                                                                    .adv-big-popup.normal-plh{:style => "display:none;width:572px;z-index:13"}
+                                                                      .inner-half.fleft
+                                                                        .full-width.mt5.dropable-field
+                                                                          %span.font80.ml12 Item
+                                                                          %input.gr-br-field.smally.mt3.is-full.dis-block.cost_item.filter-popup-activator.down-arrow{:type => "text"}
+                                                                            %input#current-unit-type{:type => "hidden"}
+                                                                              %input.current-id-item{:type => "hidden"}
+                                                                                .adv-popup.service-item-dropdown{:style => "display:none; z-index:1000"}
+                                                                                  .full-width{:style => "max-height:300px; overflow:auto!important"}
+                                                                                    .center-text
+                                                                                      %p.mt20.mb10.font15.font88
+                                                                                        No
+                                                                                        %a.fontf6.link{:href => "/settings/services/w"} items
+                                                                                        available
+                                                                              #unit-type-Quantity-location.full-width.mt5{:style => "display:none"}
+                                                                                %span.font80.ml12 Location
+                                                                                .gr-br-sec.mt5.dis-iblock{:style => "width:calc(100% - 2px)"}
+                                                                                  %select#location_select.font00.font-bold.location_select
+                                                                                  %i
+                                                                              .full-width.mt5
+                                                                                %span.font80.ml12 Tax Rates
+                                                                                .gr-br-sec.mt5.dis-iblock{:style => "width:calc(100% - 2px)"}
+                                                                                  %select#account_select.font00.font-bold.account_select.tax-rate-select
+                                                                                    %option.full-width.font-bold{"tax-value" => "20", :value => "2387"} Sales with Tax (20%)
+                                                                                    %option.full-width.font-bold{"tax-value" => "0", :value => "2388"} Sales no Tax (0%)
+                                                                                  %i
+                                                                              .full-width.mt5
+                                                                                %span.font80.ml12 Account code
+                                                                                .gr-br-sec.mt5.dis-iblock{:style => "width:calc(100% - 2px)"}
+                                                                                  %select#accountcode_select.font00.font-bold.accountcode_select
+                                                                                  %i
+                                                                              .full-width.mt10
+                                                                                %span.font80.ml12 Description
+                                                                                %textarea.gr-br-field.smally.mt3.is-full.dis-block.cost_text{:style => "height:100px;padding-top:5px; padding-bottom: 5px;"}
+                                                                            .inner-half.fright
+                                                                              #unit-type-FixedPrice.full-width.autoradioable.mt5
+                                                                                %span.font80.full-width.mb3
+                                                                                  %span.ml34 Price
+                                                                                .fleft.mb-9.mr10.styled-radio
+                                                                                  %input#FixedPrice-radio.priceRadio{:name => "fex", :type => "radio", :value => "1"}
+                                                                                  .fleft
+                                                                                    %input.gr-br-field.smally.cost_price_item{:placeholder => "", :style => "width:100px", :type => "text"}
+                                                                                  #unit-type-Quantity.full-width.autoradioable.mt5
+                                                                                    %span.font80.full-width.mb3
+                                                                                      %span.ml34 Quantity
+                                                                                    .fleft.mb-9.mr10.styled-radio
+                                                                                      %input#Quantity-radio.qtyRadio{:name => "fex", :type => "radio", :value => "2"}
+                                                                                      %input.fleft.gr-br-field.smally.mr10.cost_qty{:placeholder => "Qty", :style => "width:50px", :type => "text"}
+                                                                                        .fleft
+                                                                                          %input.gr-br-field.smally.cost_qty_price{:placeholder => "/Unit", :style => "width:75px", :type => "text"}
+                                                                                        #unit-type-PerHour.full-width.autoradioable.mt5
+                                                                                          %span.font80.full-width.mb3
+                                                                                            %span.ml34 Time
+                                                                                          .fleft.mb-9.mr10.styled-radio
+                                                                                            %input#PerHour-radio.minRadio{:name => "fex", :type => "radio", :value => "3"}
+                                                                                            %input.fleft.gr-br-field.smally.mr10.cost_hrs{:placeholder => "Hrs", :style => "width:50px", :type => "text"}
+                                                                                              %input.fleft.gr-br-field.smally.mr10.cost_mins{:placeholder => "Mins", :style => "width:50px", :type => "text"}
+                                                                                                .fleft
+                                                                                                  %input.gr-br-field.smally.cost_rate{:placeholder => " Rate", :style => "width:70px", :type => "text"}
+                                                                                                .full99line.mt16.mb16
+                                                                                                .full-width
+                                                                                                  .fleft.ml6.mr16
+                                                                                                    %span.font80.mb3
+                                                                                                      %span.dis-block Tax
+                                                                                                    .mt5
+                                                                                                      %span#cost-tax.actual-h2{:value => "0"} 0
+                                                                                                      %span %
+                                                                                                  .ml34.fleft
+                                                                                                    %span.font80.mb3
+                                                                                                      %span.ml6.dis-block Total
+                                                                                                    .mt5.actual-h2
+                                                                                                      \&#xA3;
+                                                                                                      %span.current-total-cost 0
+                                                                                              .full-width.mt16.right-text
+                                                                                                %a.fleft.font80.pop-cancel.cancel-cost{:href => "javascript:void(0)", :onclick => "showAllItems();"} Cancel
+                                                                                                %input.fright.fontf6.saveCostButton{:onclick => "javascript:return addCostSaved(this,321300,'job');", :style => "background-color:transparent !important; cursor:pointer", :type => "button", :value => "Save"}
+                                                                                                  %input.fright.fontf6.editCostButton{:onclick => "javascript:return editCostBase(this,321300,'job');", :style => "background-color:transparent !important; cursor:pointer; display:none", :type => "button", :value => "Update"}
+                                                                                              .full-width.font80.thead
+                                                                                              .full-width.tbody{:style => "border:none"}
+                                                                                                .w15.fright
+                                                                                                  .font-bold
+                                                                                                    \&#xA3;
+                                                                                                    %span.subtotal-cost-final 0.00
+                                                                                                .w21.fright Subtotal
+                                                                                              .full-width.tbody{:style => "border:none;padding:0"}
+                                                                                                .w15.fright
+                                                                                                  .font-bold
+                                                                                                    \&#xA3;
+                                                                                                    %span.tax-cost-final 0.00
+                                                                                                .w21.fright Tax
+                                                                                              .full-width.mt20
+                                                                                                .total.fright
+                                                                                                  %span.mt5 Total incl. tax
+                                                                                                  \&#xA3;
+                                                                                                  %span.total-cost-final{:style => "font-size:25px"} 0.00

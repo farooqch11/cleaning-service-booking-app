@@ -1,6 +1,6 @@
 class Backend::Admin::JobsController < Backend::Admin::AdminsController
 
-  before_action :set_employee ,only: [:edit ,:update , :destroy , :show]
+  before_action :find_job ,only: [ :show]
 
   def index
     @search    = Job.where(parent_id: nil).order(created_at: :asc).search(params[:q])
@@ -53,8 +53,8 @@ class Backend::Admin::JobsController < Backend::Admin::AdminsController
     params.require(:employee).permit(:first_name, :last_name ,:role , :color ,:email,:hourly_rate, :street, :city,:postcode,:picture)
   end
 
-  def set_employee
-    @employee =  User.find_by_id_and_type(params[:id] , 'Employee')
+  def find_job
+    @job =  Event.find_by_id_and_type(params[:id] , 'Job')
   end
 
 end
