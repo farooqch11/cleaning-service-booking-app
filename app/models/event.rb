@@ -60,6 +60,10 @@ class Event < ApplicationRecord
     schedule
   end
 
+  def duration
+    "#{start.strftime('%d/%m/%Y - %H:%M')} #{self.end.strftime('%d/%m/%Y - %H:%M')}"
+  end
+
   def schedule_events start_date = nil , end_date = nil
     s_date = start_date.nil? ? start : start_date
     e_date = end_date.nil? ? recurring_end_at : end_date

@@ -3,7 +3,7 @@ class Backend::Admin::JobsController < Backend::Admin::AdminsController
   before_action :set_employee ,only: [:edit ,:update , :destroy , :show]
 
   def index
-    @search    = Job.all.search(params[:q])
+    @search    = Job.where(parent_id: nil).order(created_at: :asc).search(params[:q])
     @jobs = @search.result.paginate(page: params[:page], per_page: 10) || []
   end
 

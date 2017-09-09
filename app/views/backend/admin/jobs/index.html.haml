@@ -27,12 +27,18 @@
         %tr
           %th= sort_link @search, :job_id, "Job ID"
           %th Title
+          %th= sort_link @search, :customer_first_name, "Customer"
+          %th= sort_link @search, :start, "Schedule"
+          %th= sort_link @search, :employee_first_name, "Assigned To"
           %th.text-center Actions
       %tbody
         - @jobs.each do |job|
           %tr
             %td.user-thumb= job.job_id
             %td.user-thumb= job.title
+            %td.user-thumb= job.customer.full_name rescue "--"
+            %td.user-thumb= job.duration rescue "--"
+            %td.user-thumb= job.employee.full_name rescue "--"
             %td.text-center
               = link_to 'View', admin_job_path(job),class: 'btn btn-primary'
     %nav.text-center-xs
