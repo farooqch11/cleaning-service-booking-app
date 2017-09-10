@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   enum cost_type: [:fixed , :hourly]
   enum recurring_type: [:never , :after ,  :on_date]
   enum priority: [:normal , :low ,  :urgent]
+  enum job_duration_type: [:hours , :minutes ,  :days]
   enum status: [:pending , :external , :scheduled , :travelling , :completed , :cancelled , :in_progress , :on_hold , :attention]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
@@ -14,7 +15,8 @@ class Event < ApplicationRecord
   validates_inclusion_of    :recurring_type   , in: recurring_types.keys
   validates_inclusion_of    :status           , in: statuses.keys
   validates_inclusion_of    :priority         , in: priorities.keys
-  validates_numericality_of :event_cost       , :total_cost , greater_than_or_equal_to: 0.0
+  validates_inclusion_of    :job_duration_type, in: job_duration_types.keys
+  validates_numericality_of :event_cost       , :job_duration , :total_cost , greater_than_or_equal_to: 0.0
   validates_numericality_of :recurring_end_time,  greater_than_or_equal_to: 0
 
   validates :title, presence: true
