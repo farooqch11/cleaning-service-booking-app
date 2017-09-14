@@ -3,8 +3,8 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
-function new_event(){
-    $.getScript('/admin/events/new', function() {});
+function new_event(start){
+    $.getScript('/admin/events/new?start='+moment(start).format("DD-MM-YYYY HH:mm"), function() {});
 }
 function edit_event(calEvent){
     $.get(calEvent.edit_url , function () {
@@ -27,6 +27,7 @@ function update_event(event , revertFunc){
                 end: moment(event.end).format("DD-MM-YYYY HH:mm")
             }
         };
+        console.log(event_data);
         $.ajax({
             url: event.update_url,
             data: event_data,
@@ -211,7 +212,7 @@ var neonCalendar2 = neonCalendar2 || {};
                         },
 
                     select: function (start, end) {
-                        new_event();
+                        new_event(start);
                         calendar.fullCalendar('unselect');
                     },
                     drop: function(date, allDay) {
