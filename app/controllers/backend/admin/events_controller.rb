@@ -15,7 +15,9 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
 
   def new
-    @event = Event.new
+    e_date = (params[:start].to_time + 1.hour).to_datetime
+    puts e_date
+    @event = Event.new(start: params[:start] , end: e_date)
   end
 
   def create
@@ -23,7 +25,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
     @calendar_events = nil
     if @event.save
       if @event.recurring?
-        @calendar_events = @event.children
+        @calendar_events = [@event] + @event.children
       else
         @calendar_events = [@event]
       end
@@ -37,12 +39,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   def update
     if @event.update(event_params)
       flash.now[:success] = "Successfully Updated."
-      if @event.recurring?
-        @calendar_events = @event.children
-      else
-        @calendar_events = [@event]
-      end
-
+      @calendar_events = [@event]
     else
       flash.now[:errors] = @event.errors.full_messages
     end
