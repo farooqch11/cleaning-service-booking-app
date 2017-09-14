@@ -15,7 +15,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
 
   def new
-    e_date = (params[:start].to_time + 1.hour).to_datetime
+    e_date = (params[:start].to_time + 1.hour).to_datetime || DateTime.now
     puts e_date
     @event = Event.new(start: params[:start] , end: e_date)
   end

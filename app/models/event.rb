@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   enum cost_type: [:fixed , :hourly]
   enum recurring_type: [:never , :after ,  :on_date]
   enum priority: [:normal , :low ,  :urgent]
-  enum job_duration_type: [:hours , :minutes ,  :days]
+  enum job_duration_type: [ :minutes ,:hours ,  :days]
   enum status: [:pending , :external , :scheduled , :travelling , :completed , :cancelled , :in_progress , :on_hold , :attention]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
@@ -25,6 +25,8 @@ class Event < ApplicationRecord
   validates :start, presence: true
   validates :end, presence: true
   validates_datetime :start , :end
+  validate :end_date_after_start_date?
+
 
   attr_accessor :date_range , :is_parent_update
 
@@ -70,17 +72,18 @@ class Event < ApplicationRecord
     s_date = start_date.nil? ? start : start_date
     e_date = end_date.nil? ? recurring_end_at : end_date
     schedule(s_date).occurrences(e_date).map do |date|
+      next if self.start == date
       child = self.children.new
 
-      child.title       = title
-      child.description = description
-      child.recurring   = recurring
-      child.employee_id = employee_id
-      child.customer_id = customer_id
-      child.contact     = contact
-      child.start       = date
-      child.end         = set_end_date(date)
-      child.priority    = priority
+      child.title             = title
+      child.description       = description
+      child.recurring         = recurring
+      child.employee_id       = employee_id
+      child.customer_id       = customer_id
+      child.contact           = contact
+      child.start             = date
+      child.end               = set_end_date(date)
+      child.priority          = priority
       child.recurring_type    = recurring_type
 
       child.total_cost  = total_cost
@@ -88,7 +91,6 @@ class Event < ApplicationRecord
 
       child.save!
 
-      # self.children.create({start: date ,   , total_cost: self.total_cost ,cost_type: self.cost_type , recurring: recurring , title: title , customer_id: self.customer_id , employee_id:self.employee_id ,contact: self.contact,description: self.description})
     end
   end
 
@@ -138,4 +140,10 @@ class Event < ApplicationRecord
       end
     end
 
+  def end_date_after_start_date?
+    e_date =  (self.end.to_time - 1.minute).to_datetime
+    if e_date < start
+      errors.add :base, "End date must be greater than start date."
+    end
+  end
 end

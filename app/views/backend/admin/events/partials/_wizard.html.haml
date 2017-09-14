@@ -133,7 +133,7 @@
           .form-group
             %label.control-label{:for => "Recurrence"} Recurrence
             = f.select_recurring :recurring , nil,allow_blank: true  , data: {"validate": "required" , "message-required": "This is custom message for required field."} , html: {class: "form-control" }
-      .row.end_recurrence.hidden
+      .row.end_recurrence{class: "#{(@event.new_record? || !@event.recurring? ? 'hidden' : '')}"}
         .col-md-12
           .form-group
             %label.control-label{:for => "End Recurrence"} End Recurrence
