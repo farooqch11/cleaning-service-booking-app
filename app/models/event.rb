@@ -26,6 +26,8 @@ class Event < ApplicationRecord
   validates :end, presence: true
   validates_datetime :start , :end
   validate :end_date_after_start_date?
+  validate :start_date_cannot_be_in_the_past
+
 
 
   attr_accessor :date_range , :is_parent_update
@@ -144,6 +146,12 @@ class Event < ApplicationRecord
     e_date =  (self.end.to_time - 1.minute).to_datetime
     if e_date < start
       errors.add :base, "End date must be greater than start date."
+    end
+  end
+
+  def start_date_cannot_be_in_the_past
+    if start.present? && start < DateTime.now
+      errors.add(:base, "Start date can't be in the past.")
     end
   end
 end
