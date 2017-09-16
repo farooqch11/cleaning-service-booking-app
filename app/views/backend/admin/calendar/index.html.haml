@@ -1,18 +1,19 @@
 .calendar-env
-  / Calendar Body
-  .calendar-body
+  #calendar
+    / Calendar Body
+    -#.calendar-body
     #calendar
-  / Sidebar
-  .calendar-sidebar
+    / Sidebar
+    -#.calendar-sidebar
     / new task form
-    .calendar-sidebar-row
+    -#.calendar-sidebar-row
       %form#add_event_form{:role => "form"}
         .input-group.minimal
           %input.form-control{:placeholder => "Add event...", :type => "text"}/
           .input-group-addon
             %i.entypo-pencil
     / Events List
-    %ul#draggable_events.events-list
+    -#%ul#draggable_events.events-list
       %li
         %p Drag Events to Calendar Dates
       %li

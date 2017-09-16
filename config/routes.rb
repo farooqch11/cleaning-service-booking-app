@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       resources :customers do
         match :search, to: 'customers#index', via: [:post , :get ], on: :collection
       end
-      resource  :calender
+      resources :calendar
       resources :events
       resources :jobs do
         match :search, to: 'jobs#index', via: [:post , :get ], on: :collection

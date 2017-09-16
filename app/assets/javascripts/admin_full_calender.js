@@ -77,10 +77,17 @@ var neonCalendar2 = neonCalendar2 || {};
                 var calendar = $('#calendar');
 
                 calendar.fullCalendar({
+                    buttonText: {
+                        today: 'Today',
+                        month: 'Month',
+                        week: 'Week',
+                        day: 'Day',
+                        list: 'List'
+                    },
                     header: {
                         left: 'title',
-                        right: 'month,agendaWeek,listWeek,agendaDay today prev,next'
-                    },
+                        right: 'month,agendaWeek,agendaDay,listWeek today prev,next'
+                },
 
                     //defaultView: 'basicWeek',
                     firstDay: 1,
