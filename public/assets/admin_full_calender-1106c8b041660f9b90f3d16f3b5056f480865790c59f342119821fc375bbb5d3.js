@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(start){
     var st = moment(start).format("DD-MM-YYYY HH:mm");
     console.log("Start:" + st);
@@ -134,7 +135,7 @@ var neonCalendar2 = neonCalendar2 || {};
                             '<button type="button" class="close">'+'<span aria-hidden="true">'+'×'+'</span>'+'<span class="sr-only">'+'Close'+'</span></button>'+
                             '<div class="fc-popover click">' +
                             '<div class="fc-header">' +
-                            '<center>' +calEvent.customer_name+
+                            '<center>' +calEvent.title+
                             '</center>' +
                             '<button type="button" class="cl"><i class="entypo-cancel"></i></button>' +
                             '</div>' +
@@ -310,3 +311,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;

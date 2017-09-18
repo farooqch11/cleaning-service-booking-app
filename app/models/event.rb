@@ -22,12 +22,11 @@ class Event < ApplicationRecord
   validates :title, presence: true
   validates :customer, presence: true
   validates :employee, presence: true
-  validates :start, presence: true
-  validates :end, presence: true
-  validates_datetime :start , :end
-  validate :end_date_after_start_date?
-  validate :start_date_cannot_be_in_the_past
-
+  validates :start, presence: true ,if: Proc.new {|event| event.start_changed? }
+  validates :end, presence: true , if: Proc.new {|event| event.end_changed? }
+  validates_datetime :start , :end ,if: Proc.new {|event| event.start_changed? || event.end_changed? }
+  validate :end_date_after_start_date? ,if: Proc.new {|event| event.start_changed? || event.end_changed? }
+  validate :start_date_cannot_be_in_the_past , if: Proc.new {|event| event.start_changed? }
 
 
   attr_accessor :date_range , :is_parent_update

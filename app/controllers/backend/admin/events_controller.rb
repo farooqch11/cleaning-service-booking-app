@@ -29,7 +29,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
       else
         @calendar_events = [@event]
       end
-      flash.now[:success] = "Successfully Created."
+      flash.now[:success] = "Surailccessfully Created."
       # @calendar_events = @event.calendar_events(params.fetch(:start, Time.zone.now).to_date)
     else
       flash.now[:errors] = @event.errors.full_messages
