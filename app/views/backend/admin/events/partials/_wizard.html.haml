@@ -144,7 +144,7 @@
         .col-md-12.recurring_end_at.hidden
           .form-group
             %label.control-label{:for => "End Recurrence"}
-            = f.input :recurring_end_at, class: 'form-control input-sm' , label: false
+            = f.text_area :recurring_end_at, class: 'form-control input-sm datetimepicker' , label: false
     #tab2-5.tab-pane
       .row
         .col-md-12

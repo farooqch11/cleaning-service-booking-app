@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="239b2bc1-943b-4c3c-b41a-7c4d1a825282" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/backend.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/backend.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/backend.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/backend.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/backend/admin/events/edit.js.erb" afterPath="$PROJECT_DIR$/app/views/backend/admin/events/edit.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/backend/admin/events/new.js.erb" afterPath="$PROJECT_DIR$/app/views/backend/admin/events/new.js.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml" afterPath="$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -26,19 +19,19 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_wizard.html.haml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_wizard.html.haml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="126" column="88" lean-forward="false" selection-start-line="126" selection-start-column="88" selection-end-line="126" selection-end-column="88" />
+            <state relative-caret-position="201">
+              <caret line="146" column="89" lean-forward="false" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
               <folding>
-                <marker date="1505943137000" expanded="true" signature="7621:7785" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="7668:7720" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="7724:7781" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="7839:8419" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="7892:8044" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="8096:8206" ph="{...}" />
-                <marker date="1505943137000" expanded="true" signature="8260:8415" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="7640:7804" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="7687:7739" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="7743:7800" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="7858:8438" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="7911:8063" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="8115:8225" ph="{...}" />
+                <marker date="1505945223000" expanded="true" signature="8279:8434" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -58,13 +51,13 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="174">
-              <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/application.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -211,12 +204,12 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/backend.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/datetimepicker.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/datetimepicker.css" />
-        <option value="$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml" />
         <option value="$PROJECT_DIR$/app/views/backend/admin/events/new.js.erb" />
         <option value="$PROJECT_DIR$/app/views/backend/admin/events/edit.js.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb" />
         <option value="$PROJECT_DIR$/config/initializers/time_zone_aware_types.rb" />
         <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml" />
       </list>
     </option>
   </component>
@@ -757,12 +750,12 @@
       <workItem from="1500400424012" duration="1173000" />
       <workItem from="1501964389632" duration="389000" />
       <workItem from="1505649889872" duration="472000" />
-      <workItem from="1505651057194" duration="6693000" />
+      <workItem from="1505651057194" duration="7283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131205000" />
+    <option name="totallyTimeSpent" value="131795000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1160,22 +1153,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="126" column="88" lean-forward="false" selection-start-line="126" selection-start-column="88" selection-end-line="126" selection-end-column="88" />
-          <folding>
-            <marker date="1505943137000" expanded="true" signature="7621:7785" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="7668:7720" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="7724:7781" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="7839:8419" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="7892:8044" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="8096:8206" ph="{...}" />
-            <marker date="1505943137000" expanded="true" signature="8260:8415" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/event.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1337">
@@ -1188,14 +1165,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -1213,6 +1182,30 @@
         <state relative-caret-position="357">
           <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/backend/admin/events_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/backend/admin/events/partials/_wizard.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="146" column="89" lean-forward="false" selection-start-line="146" selection-start-column="89" selection-end-line="146" selection-end-column="89" />
+          <folding>
+            <marker date="1505945223000" expanded="true" signature="7640:7804" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="7687:7739" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="7743:7800" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="7858:8438" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="7911:8063" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="8115:8225" ph="{...}" />
+            <marker date="1505945223000" expanded="true" signature="8279:8434" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
