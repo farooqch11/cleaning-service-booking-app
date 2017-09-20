@@ -71,14 +71,12 @@
           .form-group
             %label.control-label{:for => "street"}
               Street
-              %span.text-danger *
             =f.text_field :street , class: 'form-control' , placeholder: 'Enter your street address'
         .col-md-4
           .form-group
             %label.control-label{:for => "door_no"}
               Contact
-              %span.text-danger *
-            =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number' , required: true
+            =f.text_field :contact , class: 'form-control' , placeholder: 'Contact number'
       .row
         .col-md-12
           .form-group

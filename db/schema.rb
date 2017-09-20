@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905212826) do
+ActiveRecord::Schema.define(version: 20170909232014) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170905212826) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
+    t.datetime "start"
+    t.datetime "end"
     t.string   "color"
     t.integer  "employee_id"
     t.integer  "customer_id"
@@ -45,31 +47,22 @@ ActiveRecord::Schema.define(version: 20170905212826) do
     t.string   "zip"
     t.string   "address_line"
     t.text     "recurring"
-    t.datetime "end"
-    t.datetime "start"
-    t.integer  "priority",           default: 0
-    t.time     "start_time"
-    t.time     "end_time"
-    t.datetime "run_at"
     t.integer  "parent_id"
     t.integer  "cost_type",          default: 0
     t.decimal  "total_cost",         default: "0.0"
     t.decimal  "event_cost",         default: "0.0"
-    t.integer  "recurring_type"
+    t.integer  "priority",           default: 0
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "run_at"
+    t.integer  "recurring_type",     default: 0
     t.datetime "recurring_end_at"
     t.integer  "recurring_end_time", default: 0
     t.string   "job_id"
+    t.float    "job_duration",       default: 1.0
+    t.integer  "job_duration_type",  default: 1
     t.index ["customer_id"], name: "index_events_on_customer_id"
     t.index ["employee_id"], name: "index_events_on_employee_id"
-  end
-
-  create_table "schedules", force: :cascade do |t|
-    t.datetime "start"
-    t.datetime "end"
-    t.integer  "employee_id"
-    t.text     "recurring"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
