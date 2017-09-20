@@ -18,6 +18,8 @@ module JoaanaCleaningService
       g.test_framework :rspec, fixture: true, fixture_replacement: :factory_girl, helper_specs: false, view_specs: false, routing_specs: false, controller_specs: false
     end
     config.time_zone = 'Europe/London'
+    config.active_record.time_zone_aware_types = [:datetime, :time]
+
     # config.time_zone = 'Asia/Karachi'
   end
 end

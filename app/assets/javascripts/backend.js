@@ -37,6 +37,7 @@
 //= require bootstrap-datetimepicker
 //= require flash
 //= require recurring_select
+//= require datetimepicker
 
 //= require neon-custom
 //= require neon-demo

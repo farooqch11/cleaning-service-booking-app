@@ -1,6 +1,9 @@
 $('#remote_container').empty().html('<%= j render "backend/admin/events/form" %>');
 $('#new_event').modal('toggle');
 $('.recurring_select').addClass('form-control');
+jQuery('.datetimepicker').datetimepicker({
+});
+
 $(".form-wizard").each(function(i, el)
 {
     var $this = $(el),
