@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 function new_event(start){
     var st = moment(start).format("DD-MM-YYYY HH:mm");
     console.log("Start:" + st);
@@ -309,3 +310,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;
