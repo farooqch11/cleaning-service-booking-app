@@ -1,10 +1,10 @@
 class Backend::Admin::EventsController < Backend::Admin::AdminsController
+  respond_to :json , :js
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @events = Event.where(start: params[:start]..params[:end])
-    @calendar_events = Event.where(start: params[:start]..params[:end])
-
+    @events = Event.includes(:employee , :customer).where(start: params[:start]..params[:end])
+    respond_with @events ,  each_serializer: EventSerializer
   end
 
   def show
@@ -15,9 +15,9 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
 
   def new
-    e_date = (params[:start].to_time + 1.hour).to_datetime || DateTime.now
-    puts e_date
+    e_date = params[:start].present? ? (params[:start].to_time + 1.hour).to_datetime || DateTime.now : DateTime.now
     @event = Event.new(start: params[:start] , end: e_date)
+
   end
 
   def create
@@ -29,8 +29,7 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
       else
         @calendar_events = [@event]
       end
-      flash.now[:success] = "Surailccessfully Created."
-      # @calendar_events = @event.calendar_events(params.fetch(:start, Time.zone.now).to_date)
+      flash.now[:success] = "Successfully Created."
     else
       flash.now[:errors] = @event.errors.full_messages
     end
@@ -38,10 +37,10 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def update
     if @event.update(event_params)
-      flash.now[:success] = "Successfully Updated."
-      @calendar_events = [@event]
+      render json: {success: true , data: EventSerializer.new(@event).as_json , message: "Successfully Updated."}
+      puts JSON.pretty_generate(EventSerializer.new(@event).serializable_hash)
     else
-      flash.now[:errors] = @event.errors.full_messages
+      render json: {success: false , errors: @event.errors.full_messages}
     end
   end
 

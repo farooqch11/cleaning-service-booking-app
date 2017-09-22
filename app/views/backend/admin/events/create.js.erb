@@ -7,8 +7,7 @@
     <% @calendar_events.each do |event| %>
         $('#calendar').fullCalendar(
                 'renderEvent',
-                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>"),
-                true
+                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>")
         );
     <% end %>
     flash_success("<%= flash[:success] %>");
