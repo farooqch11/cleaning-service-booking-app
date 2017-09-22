@@ -12,7 +12,6 @@ gem 'rails', '~> 5.0.3'
 # Layoutb & rendering
 #***************************
 gem 'turbolinks', '~> 5.x'
-gem 'jbuilder', '~> 2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -59,6 +58,7 @@ gem 'time_difference'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'puma', '~> 3.0'
+gem 'active_model_serializers', '0.9.3'
 
 group :development do
   gem 'happy_seed'
