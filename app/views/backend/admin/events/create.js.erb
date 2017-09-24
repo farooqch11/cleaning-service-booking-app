@@ -2,14 +2,10 @@
     <% flash[:errors].each do |e| %>
         flash_error("<%= e %>");
     <% end %>
-<% end %>
-<% if flash[:success].present? %>
+<% elsif flash[:success].present? %>
     <% @calendar_events.each do |event| %>
-        $('#calendar').fullCalendar(
-                'renderEvent',
-                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>")
-        );
+        $('#calendar').fullCalendar('renderEvent', $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>"));
     <% end %>
     flash_success("<%= flash[:success] %>");
-    $(".modal").modal("toggle");
+    $(".modal").modal("hide");
 <% end %>

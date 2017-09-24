@@ -1,10 +1,10 @@
 class Backend::Admin::EventsController < Backend::Admin::AdminsController
-  respond_to :json , :js
+  # respond_to :json , :js , :html
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.includes(:employee , :customer).where(start: params[:start]..params[:end])
-    respond_with @events ,  each_serializer: EventSerializer
+    @calendar_events = Event.includes(:employee , :customer).where(start: params[:start]..params[:end])
+    # respond_with @events ,  each_serializer: EventSerializer
   end
 
   def show
@@ -37,10 +37,23 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def update
     if @event.update(event_params)
-      render json: {success: true , data: EventSerializer.new(@event).as_json , message: "Successfully Updated."}
-      puts JSON.pretty_generate(EventSerializer.new(@event).serializable_hash)
+      respond_to do |format|
+        flash.now[:success] = "Successfully Updated."
+        format.js do
+          if @event.recurring?
+            @calendar_events = [@event] + @event.children
+          else
+            @calendar_events = [@event]
+          end
+        end
+        format.json { render json: {success: true , data: render_to_string( template: 'backend/admin/events/show.json.jbuilder', event: @event) , message: "Successfully Updated."} }
+      end
     else
-      render json: {success: false , errors: @event.errors.full_messages}
+      respond_to do |format|
+        flash.now[:errors] = @event.errors.full_messages
+        format.js {}
+        format.json { render json: {success: false , errors: @event.errors.full_messages} }
+      end
     end
   end
 

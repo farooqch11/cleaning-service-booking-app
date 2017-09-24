@@ -30,11 +30,26 @@ class Event < ApplicationRecord
 
 
   attr_accessor :date_range , :is_parent_update
-
-  before_validation :set_event_cost
   before_create :set_recurring_end_date , if: Proc.new {|event| !event.on_date? && event.recurring? && event.parent_id.nil? && event.root?}
   after_create :set_job_id
-  after_create :schedule_events , if: Proc.new { |event| event.recurring? && event.parent_id.nil? && event.root? }
+  after_save :schedule_events , if: Proc.new { |event| event.recurring? && event.recurring_changed? && event.recurring_was.empty? && event.parent_id.nil? && event.root? }
+
+  # def as_json(options={})
+  #   # date_format = event.all_day_event? ? '%Y-%m-%d' : '%Y-%m-%dT%H:%M:%S'
+  #   #
+  #   # json.id event.id
+  #   # json.title event.title
+  #   # json.start event.start.strftime(date_format)
+  #   # json.end event.end.strftime(date_format)
+  #   #
+  #   # json.color event.color unless event.color.blank?
+  #   # json.allDay event.all_day_event? ? true : false
+  #   #
+  #   # json.update_url event_path(event, method: :patch)
+  #   # json.edit_url edit_event_path(event)
+  #   super(:only => [:id, :title , :start , :end]
+  #   )
+  # end
 
   def all_day_event?
     self.start == self.start.midnight && self.end == self.end.midnight ? true : false
@@ -135,11 +150,6 @@ class Event < ApplicationRecord
       parent.schedule_events  Time.now
     end
 
-    def set_event_cost
-      if hourly?
-
-      end
-    end
 
   def end_date_after_start_date?
     e_date =  (self.end.to_time - 1.minute).to_datetime

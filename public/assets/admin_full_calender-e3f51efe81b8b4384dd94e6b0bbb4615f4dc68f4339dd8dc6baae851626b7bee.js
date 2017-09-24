@@ -3,6 +3,7 @@
  *
  *	Developed by Arlind Nushi - www.laborator.co
  */
+
 var calendar = $('#calendar');
 function loadEvents(start, end, timezone, callback) {
     $.ajax({
@@ -380,3 +381,4 @@ function reset_calendar_container_height() {
 function calendar_toggle_checkbox_status(checked) {
     neonCalendar2.$body.find('table tbody input[type="checkbox"]' + (checked ? '' : ':checked')).attr('checked', !checked).click();
 }
+;

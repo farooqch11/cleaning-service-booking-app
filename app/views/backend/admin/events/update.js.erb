@@ -4,14 +4,10 @@
     <% end %>
 <% end %>
 <% if flash[:success].present? %>
-    $('#calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
     <% @calendar_events.each do |event| %>
-        $('#calendar').fullCalendar(
-                'renderEvent',
-                $.parseJSON("<%=j render('backend/admin/events/event' , event: event).html_safe %>"),
-                true
-        );
+        $('#calendar').fullCalendar('removeEvents', [<%= @event.id %>]);
+        $('#calendar').fullCalendar('renderEvent', $.parseJSON("<%=j render('backend/admin/events/event.json.jbuilder' , event: event, format: :json).html_safe %>"));
     <% end %>
-    $('#edit_event').modal('hide');
+    $(".modal").modal("hide");
     flash_success("<%= flash[:success] %>");
 <% end %>

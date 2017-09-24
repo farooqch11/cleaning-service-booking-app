@@ -9,6 +9,12 @@
   .col-md-6.col-sm-6
     %h2 Jobs
 .row
+  .comments-env
+    .comment-filters
+      = link_to "All" , admin_jobs_path
+      - Event.statuses.collect do |s|
+        = link_to s[0].humanize , admin_jobs_path
+.row
   .col-md-6.col-sm-6
     = link_to raw('<i class="entypo-plus"></i>New Job') , new_admin_event_path , remote: true , class: 'btn btn-md btn-primary btn-icon icon-left pull-left', style: 'margin-top: 15px !important;'
   .col-md-6.col-sm-6
