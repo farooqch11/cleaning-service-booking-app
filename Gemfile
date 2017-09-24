@@ -59,7 +59,7 @@ gem 'time_difference'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'puma', '~> 3.0'
-# gem 'active_model_serializers', '0.9.3'
+gem 'active_model_serializers', '0.9.3'
 
 group :development do
   gem 'happy_seed'
