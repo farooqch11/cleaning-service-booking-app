@@ -62,44 +62,12 @@ function addZero(temp)
 {
     return (temp > 9 ? temp : '0'+temp);
 }
-function ampm(date){
-    console.log(date);
-    var hh = date.getHours();
-    var mm = date.getMinutes();
-    var mon = date.getMonth();
-    var day = date.getDay();
-    var year = date.getYear();
-    return (addZero(year)+'/'+addZero(mon)+'/'+addZero(day)+' '+addZero(hh)+':'+addZero(mm));
-}
+
 function setEventEndDateTime(){
     var value           =  $('#event_job_duration').val();
     var duration_type   =  $('#event_job_duration_type').val();
-    var start_date      = $('#event_start').val();
-    var d1        = new Date($('#event_start').val());
-    console.log()
     var d2        = moment($('#event_start').val());
-    console.log()
-    //var unixtime        =  d1.getTime();
-    //var endUnixTime     = 0;
-    //console.log(unixtime);
-    //console.log(value);
-    //console.log(duration_type);
-    //if(duration_type == 'hours')
-    //{
-    //    endUnixTime = unixtime + value * (60 * 60 * 1000);
-    //    d2.setHours ( d1.getHours() + value );
-    //}else if(duration_type == 'minutes')
-    //{
-    //    endUnixTime = unixtime + value * 60 * 100;
-    //    d2.setMinutes ( d1.getMinutes() + value );
-    //
-    //}else if(duration_type == 'days'){
-    //    endUnixTime = unixtime + value * (60 * 60 * 24 * 1000);
-    //    d2.setDay ( d1.getDay() + value );
-    //
-    //}
-    //
-    //$('#event_end').val(ampm(d1));
+    $('#event_end').val(d2.add(value,duration_type).format('YYYY/MM/DD HH:mm'));
 }
 function bootstrapWizard()
 {

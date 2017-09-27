@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui.min
 //= require moment.min
+//= require moment-timezone
 //= require bootstrap
 //= require d3.v3
 //= require jquery.sparkline.min
