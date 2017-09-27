@@ -41,3 +41,6 @@
 
 //= require neon-custom
 //= require neon-demo
+//= require data-confirm-modal
+
+//= require backend/admin/custom

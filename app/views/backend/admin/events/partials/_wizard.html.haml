@@ -109,7 +109,7 @@
             = f.number_field :job_duration , class: "form-control"
         .col-md-4
           .form-group
-            = f.select :job_duration_type, options_for_select(Event.job_duration_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+            = f.select :job_duration_type, Event.job_duration_types.collect { |s| [s[0].humanize, s[0]] }, {} , class: "form-control"
       %hr
       .row
         .col-md-12
@@ -117,14 +117,14 @@
             %label.control-label{:for => "full_name"}
               Start
               %span.text-danger *
-            = f.text_field :start, class: 'form-control input-sm start_hidden  datetimepicker' , label: false
+            = f.text_field :start, class: 'form-control input-sm start_date' , label: false , required: true
       .row
         .col-md-12
           .form-group
             %label.control-label{:for => "full_name"}
               End
               %span.text-danger *
-            = f.text_field :end, class: 'form-control input-sm end_hidden datetimepicker' , label: false
+            = f.text_field :end, class: 'form-control input-sm end_date' , label: false
       %hr
       .row
         .col-md-12
@@ -144,7 +144,7 @@
         .col-md-12.recurring_end_at.hidden
           .form-group
             %label.control-label{:for => "End Recurrence"}
-            = f.text_area :recurring_end_at, class: 'form-control input-sm datetimepicker' , label: false
+            = f.text_field :recurring_end_at, class: 'form-control input-sm datetimepicker' , label: false
     #tab2-5.tab-pane
       .row
         .col-md-12
@@ -174,7 +174,12 @@
           Next
           %i.entypo-right-open
 :javascript
-
+  $('#event_job_duration').on('change',function(){
+    setEventEndDateTime();
+  });
+  $('#event_job_duration_type').on('change',function(){
+    setEventEndDateTime();
+  });
   $('#event_recurring').on('change',function(){
     if($('#event_recurring').val() == "null"){
     $('.end_recurrence').addClass('hidden');
