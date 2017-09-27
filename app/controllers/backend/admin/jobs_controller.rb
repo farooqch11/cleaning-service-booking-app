@@ -5,10 +5,11 @@ class Backend::Admin::JobsController < Backend::Admin::AdminsController
   def index
     @search    = Job.where(parent_id: nil).order(created_at: :asc).search(params[:q])
     @jobs = @search.result.paginate(page: params[:page], per_page: 10) || []
+
   end
 
   def show
-
+    @parent_job = @job.root.children.paginate(page: params[:page], per_page: 10) || []
   end
 
   def edit

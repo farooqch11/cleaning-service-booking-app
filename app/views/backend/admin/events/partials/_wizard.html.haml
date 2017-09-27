@@ -126,12 +126,12 @@
               %span.text-danger *
             = f.text_field :end, class: 'form-control input-sm end_hidden datetimepicker' , label: false
       %hr
-      .row
+      .row{class: "#{(@event.new_record? || (!@event.recurring? || !@event.parent_id.nil? || !@event.children.nil?  ? 'hidden' : ''))}"}
         .col-md-12
           .form-group
             %label.control-label{:for => "Recurrence"} Recurrence
             = f.select_recurring :recurring , nil,allow_blank: true  , data: {"validate": "required" , "message-required": "This is custom message for required field."} , html: {class: "form-control" }
-      .row.end_recurrence{class: "#{(@event.new_record? || !@event.recurring? ? 'hidden' : '')}"}
+      .row.end_recurrence{class: "#{(@event.new_record? || (!@event.recurring? || !@event.parent_id.nil? || !@event.children.nil?  ? 'hidden' : ''))}"}
         .col-md-12
           .form-group
             %label.control-label{:for => "End Recurrence"} End Recurrence
