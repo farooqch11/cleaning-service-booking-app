@@ -117,8 +117,8 @@
         / available classes "right-aligned"
         %li.active
           %a{"aria-expanded" => "true", "data-toggle" => "tab", :href => "#v-job"} Job
-        %li
-          %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#v-recurrence"} Recurring
+        -#%li
+        -#  %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#v-recurrence"} Recurring
         %li
           %a{"aria-expanded" => "false", "data-toggle" => "tab", :href => "#v-messages"} Cost Items
         %li
@@ -126,7 +126,7 @@
       .tab-content
         #v-job.tab-pane.active
           = render 'backend/admin/jobs/partials/job_tab'
-        #v-recurrence.tab-pane
+        -##v-recurrence.tab-pane
           -#= render 'backend/admin/jobs/partials/recurrence_tab'
         #v-messages.tab-pane
           %p When be draw drew ye. Defective in do recommend suffering. House it seven in spoil tiled court. Sister others marked fat missed did out use. Alteration possession dispatched collecting instrument travelling he or on. Snug give made at spot or late that mr.

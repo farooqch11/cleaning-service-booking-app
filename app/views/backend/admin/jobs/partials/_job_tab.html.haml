@@ -1,119 +1,412 @@
-#tab_job_detail.main-min.new-job-fields.ml28.fleft.tab-pane.pos-rel{:style => "display: block;"}
-  .cost-item-price-block
-    %span.displayCostItem &#xA3;0.00
-    %a.fontf6.font-bold.mt5.dis-iblock.select_cost{:href => "#"} Cost Items
-  .full-width.mb12
-    .dis-inline
-    %h2#name.full-width.actual-h2.mb16.item-name-content
-      %b= @job.title
-    .full-width.mb16
-      %span.mr10.font80 Job ID
-      %span.font-bold.user-comment-name= @job.job_id
-    .full-width.mb16.font-bold.user-comment-name= @job.employee.full_name rescue "--"
-    -#.full-width.mb16
-      .min130.mr10.fleft
-        .full-width.mb22
-          .mt5.min180.mr10.fleft.dd-statuses-container
-            .font4d.full-width
-              .status-popup.for-scheduler.fleft.mb12
-                #job-status-value.anchor.status-anchor.full-width.fleft
-                  %span.item-inner.status-inner{"data-status-id" => "30023"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color:#F9A326"}
-                    %span.font-bold.fleft.ellipsis.status-name Scheduled
-                .full-width.dropdown-items.statuses{:style => "border:1px solid #ccc"}
-                  %span.item-inner.status-inner{"data-status-id" => "30022"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #875019"}
-                    %span.font-bold.fleft.ellipsis.status-name Pending
-                  %span.item-inner.status-inner{"data-status-id" => "30036"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: "}
-                    %span.font-bold.fleft.ellipsis.status-name External
-                  %span.item-inner.status-inner{"data-status-id" => "30023"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #F9A326"}
-                    %span.font-bold.fleft.ellipsis.status-name Scheduled
-                  %span.item-inner.status-inner{"data-status-id" => "30024"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #008AE6"}
-                    %span.font-bold.fleft.ellipsis.status-name Travelling
-                  %span.item-inner.status-inner{"data-status-id" => "30026"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #9CCD50"}
-                    %span.font-bold.fleft.ellipsis.status-name Completed
-                  %span.item-inner.status-inner{"data-status-id" => "30029"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #FF2600"}
-                    %span.font-bold.fleft.ellipsis.status-name Cancelled
-                  %span.item-inner.status-inner{"data-status-id" => "30025"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #BE4A9B"}
-                    %span.font-bold.fleft.ellipsis.status-name In progress
-                  %span.item-inner.status-inner{"data-status-id" => "30027"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #999999"}
-                    %span.font-bold.fleft.ellipsis.status-name On hold
-                  %span.item-inner.status-inner{"data-status-id" => "30028"}
-                    %span.mr10.fleft.mb-2
-                      %i.status-bubble{:style => "background-color: #F7E037"}
-                    %span.font-bold.fleft.ellipsis.status-name Attention
-          .ml28.fleft.mt5.dd-priorities-container
-            .font4d.full-width
-              .status-popup.for-scheduler.fleft.mb12.min160
-                %span.font80.mr10.fleft Priority
-                .priority.full-width.fleft
-                  %span.priority-item
-                    %span.font-bold.fleft{"priority-value" => "Urgent"} Urgent
-                .full-width.dropdown-items.priorities{:style => "border: 1px solid #ccc"}
-                  %span.item-inner.priority-item
-                    %span.font-bold.fleft.ellipsis{"priority-value" => "Normal"} Normal
-                  %span.item-inner.priority-item
-                    %span.font-bold.fleft.ellipsis{"priority-value" => "Low"} Low
-                  %span.item-inner.priority-item
-                    %span.font-bold.fleft.ellipsis{"priority-value" => "Urgent"} Urgent
-                    %span.mr10.fleft
-                      %i.red-dang{:style => "width: 14px; height: 13px;"}
-    -#%div
-    -#.mt5.fleft
-    -#.full99line.mb22.mt20
-    -#.full-width.font80 Job duration
-    -#%div
-    -#  .full-width.mt5.font-bold
-    -#    3
-    -#    %span{:style => "text-transform: capitalize"} hours
-    -#%div
-    -#.full-width.mb22
-    -#.full99line.mb22
-    -#.full-width.font80 Site address
-    -#%div
-    -#.full-width.mt5.font-bold Liberty Market
-    -#.full-width.mt5.font-bold Lahore
-    -#.full-width.mt5.font-bold Punjab
-    -#.full-width.mt5.font-bold 54000
-    -#.mt20
-    -#.full99line.mb22
-    -#.full-width.font80 Job contact
-    -#%div
-    -#  .full-width.mt5.font-bold
-    -#  %span
-    -#    .full-width.mt5.font-bold 03338184261
-    -#  %span
-    -#    .full-width.mt5.font-bold 03338184261
-    -#  %span
-    -#    .full-width.mt5.mb22.font-bold
-    -#.full-width.mt5.mb22.font-bold
-    -#.full-width.mb20
-    -#  %span.full-width.font80 Assigned to
-    -#  %p#lastWorker{:style => "display:none", :workerid => "2688", :workername => "Bart Senkbeil"}
-    -#  .full-width.mb22.font-bold
-    -#    Bart Senkbeil
-    -#    %br
-    -#  .full-width.mt20{:style => "margin-top: -20px"}
-    -#    %span.full-width.font80 Scheduled date
-    -#    %br
-    -#      Sat, 09 Sep 2017 - 20:15
-    -#      %input#job-schedule-time{:type => "hidden", :value => "Sat, 09 Sep 2017 - 20:15"}
-    -#        %span.font80.mr16
-    -#          %i until
-    -#        Sun, 10 Sep 2017 - 04:30
+- content_for :stylesheets do
+  :css
+        .main-min {
+          width: 600px;
+        }
+        .ml28 {
+          margin-left: 28px;
+        }
+        .fleft {
+          float: left;
+        }
+        .pos-rel {
+          position: relative;
+        }
+        .min130 {
+          min-width: 130px;
+          display: inline-block;
+        }
+        .mr10 {
+          margin-right: 10px;
+        }
+        .fleft {
+          float: left;
+        }
+        .cost-item-price-block {
+          position: absolute;
+          text-align: center;
+          z-index: 5;
+          right: -1.5%;
+          top: 10px;
+          min-width: 100px;
+        }
+        .cost-item-price-block span {
+          background-color: #f2ddff;
+          padding: 1px 10px;
+          color: #fff;
+          font-size: 40px;
+          font-weight: 100;
+          display: block;
+        }
+        .fontf6 {
+          color: #f16522;
+        }
+        .font-bold {
+          font-weight: 600;
+        }
+        .mt5 {
+          margin-top: 5px;
+        }
+        .dis-iblock {
+          display: inline-block;
+        }
+        a {
+          text-decoration: none;
+          font-family: 'proxima-nova', helvetica;
+        }
+        .mb12 {
+          margin-bottom: 12px;
+        }
+        .full-width {
+          width: 100%;
+          float: left;
+          position: relative;
+        }
+        .item-name-content {
+          max-width: 410px;
+        }
+        .actual-h2 {
+          font-size: 25px;
+          color: #4d4d4d;
+          font-weight: 300;
+        }
+        .mb16 {
+          margin-bottom: 16px;
+        }
+        .font80 {
+          color: #808080;
+        }
+        .mr10 {
+          margin-right: 10px;
+        }
+        .font-bold {
+          font-weight: 600;
+        }
+        .mb22 {
+          margin-bottom: 22px;
+        }
+        .mt20 {
+          margin-top: 20px;
+        }
+        .full99line {
+          height: 1px;
+          float: left;
+          background-color: #e6e6e6;
+          width: 100%;
+        }
+      .main-min {
+        width: 600px;
+      }
+      .ml28 {
+        margin-left: 28px;
+      }
+      .fleft {
+        float: left;
+      }
+      .pos-rel {
+        position: relative;
+      }
+      .min130 {
+        min-width: 130px;
+        display: inline-block;
+      }
+      .mr10 {
+        margin-right: 10px;
+      }
+      .fleft {
+        float: left;
+      }
+      .cost-item-price-block {
+        position: absolute;
+        text-align: center;
+        z-index: 5;
+        right: -1.5%;
+        top: 10px;
+        min-width: 100px;
+      }
+      .cost-item-price-block span {
+        background-color: #000000;
+        padding: 1px 10px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: 100;
+        display: block;
+      }
+      .fontf6 {
+        color: #f16522;
+      }
+      .font-bold {
+        font-weight: 600;
+      }
+      .mt5 {
+        margin-top: 5px;
+      }
+      .dis-iblock {
+        display: inline-block;
+      }
+      a {
+        text-decoration: none;
+        font-family: 'proxima-nova', helvetica;
+      }
+      .mb12 {
+        margin-bottom: 12px;
+      }
+      .full-width {
+        width: 100%;
+        float: left;
+        position: relative;
+      }
+      .item-name-content {
+        max-width: 410px;
+      }
+      .actual-h2 {
+        font-size: 25px;
+        color: #4d4d4d;
+        font-weight: 300;
+      }
+      .mb16 {
+        margin-bottom: 16px;
+      }
+      .font80 {
+        color: #808080;
+      }
+      .mr10 {
+        margin-right: 10px;
+      }
+      .font-bold {
+        font-weight: 600;
+      }
+      .mb22 {
+        margin-bottom: 22px;
+      }
+      .mt20 {
+        margin-top: 20px;
+      }
+      .full99line {
+        height: 1px;
+        float: left;
+        background-color: #e6e6e6;
+        width: 100%;
+      }
+      .main-min {
+        width: 600px;
+      }
+      .ml28 {
+        margin-left: 28px;
+      }
+      .fleft {
+        float: left;
+      }
+      .pos-rel {
+        position: relative;
+      }
+      .min130 {
+        min-width: 130px;
+        display: inline-block;
+      }
+      .mr10 {
+        margin-right: 10px;
+      }
+      .fleft {
+        float: left;
+      }
+      .cost-item-price-block {
+        position: absolute;
+        text-align: center;
+        z-index: 5;
+        top: 10px;
+        min-width: 100px;
+      }
+      .cost-item-price-block span {
+        background-color: #f2ddff;
+        padding: 1px 10px;
+        color: #fff;
+        font-size: 40px;
+        font-weight: 100;
+        display: block;
+      }
+      .fontf6 {
+        color: #f16522;
+      }
+      .font-bold {
+        font-weight: 600;
+      }
+      .mt5 {
+        margin-top: 5px;
+      }
+      .dis-iblock {
+        display: inline-block;
+      }
+      a {
+        text-decoration: none;
+        font-family: 'proxima-nova', helvetica;
+      }
+      .mb12 {
+        margin-bottom: 12px;
+      }
+      .full-width {
+        width: 100%;
+        float: left;
+        position: relative;
+      }
+      .item-name-content {
+        max-width: 410px;
+      }
+      .actual-h2 {
+        font-size: 25px;
+        color: #4d4d4d;
+        font-weight: 300;
+      }
+      .mb16 {
+        margin-bottom: 16px;
+      }
+      .font80 {
+        color: #808080;
+      }
+      .mr10 {
+        margin-right: 10px;
+      }
+      .font-bold {
+        font-weight: 600;
+      }
+      .mb22 {
+        margin-bottom: 22px;
+      }
+      .mt20 {
+        margin-top: 20px;
+      }
+      .full99line {
+        height: 1px;
+        float: left;
+        background-color: #e6e6e6;
+        width: 100%;
+      }
+    .main-min {
+      width: 600px;
+    }
+    .ml28 {
+      margin-left: 28px;
+    }
+    .fleft {
+      float: left;
+    }
+    .pos-rel {
+      position: relative;
+    }
+    .min130 {
+      min-width: 130px;
+      display: inline-block;
+    }
+    .mr10 {
+      margin-right: 10px;
+    }
+    .fleft {
+      float: left;
+    }
+    .rleft {
+      float: right;
+    }
+    .cost-item-price-block {
+      position: absolute;
+      text-align: center;
+      z-index: 5;
+      right: 79.5%;
+      top: 10px;
+      min-width: 100px;
+    }
+    .cost-item-price-block span {
+      background-color: #fff;
+      padding: 1px 10px;
+      color: #808080;
+      font-size: 40px;
+      font-weight: 100;
+      display: block;
+    }
+    .fontf6 {
+      color: #f16522;
+    }
+    .font-bold {
+      font-weight: 600;
+    }
+    .mt5 {
+      margin-top: 5px;
+    }
+    .dis-iblock {
+      display: inline-block;
+    }
+    a {
+      text-decoration: none;
+      font-family: 'proxima-nova', helvetica;
+    }
+    .mb12 {
+      margin-bottom: 12px;
+    }
+    .full-width {
+      width: 100%;
+      float: left;
+      position: relative;
+    }
+    .item-name-content {
+      max-width: 410px;
+    }
+    .actual-h2 {
+      font-size: 25px;
+      color: #4d4d4d;
+      font-weight: 300;
+    }
+    .mb16 {
+      margin-bottom: 16px;
+    }
+    .font80 {
+      color: #808080;
+    }
+    .mr10 {
+      margin-right: 10px;
+    }
+    .font-bold {
+      font-weight: 600;
+    }
+    .mb22 {
+      margin-bottom: 22px;
+    }
+    .mt20 {
+      margin-top: 20px;
+    }
+    .full99line {
+      height: 1px;
+      float: left;
+      background-color: #e6e6e6;
+      width: 100%;
+    }
+.row
+  %hr
+  .line
+  .col-md-12
+    %table.table.table-responsive.image-table
+      %thead
+        %tr
+          %th Job ID
+          %th Parent Id
+          %th Title
+          %th Customer
+          %th Schedule
+          %th Assigned To
+          %th Event Cost
+
+          %th.text-center Actions
+      %tbody
+        -  @parent_job.each do |job|
+          %tr
+            %td.user-thumb= job.job_id
+            %td.user-thumb= job.parent_id rescue "--"
+            %td.user-thumb= job.title
+            %td.user-thumb= job.customer.full_name rescue "--"
+            %td.user-thumb= job.duration rescue "--"
+            %td.user-thumb= job.employee.full_name rescue "--"
+            %td.user-thumb= job.total_cost rescue "--"
+            %td.text-center
+              -#= link_to 'View', admin_job_path(job),class: 'btn btn-primary'
+              = link_to 'Edit', edit_admin_event_path(job),class: 'btn btn-primary',remote: true
+    %nav.text-center-xs
+      %center
+        = will_paginate  @parent_job,:page_links => false, renderer: BootstrapPagination::Rails
