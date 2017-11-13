@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   enum cost_type: [:fixed , :hourly]
   enum recurring_type: [:never , :after ,  :on_date]
   enum priority: [:normal , :low ,  :urgent]
-  enum job_duration_type: [ :minutes ,:hours ,  :days]
+  enum job_duration_type: [:hours]
   enum status: [:pending , :external , :scheduled , :travelling , :completed , :cancelled , :in_progress , :on_hold , :attention]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
