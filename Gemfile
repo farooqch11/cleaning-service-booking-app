@@ -32,6 +32,8 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
 gem 'pry-rails', :group => :development
+gem 'jquery-datetimepicker-rails'
+gem 'draper'
 
 #------------------------------------------
 # For Mails
@@ -45,19 +47,19 @@ gem 'ransack'
 gem 'acts_as_tree'
 
 #------------------------------------------
+# Invoices & PDF
+#------------------------------------------
+gem 'invoicing'
+gem 'prawn'
+gem 'prawn-table'
+
+#------------------------------------------
 # Validations
 #------------------------------------------
 gem 'validates_timeliness', '~> 4.0'
 
 gem 'time_difference'
 
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 gem 'puma', '~> 3.0'
 gem 'active_model_serializers', '0.9.3'
 
@@ -65,12 +67,10 @@ group :development do
   gem 'happy_seed'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
