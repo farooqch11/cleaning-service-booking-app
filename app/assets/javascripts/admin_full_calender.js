@@ -33,7 +33,7 @@ function updateEvent(event){
     calendar.fullCalendar('renderEvent',  event);
 }
 function new_event(start){
-    var st = moment(start).format("DD-MM-YYYY HH:mm");
+    var st = moment(start).format("YYYY-MM-DD HH:mm");
     console.log("Start:" + st);
     $.getScript('/admin/events/new?start='+st, function() {});
 }
@@ -293,6 +293,7 @@ var neonCalendar2 = neonCalendar2 || {};
                         },
 
                     select: function (start, end) {
+
                         new_event(start);
                         calendar.fullCalendar('unselect');
                     },

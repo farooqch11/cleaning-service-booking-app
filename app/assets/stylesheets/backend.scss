@@ -16,7 +16,7 @@
 *= require bootstrap-datetimepicker
 *= require recurring_select
 *= require datetimepicker
- */
+*/
 .fc-widget-header , .fc-list-heading > .fc-widget-header {
   color: #FFF !important;
   background-color: #333 !important;
@@ -47,7 +47,7 @@
   font-size: .875rem;
   z-index: 9997;
 }
-fc-popover, .fc-unthemed .fc-popover {
+.fc-popover, .fc-unthemed .fc-popover {
   width: 250px;
   -webkit-box-shadow: none;
   box-shadow: none;
