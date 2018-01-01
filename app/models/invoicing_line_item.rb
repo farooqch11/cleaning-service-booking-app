@@ -3,4 +3,18 @@ class InvoicingLineItem < ActiveRecord::Base
 
   belongs_to :ledger_item, class_name: 'InvoicingLedgerItem'
   belongs_to :event
+
+  before_create :set_net_amount
+
+  def total_amount
+    (quantity * net_amount)
+  end
+
+  private
+
+  def set_net_amount
+    self.net_amount = self.event.event_cost
+    self.quantity   = self.event.time_diff_in_hours
+  end
+
 end

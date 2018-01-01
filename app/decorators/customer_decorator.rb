@@ -1,6 +1,9 @@
 class CustomerDecorator < ApplicationDecorator
   delegate_all
 
+  def full_name
+    "#{object.first_name} #{object.last_name}"
+  end
   def edit_link
     h.link_to 'Edit', h.edit_admin_customer_path(self), class: 'btn btn-primary' , title: 'Edit'
   end

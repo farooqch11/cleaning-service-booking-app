@@ -8,10 +8,12 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   belongs_to :sender, class_name: 'Admin'
   has_many :line_items, class_name: 'InvoicingLineItem', foreign_key: :ledger_item_id
+  has_many :events, through: :line_items
 
   accepts_nested_attributes_for :line_items
 
   before_create :set_identifier
+  before_create :calculate_net_amount
   private
 
   def due_date_after_issue_date
@@ -24,7 +26,7 @@ class InvoicingLedgerItem < ActiveRecord::Base
   end
 
   def set_identifier
-    self.identifier = SecureRandom.hex(3)
+    self.identifier = SecureRandom.hex(5)
   end
 
 

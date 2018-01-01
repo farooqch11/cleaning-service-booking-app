@@ -1,26 +1,26 @@
 %ol.breadcrumb.bc-2.hidden-print
   %li
-    %a{:href => "index.html"}
+    %a{:href => "#{root_path}"}
       %i.fa-home>
       Home
   %li
-    %a{:href => "extra-icons.html"} Extra
+    = link_to "Customer Invoices" , admin_customer_invoices_path
   %li.active
-    %strong Invoice
+    %strong= @invoice.identifier
 %br.hidden-print/
 .invoice
   .row
     .col-sm-6.invoice-left
       %a{:href => "#"}
-        %img{:alt => "", :src => "assets/images/laborator@2x.png", :width => "185"}/
+        = image_tag 'logo_1.png' , :width => "70"
     .col-sm-6.invoice-right
-      %h3 INVOICE NO. #"#{@invoice.identifier}"
-      %span= @invoice.formated_due_date
+      = @invoice.invoice_no
+      %span= @invoice.formatted_due_date
   %hr.margin/
   .row
     .col-sm-3.invoice-left
-      %h4 Client
-      John Doe
+      %h4= @invoice.recipient_type
+      = @invoice.recipient_full_name
       %br/
       Mr Nilson Otto
       %br/
@@ -31,67 +31,39 @@
       %br/
       Madrid, Spain
       %br/
-      +1 (151) 225-4183
+      = @invoice.recipient_phone
     .col-md-6.invoice-right
-      %h4 Payment Details:
-      %strong V.A.T Reg #:
-      542554(DEMO)78
+      %h4 Bank Details:
+      %strong JOANNA'S CLEANING SERVICES LTD
       %br/
-      %strong Account Name:
-      FoodMaster Ltd
+      %strong Account Number:
+      .account_number
+        96798514
       %br/
-      %strong SWIFT code:
-      45454DEMO545DEMO
+      %strong Short code:
+      09-01-28
   .margin
   %table.table.table-bordered
     %thead
       %tr
-        %th.text-center #
-        %th{:width => "60%"} Product
-        %th Quantity
-        %th Price
+        %th.text-center TITLE
+        %th DURATIONn
+        %th QTY
+        %th RATE
+        %th AMOUNT
     %tbody
-      %tr
-        %td.text-center 1
-        %td On am we offices expense thought
-        %td 1
-        %td.text-right $1,290
-      %tr
-        %td.text-center 2
-        %td Up do view time they shot
-        %td 1
-        %td.text-right $400
-      %tr
-        %td.text-center 3
-        %td Way ham unwilling not breakfast
-        %td 1
-        %td.text-right $550
-      %tr
-        %td.text-center 4
-        %td Songs to an blush woman be sorry
-        %td 1
-        %td.text-right $4020
-      %tr
-        %td.text-center 5
-        %td Luckily offered article led lasting
-        %td 1
-        %td.text-right $87
-      %tr
-        %td.text-center 6
-        %td Of as by belonging therefore suspicion
-        %td 1
-        %td.text-right $140
+      - @invoice.line_items.each do |line_item|
+        %tr
+          %td.text-center= line_item.event.title
+          %td= line_item.event.duration
+          %td= line_item.quantity
+          %td.text-right= amount_in_currency line_item.event.event_cost
+          %td.text-right= amount_in_currency line_item.total_amount
   .margin
   .row
     .col-sm-6
       .invoice-left
-        795 Park Ave, Suite 120
-        %br/
-        San Francisco, CA 94107
-        %br/
-        P: (234) 145-1810
-        %br/
-        Full Name
+        P: 07516235669
         %br/
         info@northwalescleaning.com
     .col-sm-6
@@ -99,16 +71,13 @@
         %ul.list-unstyled
           %li
             Sub - Total amount:
-            %strong $6,487
+            %strong= @invoice.formatted_net_amount
           %li
-            VAT:
-            %strong 12.9%
+            Previous Balance:
+            %strong= @invoice.previous_balance
           %li
-            Discount:
-            \-----
-          %li
-            Grand Total:
-            %strong $7,304
+            Total Due:
+            %strong= @invoice.formatted_total_amount
         %br/
         %a.btn.btn-primary.btn-icon.icon-left.hidden-print{:href => "javascript:window.print();"}
           Print Invoice

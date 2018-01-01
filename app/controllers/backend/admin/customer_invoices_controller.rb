@@ -28,7 +28,7 @@ class Backend::Admin::CustomerInvoicesController < Backend::Admin::AdminsControl
     @events.each do |event|
       @invoice.line_items.build(event: event)
     end
-    @invoice.currency = "USD"
+    @invoice.currency = "£"
     if @invoice.valid? && @invoice.save!
       flash[:success]    = "Invoice Successfully created."
       redirect_to edit_admin_customer_invoice_url(@invoice)
