@@ -40,9 +40,3 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bund
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-namespace :deploy do
-  desc "reload the database with seed data"
-  task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
-  end
-end
