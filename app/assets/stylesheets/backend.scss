@@ -121,3 +121,13 @@ padding-top: 35px!important;
   color: black;
 
 }
+
+@media print {
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+  .hide_in_pdf {
+    display:none;
+  }
+}
