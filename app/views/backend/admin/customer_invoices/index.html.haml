@@ -31,21 +31,19 @@
           %th NAME
           %th Issue Date
           %th Due Date
-          %th Sent
-          %th Status
-          %th Pending
+          -#%th Sent
+          -#%th Status
+          -#%th Pending
           %th Total
           %th.text-center Actions
       %tbody
         - @invoices.each do |invoice|
           %tr
-            %td= invoice.id
+            %td= invoice.identifier
             %td= invoice.recipient.profile_link
-            %td= invoice.issue_date
-            %td= invoice.due_date
-            %td
-            %td
-            %td
+            %td= invoice.formatted_issue_date
+            %td= invoice.formatted_due_date
+            %td= invoice.formatted_total_amount
             -#%td
             -#  %aside.user-thumb
             -#    %a{:href => "#"}

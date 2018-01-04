@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'rails', '~> 5.0.3'
-
+gem 'pg'
 #***************************
 # Layoutb & rendering
 #***************************
@@ -50,9 +50,8 @@ gem 'acts_as_tree'
 # Invoices & PDF
 #------------------------------------------
 gem 'invoicing'
-gem 'prawn'
-gem 'prawn-table'
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 #------------------------------------------
 # Validations
 #------------------------------------------
@@ -75,7 +74,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'sqlite3'
   gem 'rspec', '~> 3.5.0'
   gem 'rspec-rails', '~> 3.5.0'
   gem 'factory_girl_rails'
