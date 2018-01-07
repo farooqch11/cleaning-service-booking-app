@@ -13,7 +13,8 @@ class InvoicingLedgerItem < ActiveRecord::Base
   accepts_nested_attributes_for :line_items
 
   before_create :set_identifier
-  before_create :calculate_net_amount
+  # before_create :calculate_net_amount
+
   private
 
   def due_date_after_issue_date

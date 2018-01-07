@@ -26,6 +26,14 @@ class InvoiceDecorator < ApplicationDecorator
     object.due_date.present? ? object.due_date.strftime('%d %B %Y') : '-'
   end
 
+  def download_link
+    h.link_to 'Download', h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+                        end
+
+  def pdf_download_name
+    "JCS-#{object.identifier }.pdf"
+  end
+
   def previous_balance
     amount_in_currency(0.0)
   end

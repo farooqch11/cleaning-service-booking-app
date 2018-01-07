@@ -4,7 +4,7 @@ class CreateInvoicingLineItems < ActiveRecord::Migration
       t.references :ledger_item
       t.references :event
       #
-      # t.string   :type
+      t.string   :type
       t.decimal  :net_amount, precision: 20, scale: 4
       t.decimal  :tax_amount, precision: 20, scale: 4
       #
