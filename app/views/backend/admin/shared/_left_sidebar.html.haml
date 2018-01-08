@@ -39,10 +39,17 @@
           = link_to admin_customers_path do
             %i.entypo-users
             %span.title Customers
-        %li
-          = link_to admin_customer_invoices_path do
-            %i.entypo-users
-            %span.title Customer Invoices
+        %li.has-sub
+          = link_to '#' do
+            %i.entypo-doc-text
+            %span.title Invoices
+          %ul
+            %li
+              = link_to admin_customer_invoices_path do
+                %span.title Customer
+            %li
+              = link_to '#' do
+                %span.title Employee (Pending)
       -#  %ul.visible
       -#    %li.active
       -#      %a{:href => "index.html"}
