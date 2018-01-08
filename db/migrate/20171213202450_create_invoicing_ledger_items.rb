@@ -9,7 +9,7 @@ class CreateInvoicingLedgerItems < ActiveRecord::Migration
       t.string   :currency,      limit: 3, null: false
       t.decimal  :total_amount,  precision: 20, scale: 4
       t.decimal  :tax_amount,    precision: 20, scale: 4
-      t.string   :status,        limit: 20
+      t.integer  :status,        default: 0
 
       t.string   :identifier,    limit: 50
       t.string   :description

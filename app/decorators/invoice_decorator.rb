@@ -13,7 +13,7 @@ class InvoiceDecorator < ApplicationDecorator
     amount_in_currency(object.tax_amount)
   end
   def formatted_total_amount
-    amount_in_currency(object.calculate_total_amount)
+    amount_in_currency(object.total_amount)
   end
   def invoice_no
     h.content_tag(:h3 , "INVOICE NO. # #{object.identifier }")

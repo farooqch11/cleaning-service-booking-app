@@ -1,10 +1,12 @@
 class InvoicingLedgerItem < ActiveRecord::Base
 
+  enum status: [:pending , :paid , :cancelled]
   acts_as_ledger_item
 
   validates :period_start, :period_end , presence: true
   validate :end_after_start
   validate :due_date_after_issue_date
+  validates_inclusion_of :status, in: statuses.keys
 
   belongs_to :sender, class_name: 'Admin'
   has_many :line_items, class_name: 'InvoicingLineItem', foreign_key: :ledger_item_id
@@ -13,7 +15,7 @@ class InvoicingLedgerItem < ActiveRecord::Base
   accepts_nested_attributes_for :line_items
 
   before_create :set_identifier
-  # before_create :calculate_net_amount
+  after_create :calculate_net_amount
 
   private
 
@@ -28,6 +30,12 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   def set_identifier
     self.identifier = SecureRandom.hex(5)
+  end
+
+  def calculate_net_amount
+    total_amount = line_items.sum(:net_amount)
+    tax_amount = line_items.sum(:tax_amount)
+    self.save
   end
 
 
