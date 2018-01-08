@@ -18,7 +18,7 @@ class Event < ApplicationRecord
   validates_inclusion_of    :job_duration_type, in: job_duration_types.keys
   validates_numericality_of :event_cost       , :job_duration , :total_cost , greater_than_or_equal_to: 0.0
   validates_numericality_of :recurring_end_time,  greater_than_or_equal_to: 0
-
+  #
   validates :title, presence: true
   validates :customer, presence: true
   validates :employee, presence: true
@@ -30,9 +30,10 @@ class Event < ApplicationRecord
 
 
   attr_accessor :date_range , :is_parent_update
-  before_create :set_recurring_end_date , if: Proc.new {|event| !event.on_date? && event.recurring? && event.parent_id.nil? && event.root?}
+  before_create :set_recurring_end_date , if: Proc.new {|event| !event.on_date? && event.master?}
+  before_create :set_event_cost , if: Proc.new { |event| event.master?}
   after_create :set_job_id
-  after_save :schedule_events , if: Proc.new { |event| event.recurring? && event.recurring_changed? && event.recurring_was.empty? && event.parent_id.nil? && event.root? }
+  after_save :schedule_events , if: Proc.new { |event| event.master? && event.recurring_changed? && event.recurring_was.empty? }
 
   # def as_json(options={})
   #   # date_format = event.all_day_event? ? '%Y-%m-%d' : '%Y-%m-%dT%H:%M:%S'
@@ -51,6 +52,9 @@ class Event < ApplicationRecord
   #   )
   # end
 
+  def master?
+    recurring? &&  parent_id.nil? && root?
+  end
   def all_day_event?
     self.start == self.start.midnight && self.end == self.end.midnight ? true : false
   end
@@ -90,23 +94,13 @@ class Event < ApplicationRecord
     schedule(s_date).occurrences(e_date).map do |date|
       next if self.start == date
       child = self.children.new
-
-      child.title             = title
-      child.description       = description
-      child.recurring         = recurring
-      child.employee_id       = employee_id
-      child.customer_id       = customer_id
-      child.contact           = contact
+      self.attributes.each do |k,v|
+        next if k == 'id' || k == 'created_at' || k == 'updated_at' || k == 'parent_id' # Skip if the key is id or created_at
+        child[k] = v
+      end
       child.start             = date
       child.end               = set_end_date(date)
-      child.priority          = priority
-      child.recurring_type    = recurring_type
-
-      child.total_cost  = total_cost
-      child.cost_type  = cost_type
-
       child.save!
-
     end
   end
 
@@ -115,9 +109,9 @@ class Event < ApplicationRecord
   end
 
   def time_diff_in_hours
-    # TimeDifference.between(start, self.end).in_hours
     ((self.end - start) / 1.hour).round
   end
+
   def calendar_events(start_date)
     if recurring.empty?
       [self]
@@ -130,15 +124,21 @@ class Event < ApplicationRecord
       end
     end
   end
-  private
 
+  private
+    def total_recurring_events
+      schedule(start).occurrences(self.recurring_end_at).count
+    end
+    def set_event_cost
+        self.event_cost = hourly? ? total_cost : (total_cost * 1.0)/total_recurring_events
+    end
     def set_job_id
       self.job_id = "JCS#{id}"
       save
     end
 
     def set_recurring_end_date
-      self.recurring_end_at = after? ? schedule(start).first(recurring_end_time.to_i).last : start + 2.years
+      self.recurring_end_at = after? ? schedule(start).first(recurring_end_time.to_i).last : start + 2.month
     end
 
     def set_future_events
