@@ -1,13 +1,3 @@
-%ol.breadcrumb.bc-2.hidden-print
-  %li
-    %a{:href => "#{root_path}"}
-      %i.fa-home>
-      Home
-  %li
-    = link_to "Customer Invoices" , admin_customer_invoices_path
-  %li.active
-    %strong= @invoice.identifier
-%br.hidden-print/
 .invoice
   .row
     .col-sm-6.invoice-left
@@ -47,7 +37,7 @@
     %thead
       %tr
         %th.text-center TITLE
-        %th DURATION
+        %th DURATIONn
         %th QTY
         %th RATE
         %th AMOUNT

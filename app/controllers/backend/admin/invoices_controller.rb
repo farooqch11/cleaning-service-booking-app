@@ -1,6 +1,7 @@
 class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
 
   # before_action :get_employees , except: [:index]
+
   before_action :find_invoice , only: [:show , :download]
   def index
     @invoices = Invoice.all
@@ -11,7 +12,7 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
   end
 
   def show
-
+    render :layout => 'pdf'
   end
 
   def create

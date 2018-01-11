@@ -17,6 +17,6 @@ class CustomerDecorator < ApplicationDecorator
   end
 
   def invoices_link
-    h.link_to 'Invoices' , h.admin_customer_path(self), class: 'btn btn-primary' , title: 'Invoices'
+    h.link_to 'Invoices' , h.admin_customer_customer_invoices_path(self), class: 'btn btn-primary' , title: 'Invoices'
   end
 end
