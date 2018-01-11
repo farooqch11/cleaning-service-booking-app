@@ -4,7 +4,7 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
 
   def index
     @search    = Customer.all.search(params[:q])
-    @customers = @search.result.paginate(page: params[:page], per_page: 10) || []
+    @customers = @search.result.paginate(page: params[:page], per_page: PER_PAGE).decorate || []
   end
 
   def new
@@ -27,7 +27,6 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
       flash[:errors] = @customer.errors.full_messages
       render action: 'edit'
     end
-
   end
 
   def destroy

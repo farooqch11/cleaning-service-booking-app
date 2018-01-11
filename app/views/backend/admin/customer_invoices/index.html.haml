@@ -1,0 +1,50 @@
+%ol.breadcrumb.bc-3
+  %li
+    %a{:href => "#{admin_dashboard_path}"}
+      %i.fa-home>
+      Home
+  %li.active
+    %a{:href => "#{admin_customer_invoices_path}"} Customer Invoices
+.row
+  .col-md-6.col-sm-6
+    %h2 Customer Invoices
+.row
+  .col-md-6.col-sm-6
+    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_invoice_path}" , style: 'margin-top: 15px !important;'}
+      %i.entypo-plus
+      New Invoice
+  .col-md-6.col-sm-6
+    .search-form-contaner
+      = search_form_for @search , url: search_admin_customers_path , method: :post , class: 'search-form-full' do |f|
+        .form-group
+          = f.text_field :id_cont, class: "form-control", placeholder: "Search..."
+          %i.entypo-search
+  %br
+  %br
+  %hr
+  .line
+  .col-md-12
+    %table.table.table-responsive.image-table
+      %thead
+        %tr
+          %th ID
+          %th NAME
+          %th Issue Date
+          %th Due Date
+          -#%th Sent
+          -#%th Status
+          -#%th Pending
+          %th Total
+          %th.text-center Actions
+      %tbody
+        - @invoices.each do |invoice|
+          %tr
+            %td= invoice.identifier
+            %td= invoice.recipient.profile_link
+            %td= invoice.formatted_issue_date
+            %td= invoice.formatted_due_date
+            %td= invoice.formatted_total_amount
+            %td.text-center
+              = invoice.edit_button_link
+              = invoice.delete_button_link
+              = invoice.download_link

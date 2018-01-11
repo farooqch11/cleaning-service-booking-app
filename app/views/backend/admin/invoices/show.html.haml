@@ -1,0 +1,88 @@
+%ol.breadcrumb.bc-2.hidden-print
+  %li
+    %a{:href => "#{root_path}"}
+      %i.fa-home>
+      Home
+  %li
+    = link_to "Customer Invoices" , admin_customer_invoices_path
+  %li.active
+    %strong= @invoice.identifier
+%br.hidden-print/
+.invoice
+  .row
+    .col-sm-6.invoice-left
+      %a{:href => "#"}
+        = image_tag 'logo_1.png' , :width => "70"
+    .col-sm-6.invoice-right
+      = @invoice.invoice_no
+      %span= @invoice.formatted_due_date
+  %hr.margin/
+  .row
+    .col-sm-3.invoice-left
+      %h4= @invoice.recipient_type
+      = @invoice.recipient_full_name
+      %br/
+      Mr Nilson Otto
+      %br/
+      FoodMaster Ltd
+    .col-sm-3.invoice-left
+      %h4  
+      1982 OOP
+      %br/
+      Madrid, Spain
+      %br/
+      = @invoice.recipient_phone
+    .col-md-6.invoice-right
+      %h4 Bank Details:
+      %strong JOANNA'S CLEANING SERVICES LTD
+      %br/
+      %strong Account Number:
+      .account_number
+        96798514
+      %br/
+      %strong Short code:
+      09-01-28
+  .margin
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th.text-center TITLE
+        %th DURATION
+        %th QTY
+        %th RATE
+        %th AMOUNT
+    %tbody
+      - @invoice.line_items.each do |line_item|
+        %tr
+          %td.text-center= line_item.event.title
+          %td= line_item.event.duration
+          %td= line_item.quantity
+          %td.text-right= amount_in_currency line_item.event.event_cost
+          %td.text-right= amount_in_currency line_item.total_amount
+  .margin
+  .row
+    .col-sm-6
+      .invoice-left
+        P: 07516235669
+        %br/
+        info@northwalescleaning.com
+    .col-sm-6
+      .invoice-right
+        %ul.list-unstyled
+          %li
+            Sub - Total amount:
+            %strong= @invoice.formatted_net_amount
+          %li
+            Previous Balance:
+            %strong= @invoice.previous_balance
+          %li
+            Total Due:
+            %strong= @invoice.formatted_total_amount
+        %br/
+        %a.btn.btn-primary.btn-icon.icon-left.hidden-print{:href => "javascript:window.print();"}
+          Print Invoice
+          %i.entypo-doc-text
+         
+        %a.btn.btn-success.btn-icon.icon-left.hidden-print{:href => "mailbox-compose.html"}
+          Send Invoice
+          %i.entypo-mail

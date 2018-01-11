@@ -1,0 +1,26 @@
+!!! 5
+%html.no-js
+  %head
+    %meta{:charset => "”utf-8″"}/
+    %meta{:content => "”IE=edge”", "http-equiv" => "”X-UA-Compatible”"}/
+    %meta{:content => "”width=device-width,", "initial-scale" => "1″", :name => "”viewport”"}/
+    %title Invoices
+    -#= stylesheet_link_tag wicked_pdf_asset_base64('backend')
+    -#= wicked_pdf_javascript_include_tag 'backend'
+    = render 'backend/shared/head'
+
+  %body.page-body.page-fade
+    .page-container
+      .main-content.container
+        = yield
+  = render 'backend/shared/javascripts'
+
+-#!!! 5
+-#%html.no-js
+  = render 'backend/shared/head'
+  %body.page-body.page-fade
+    .page-container
+      .main-content
+        = yield
+        = render 'backend/shared/footer'
+    = render 'backend/shared/javascripts'

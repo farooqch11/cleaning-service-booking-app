@@ -1,0 +1,14 @@
+%h1.margin-bottom New Customer
+%ol.breadcrumb.2
+  %li
+    %a{:href => "#{admin_dashboard_path}"}
+      %i.fa-home>
+      Home
+  %li
+    %a{:href => "#{admin_customers_path}"}
+      %i.fa-users>
+      Customers
+  %li.active
+    %strong New
+%br/
+= render 'backend/admin/customer_invoices/partials/form' , invoice: @invoice

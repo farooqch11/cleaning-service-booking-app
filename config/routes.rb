@@ -23,8 +23,14 @@ Rails.application.routes.draw do
       end
       resources :customers do
         match :search, to: 'customers#index', via: [:post , :get ], on: :collection
+        resources :customer_invoices
       end
       resources :calendar
+      resources :invoices do
+        post :download
+      end
+      resources :employee_invoices
+      resources :customer_invoices
       resources :events
       resources :jobs do
         match :search, to: 'jobs#index', via: [:post , :get ], on: :collection

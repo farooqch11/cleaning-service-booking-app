@@ -11,6 +11,7 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 .idea/*
+/config/database.yml
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -23,9 +24,8 @@
 
 # Ignore application configuration
 /config/application.yml
-/config/database.yml
 
-
+/.idea/*
 
 .DS_Store
 .pryrc

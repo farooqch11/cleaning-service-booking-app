@@ -20,10 +20,10 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
 
   def create
     @event = Event.new(event_params)
-    @calendar_events = nil
+    @calendar_events = []
     if @event.save
       if @event.recurring?
-        @calendar_events = [@event] + @event.children
+        @calendar_events = [@event] + @event.children.includes(:customer , :employee)
       else
         @calendar_events = [@event]
       end

@@ -1,4 +1,10 @@
-= form_for [:admin ,@customer ] , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} do |f|
+-#= simple_form_for  [:admin ,@customer ] do |f|
+  -#= f.input :username, label: 'Your username please', error: 'Username is mandatory, please specify one'
+  -#= f.input :password, hint: 'No special characters.'
+  = f.input :email, placeholder: 'user@domain.com'
+  -#= f.input :remember_me, inline_label: 'Yes, remember me'
+  = f.button :submit , class: 'btn btn-success'
+= form_for [:admin ,@customer ] , validate: true do |f|
   .row
     .col-md-12
       .panel.panel-primary{"data-collapsed" => "0"}
@@ -41,7 +47,7 @@
                 .col-md-12
                   .form-group
                     %label.control-label{:for => "full_name"} Address
-                    =f.email_field :street , class: 'form-control' , placeholder: 'Enter street address' , data: {"validate": "required"}
+                    =f.text_field :street , class: 'form-control' , placeholder: 'Enter street address' , data: {"validate": "required"}
               .row
                 .col-md-6
                   .form-group

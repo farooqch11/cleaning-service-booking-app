@@ -1,0 +1,73 @@
+= form_for [:admin ,invoice ] , class: 'form-horizontal form-groups-bordered validate' , html: {novalidate: "novalidate"} do |f|
+  .row
+    .col-md-12
+      .panel.panel-primary{"data-collapsed" => "0"}
+        .panel-heading
+          .panel-title
+            Invoice
+          .panel-options
+            %a{"data-rel" => "collapse", :href => "#"}
+              %i.entypo-down-open
+            %a{"data-rel" => "reload", :href => "#"}
+              %i.entypo-arrows-ccw
+        .panel-body{:style => "display: block;"}
+          .tab-content
+            #tab2-1.tab-pane.active
+              .row
+                .col-md-12.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Customer
+                    = f.select :recipient_id, @customers.collect { |s| [s.full_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
+              .row
+                .col-md-6.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Period Start
+                    = f.text_field :period_start,  class: "form-control" , data: {"validate": "required"} , value: Date.today.last_month.beginning_of_month
+
+                .col-md-6.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Period End
+                    = f.text_field :period_end,  class: "form-control" , data: {"validate": "required"} , value: Date.today.last_month.end_of_month
+              .row
+                .col-md-6.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Issue Date
+                    = f.text_field :issue_date,  class: "form-control" , data: {"validate": "required"} , value: Date.today.last_month.beginning_of_month
+
+                .col-md-6.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Due Date
+                    = f.text_field :due_date,  class: "form-control" , data: {"validate": "required"} , value: Date.today.last_month.end_of_month
+
+              .row
+                .col-md-12.col-sm-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Description (Optional)
+                    =f.text_area :description , class: 'form-control' , placeholder: 'Enter Description' , data: {"validate": "required"}
+              -#.row
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Gender
+                    = f.select :gender, options_for_select(Customer.genders.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Telephone
+                    =f.text_field :phone , class: 'form-control' , placeholder: 'Enter phone' , data: {"validate": "required"}
+              -#.row
+                .col-md-12
+                  .form-group
+                    %label.control-label{:for => "full_name"} Address
+                    =f.email_field :street , class: 'form-control' , placeholder: 'Enter street address' , data: {"validate": "required"}
+              -#.row
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} City
+                    =f.text_field :city , class: 'form-control' , placeholder: 'Enter city name' , data: {"validate": "required"}
+                .col-md-6
+                  .form-group
+                    %label.control-label{:for => "full_name"} Postal Code
+                    =f.text_field :postcode , class: 'form-control' , placeholder: 'Enter postcode' , data: {"validate": "required"}
+
+        .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
+          = f.submit "Submit" , class: 'btn btn-success'
+          %button.btn{:type => "reset"} Reset

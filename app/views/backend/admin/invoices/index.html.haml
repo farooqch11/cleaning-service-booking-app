@@ -4,16 +4,16 @@
       %i.fa-home>
       Home
   %li.active
-    %a{:href => "#{admin_customers_path}"} Customers
+    %a{:href => "#{admin_invoices_path}"} Invoices
 .row
   .col-md-6.col-sm-6
-    %h2 Customers
+    %h2 Invoices
 .row
   .col-md-6.col-sm-6
-    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}" , style: 'margin-top: 15px !important;'}
+    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_invoice_path}" , style: 'margin-top: 15px !important;'}
       %i.entypo-plus
-      New Customer
-  .col-md-6.col-sm-6
+      New Invoice
+  -#.col-md-6.col-sm-6
     .search-form-contaner
       = search_form_for @search , url: search_admin_customers_path , method: :post , class: 'search-form-full' do |f|
         .form-group
@@ -27,29 +27,31 @@
     %table.table.table-responsive.image-table
       %thead
         %tr
-          %th= sort_link @search, :first_name, "Name"
-          %th Telephone
-          %th Address
-          %th Due
+          %th ID
+          %th NAME
+          %th Issue Date
+          %th Due Date
+          %th Sent
+          %th Status
+          %th Pending
           %th Total
           %th.text-center Actions
       %tbody
-        - @customers.each do |customer|
+        - @invoices.each do |customer|
           %tr
             %td
               %aside.user-thumb
                 %a{:href => "#"}
                   = image_tag customer.image ,width: '44px', class: 'img-circle'
                   %b.publisher
-                    = customer.profile_link
+                    %a{:href => "#{admin_customer_path(customer)}"}= customer.full_name
+            -#%b
+                    %em= employee.email
             %td.user-thumb= customer.phone
             %td.user-thumb= customer.full_address
-            %td= 0.0
-            %td= 0.0
             %td.text-center
-              = customer.invoices_link
-              = customer.edit_link
-              = customer.delete_link
-    %nav.text-center-xs
+              = link_to 'Edit', edit_admin_customer_path(customer),class: 'btn btn-primary'
+              = link_to 'Delete',admin_customer_path(customer), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+    -#%nav.text-center-xs
       %center
-        = will_paginate @customers,:page_links => false, renderer: BootstrapPagination::Rails
+        = will_paginate @invoices,:page_links => false, renderer: BootstrapPagination::Rails
