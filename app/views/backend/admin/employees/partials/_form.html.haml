@@ -45,11 +45,11 @@
                 .col-md-6
                   .form-group
                     %label.control-label{:for => "full_name"} Password
-                    =f.password_field :password , class: 'form-control' ,required: true , placeholder: 'Password' , data: {"validate": "required"}
+                    =f.password_field :password , class: 'form-control' , placeholder: 'Password' , data: {"validate": "required"}
                 .col-md-6
                   .form-group
                     %label.control-label{:for => "full_name"} Confirm Password
-                    =f.password_field :password_confirmation , class: 'form-control' ,required: true , placeholder: 'Confirm Password' , data: {"validate": "required"}
+                    =f.password_field :password_confirmation , class: 'form-control' , placeholder: 'Confirm Password' , data: {"validate": "required"}
         .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
           = f.submit "Submit" , class: 'btn btn-success'
           %button.btn{:type => "reset"} Reset

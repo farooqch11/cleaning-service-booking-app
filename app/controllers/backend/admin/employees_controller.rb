@@ -16,6 +16,9 @@ class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
 
 
   def update
+    employee_params.delete(:password) if employee_params[:password].blank?
+    employee_params.delete(:password_confirmation) if employee_params[:password_confirmation].blank?
+
     if @employee.update(employee_params)
       flash[:notice] = 'Employee was successfully updated.'
       redirect_to admin_employees_url

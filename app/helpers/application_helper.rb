@@ -22,4 +22,8 @@ module ApplicationHelper
   def amount_in_currency(price)
     number_to_currency(price, :unit => "£")
   end
+
+  def render_pagination collection
+    will_paginate collection,:page_links => false, renderer: BootstrapPagination::Rails
+  end
 end

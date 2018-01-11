@@ -30,8 +30,8 @@
           %th= sort_link @search, :first_name, "Name"
           %th Telephone
           %th Address
-          %th Due
-          %th Total
+          -#%th Due
+          -#%th Total
           %th.text-center Actions
       %tbody
         - @customers.each do |customer|
@@ -44,12 +44,12 @@
                     = customer.profile_link
             %td.user-thumb= customer.phone
             %td.user-thumb= customer.full_address
-            %td= 0.0
-            %td= 0.0
+            -#%td= 0.0
+            -#%td= 0.0
             %td.text-center
-              = customer.invoices_link
+              -#= customer.invoices_link
               = customer.edit_link
               = customer.delete_link
     %nav.text-center-xs
       %center
-        = will_paginate @customers,:page_links => false, renderer: BootstrapPagination::Rails
+        = render_pagination @customers
