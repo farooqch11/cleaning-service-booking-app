@@ -1,8 +1,10 @@
 class InvoiceDecorator < ApplicationDecorator
   delegate_all
   decorates_association :recipient
-  def amount_in_currency(price)
-    h.number_to_currency(price, :unit => "£")
+  decorates_association :line_items
+
+  def delete_button_link
+    h.link_to 'Delete', [:admin , self], class: 'btn btn-primary',method: :delete , remote: true
   end
 
   def formatted_net_amount
@@ -28,7 +30,11 @@ class InvoiceDecorator < ApplicationDecorator
 
   def download_link
     h.link_to 'Download', h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
-                        end
+  end
+
+  def download_button
+    h.link_to h.content_tag(:i , '' , class: 'entypo-download'), h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+  end
 
   def pdf_download_name
     "JCS-#{object.identifier }.pdf"
@@ -36,6 +42,14 @@ class InvoiceDecorator < ApplicationDecorator
 
   def previous_balance
     amount_in_currency(0.0)
+  end
+
+  def modal_form
+    h.render 'backend/admin/invoices/partials/modal' , invoice: self
+  end
+
+  def row
+    h.render 'backend/admin/invoices/partials/table_row' , invoice: self
   end
 
 end

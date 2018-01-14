@@ -1,0 +1,9 @@
+%tr{id: "invoice-#{invoice.id}"}
+  %td= invoice.recipient.profile_link
+  %td= invoice.formatted_issue_date
+  %td= invoice.formatted_due_date
+  %td= invoice.formatted_total_amount
+  %td.text-center
+    = invoice.edit_button_link
+    = invoice.delete_button_link
+    = invoice.download_link

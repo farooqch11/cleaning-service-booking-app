@@ -1,0 +1,3 @@
+- if flash[:success].present?
+  $("#invoice-#{@invoice.id}").remove();
+  flash_success("#{flash[:success]}");

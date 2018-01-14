@@ -9,14 +9,16 @@ class InvoicingLedgerItem < ActiveRecord::Base
   validates_inclusion_of :status, in: statuses.keys
 
   belongs_to :sender, class_name: 'Admin'
-  has_many :line_items, class_name: 'InvoicingLineItem', foreign_key: :ledger_item_id
+  has_many :line_items, class_name: 'InvoicingLineItem', foreign_key: :ledger_item_id , dependent: :destroy
   has_many :events, through: :line_items
 
-  accepts_nested_attributes_for :line_items
-
+  before_validation :set_currency
   before_create :set_identifier
   after_create :calculate_net_amount
 
+  accepts_nested_attributes_for :line_items
+
+  default_scope -> {order created_at: :desc}
   private
 
   def due_date_after_issue_date
@@ -34,8 +36,12 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   def calculate_net_amount
     total_amount = line_items.sum(:net_amount)
-    tax_amount = line_items.sum(:tax_amount)
+    tax_amount   = line_items.sum(:tax_amount)
     self.save
+  end
+
+  def set_currency
+    self.currency ='£'
   end
 
 

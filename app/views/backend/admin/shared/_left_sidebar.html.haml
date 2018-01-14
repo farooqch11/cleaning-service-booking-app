@@ -39,11 +39,11 @@
           = link_to admin_customers_path do
             %i.entypo-users
             %span.title Customers
-        %li.has-sub
-          = link_to '#' do
+        %li
+          = link_to admin_customer_invoices_path do
             %i.entypo-doc-text
             %span.title Invoices
-          %ul
+          -#%ul
             %li
               = link_to admin_customer_invoices_path do
                 %span.title Customer

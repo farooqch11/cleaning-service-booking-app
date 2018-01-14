@@ -5,15 +5,15 @@
     %meta{:content => "”IE=edge”", "http-equiv" => "”X-UA-Compatible”"}/
     %meta{:content => "”width=device-width,", "initial-scale" => "1″", :name => "”viewport”"}/
     %title Invoices
-    -#= stylesheet_link_tag wicked_pdf_asset_base64('backend')
-    -#= wicked_pdf_javascript_include_tag 'backend'
-    = render 'backend/shared/head'
+    = stylesheet_link_tag wicked_pdf_asset_base64('backend.scss')
+    = wicked_pdf_javascript_include_tag 'backend'
+    -#= render 'backend/shared/head'
 
   %body.page-body.page-fade
     .page-container
-      .main-content.container
+      .main-content
         = yield
-  = render 'backend/shared/javascripts'
+  -#= render 'backend/shared/javascripts'
 
 -#!!! 5
 -#%html.no-js

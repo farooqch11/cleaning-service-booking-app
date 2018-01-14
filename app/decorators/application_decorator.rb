@@ -8,4 +8,9 @@ class ApplicationDecorator < Draper::Decorator
   def self.collection_decorator_class
     PaginatingDecorator
   end
+
+  def amount_in_currency(price)
+    h.number_to_currency(price, :unit => "£")
+  end
+
 end

@@ -1,11 +1,7 @@
 class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
 
-  # before_action :get_employees , except: [:index]
 
-  before_action :find_invoice , only: [:show , :download]
-  def index
-    @invoices = Invoice.all
-  end
+  before_action :find_invoice , only: [:show , :download , :destroy ,  :edit , :show]
 
   def new
     @invoice = Invoice.new
@@ -16,7 +12,35 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
   end
 
   def create
+    @invoice = current_user.invoices.new(invoice_params)
+    load_events.each do |event|
+      @invoice.line_items.build(event: event)
+    end
+    respond_to do |format|
+      if @invoice.save
+        flash.now[:success] = 'Invoice was successfully created.'
+        format.html { redirect_to @invoice }
+        format.json { render action: 'show', status: :created, location: @invoice }
+        format.js   { }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        format.js   { render json: @invoice.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
+
+  def destroy
+    respond_to do |format|
+      if @invoice.destroy
+        flash.now[:success] = 'Successfully Deleted.'
+        format.html { redirect_to :back}
+        format.js   { }
+      else
+        format.js   { }
+      end
+    end
   end
 
   def download
@@ -37,5 +61,13 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
     @employees = Employee.all
   end
 
+  def invoice_params
+    params.require(:invoice).permit(:recipient_id, :issue_date , :due_date , :description , :period_start , :period_end)
+  end
+
+  def load_events
+    # @events = find_recipient.events.where("created_at >= ? and created_at <= ? " , invoice_params[:period_start] , invoice_params[:period_end]) || []
+    @events = Event.all
+  end
 
 end

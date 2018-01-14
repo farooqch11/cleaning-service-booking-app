@@ -36,6 +36,7 @@ gem 'jquery-datetimepicker-rails'
 gem 'draper'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'best_in_place', '~> 3.0.1'
 
 #------------------------------------------
 # For Mails

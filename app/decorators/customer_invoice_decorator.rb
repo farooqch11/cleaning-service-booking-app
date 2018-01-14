@@ -4,10 +4,6 @@ class CustomerInvoiceDecorator < InvoiceDecorator
     h.link_to 'Edit', h.edit_admin_customer_invoice_path(self), class: 'btn btn-primary' , title: 'Edit'
   end
 
-  def delete_button_link
-    h.link_to 'Delete', h.admin_customer_invoice_path(self), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
-  end
-
   def recipient_full_name
     recipient.full_name
   end
@@ -19,4 +15,9 @@ class CustomerInvoiceDecorator < InvoiceDecorator
   def recipient_type
     "Client"
   end
+
+  def modal_title
+    object.new_record? ? 'Create Customer Invoice' : 'Edit Customer Invoice'
+  end
+
 end

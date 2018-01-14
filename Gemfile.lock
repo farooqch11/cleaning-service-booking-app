@@ -82,6 +82,9 @@ GEM
     autoprefixer-rails (7.2.4)
       execjs
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -482,6 +485,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (= 0.9.3)
   acts_as_tree
+  best_in_place (~> 3.0.1)
   better_errors
   bh
   binding_of_caller

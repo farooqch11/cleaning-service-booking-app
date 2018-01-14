@@ -1,0 +1,41 @@
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1" , id: "#{invoice.new_record? ? 'new_invoice' : 'edit_invoice'}"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4#myModalLabel.modal-title= invoice.modal_title
+      = form_for([:admin ,invoice ] , as: :invoice, remote: true, html: {class: 'ajax validate' ,role: :form, 'data-model': 'invoice'}) do |f|
+        .modal-body
+          .form-group
+            = f.label :customer, class: 'control-label'
+            %br/
+            = f.select :recipient_id, @recipients.collect { |s| [s.full_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
+            %span.help-block
+          .form-group
+            = f.label :period_start, class: 'control-label'
+            %br/
+            = f.text_field :period_start, class: 'form-control' , data: {"validate": "required" ,"message-required": "This is custom message for required field."}
+            %span.help-block
+          .form-group
+            = f.label :period_end, class: 'control-label'
+            %br/
+            = f.text_field :period_end, class: 'form-control datepicker' , data: {"format": 'D, dd MM yyyy'}
+            %span.help-block
+          .form-group
+            = f.label :issue_date, class: 'control-label'
+            %br/
+            = f.text_field :issue_date, class: 'form-control'
+            %span.help-block
+          .form-group
+            = f.label :due_date, class: 'control-label'
+            %br/
+            = f.text_field :due_date, class: 'form-control'
+            %span.help-block
+          .form-group
+            = f.label :description, class: 'control-label'
+            %br/
+            = f.text_area :description, class: 'form-control'
+            %span.help-block
+        .modal-footer
+          = f.button "Submit", class: "btn btn-large btn-danger", "data-disable-with" => "Submitting.."
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

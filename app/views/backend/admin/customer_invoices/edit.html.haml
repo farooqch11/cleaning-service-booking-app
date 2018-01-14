@@ -1,14 +1,277 @@
-%h1.margin-bottom New Customer
-%ol.breadcrumb.2
-  %li
-    %a{:href => "#{admin_dashboard_path}"}
-      %i.fa-home>
-      Home
-  %li
-    %a{:href => "#{admin_customers_path}"}
-      %i.fa-users>
-      Customers
-  %li.active
-    %strong New
+.row
+  .profile-env
+    %header.row
+      .col-sm-2
+        %a.profile-picture{:href => "#"}
+          = image_tag @customer.image , class: 'img-responsive img-circle'
+      .col-sm-7
+        %ul.profile-info-sections
+          %li
+            .profile-name
+              %strong
+                %a{:href => "#"}= @customer.full_name
+              / User statuses available classes "is-online", "is-offline", "is-idle", "is-busy"
+              %span
+                %a{:href => "#"} Customer at Joanna
+          -#%li
+            .profile-stat
+              %h3 643
+              %span
+                %a{:href => "#"} Jobs
+          -#%li
+            .profile-stat
+              %h3 108
+              %span
+                %a{:href => "#"} Closed
+      .col-sm-3
+        .profile-buttons
+          %a.btn.btn-default{:href => "#"}
+            %i.entypo-user-add
+            Preview
+          = @invoice.download_button
+    %section.profile-info-tabs
+      .row
+        .col-sm-offset-2.col-sm-10
+          %ul.user-details
+            %li
+              %a{:href => "#"}
+                %i.entypo-location
+                = @customer.full_address
+            -#%li
+            -#  %a{:href => "#"}
+            -#    %i.entypo-suitcase
+            -#    Works as
+            -#    %span= @customer.role
+            %li
+              %a{:href => "#"}
+                %i.entypo-calendar
+                = @customer.created_at.strftime('%d %B')
+          %ul.nav.nav-tabs
+            -#%li.active
+              %a{:href => "#profile-info"} Profile
+            -#%li
+              %a{:href => "#biography"} Bio
+            -#%li
+              %a{:href => "#profile-edit"} Edit Profile
+    -#%section.profile-feed
+      / profile post form
+      %form.profile-post-form{:method => "post"}
+        %textarea.form-control.autogrow{:placeholder => "What's on your mind?", :style => "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 80px;"}
+        .form-options
+          .post-type
+            %a.tooltip-primary{"data-original-title" => "Upload a Picture", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#", :title => ""}
+              %i.entypo-camera
+            %a.tooltip-primary{"data-original-title" => "Attach a file", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#", :title => ""}
+              %i.entypo-attach
+            %a.tooltip-primary{"data-original-title" => "Check-in", "data-placement" => "bottom", "data-toggle" => "tooltip", :href => "#", :title => ""}
+              %i.entypo-location
+          .post-submit
+            %button.btn.btn-primary{:type => "button"} POST
+      / profile stories
+      .profile-stories
+        %article.story
+          %aside.user-thumb
+            %a{:href => "#"}
+              %img.img-circle{:alt => "", :src => "assets/images/thumb-1@2x.png", :width => "44"}/
+          .story-content
+            / story header
+            %header
+              .publisher
+                %a{:href => "#"} Art Ramadani
+                posted a status update
+                %em 3 hours ago
+              .story-type
+                %i.entypo-feather
+            .story-main-content
+              %p Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Greatly who affixed suppose but enquire compact prepare all put. Added forth chief trees but rooms think may.
+            / story like and comment link
+            %footer
+              %a.liked{:href => "#"}
+                %i.entypo-heart
+                Liked
+                %span (8)
+              %a{:href => "#"}
+                %i.entypo-comment
+                Comment
+                %span (12)
+              / story comments
+              %ul.comments
+                %li
+                  .user-comment-thumb
+                    %img.img-circle{:alt => "", :src => "assets/images/thumb-2@2x.png", :width => "30"}/
+                  .user-comment-content
+                    %a.user-comment-name{:href => "#"}
+                      Arlind Nushi
+                    Tolerably earnestly middleton extremely distrusts she boy now not. Add and offered prepare how cordial two promise. Add and offered prepare how cordial two promise.
+                    .user-comment-meta
+                      %a.comment-date{:href => "#"} January 4 at 1:11am
+                      \-
+                      %a{:href => "#"}
+                        %i.entypo-heart
+                        Like
+                        %span (2)
+                      \-
+                      %a{:href => "#"}
+                        %i.entypo-comment
+                        Reply
+                %li
+                  .user-comment-thumb
+                    %img.img-circle{:alt => "", :src => "assets/images/thumb-1@2x.png", :width => "30"}/
+                  .user-comment-content
+                    %a.user-comment-name{:href => "#"}
+                      Sherry William
+                    Extremity direction existence as dashwoods do up. Securing marianne led welcomed offended but offering six raptures. Conveying concluded newspaper rapturous oh at.
+                    .user-comment-meta
+                      %a.comment-date{:href => "#"} January 3 at 6:42pm
+                      \-
+                      %a.liked{:href => "#"}
+                        %i.entypo-heart
+                        Liked
+                      \-
+                      %a{:href => "#"}
+                        %i.entypo-comment
+                        Reply
+                %li
+                  .user-comment-thumb
+                    %img.img-circle{:alt => "", :src => "assets/images/thumb-3@2x.png", :width => "30"}/
+                  .user-comment-content
+                    %a.user-comment-name{:href => "#"}
+                      Harold Bella
+                    Mean if he they been no hold mr. Is at much do made took held help. Latter person am secure of estate genius at.
+                    .user-comment-meta
+                      %a.comment-date{:href => "#"} January 2 at 3:25pm
+                      \-
+                      %a{:href => "#"}
+                        %i.entypo-heart
+                        Like
+                      \-
+                      %a{:href => "#"}
+                        %i.entypo-comment
+                        Reply
+                %li.comment-form
+                  .user-comment-thumb
+                    %img.img-circle{:alt => "", :src => "assets/images/thumb-1@2x.png", :width => "30"}/
+                  .user-comment-content
+                    %textarea.form-control.autogrow{:placeholder => "Write a comment...", :style => "overflow: hidden; word-wrap: break-word; resize: horizontal; height: 46px;"}
+                    %button.btn
+                      %i.entypo-chat
+            / separator
+            %hr/
+        %article.story
+          %aside.user-thumb
+            %a{:href => "#"}
+              %img.img-circle{:alt => "", :src => "assets/images/thumb-3@2x.png", :width => "44"}/
+          .story-content
+            / story header
+            %header
+              .publisher
+                %a{:href => "#"} Daniel Smith
+                checked in at
+                %a{:href => "#"} Laborator
+                %em Yesterday
+              .story-type
+                %i.entypo-location
+            .story-main-content
+              #sample-checkin.map-checkin{:style => "height: 180px; width: 100%;"}
+            / story like and comment link
+            %footer
+              %a{:href => "#"}
+                %i.entypo-heart
+                Like
+              %a{:href => "#"}
+                %i.entypo-comment
+                Comment
+            %hr/
+        %article.story
+          %aside.user-thumb
+            %a{:href => "#"}
+              %img.img-circle{:alt => "", :src => "assets/images/thumb-2@2x.png", :width => "44"}/
+          .story-content
+            / story header
+            %header
+              .publisher
+                %a{:href => "#"} Virginia Lacey
+                uploaded 4 new photos to album
+                %a{:href => "#"} Timeline Photos
+                %em 2 days ago
+              .story-type
+                %i.entypo-location
+            .story-main-content
+              .row
+                .col-sm-5
+                  %a{:href => "#"}
+                    %img.img-responsive.img-rounded.full-width{:src => "assets/images/timeline-image-1.png"}/
+                .col-sm-3
+                  %a{:href => "#"}
+                    %img.img-responsive.img-rounded.full-width{:src => "assets/images/timeline-image-1.png"}/
+                .col-sm-4
+                  %a{:href => "#"}
+                    %img.img-responsive.img-rounded.full-width.margin-bottom{:src => "assets/images/timeline-image-1.png"}/
+                  %a{:href => "#"}
+                    %img.img-responsive.img-rounded.full-width{:src => "assets/images/timeline-image-1.png"}/
+            / story like and comment link
+            %footer
+              %a{:href => "#"}
+                %i.entypo-heart
+                Like
+                %span (25)
+              %a{:href => "#"}
+                %i.entypo-comment
+                Comment
+                %span (13)
+        .text-center
+          %a.btn.btn-default.btn-icon.icon-left{:href => "#"}
+            %i.entypo-hourglass
+            Load More …
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %br/
-= render 'backend/admin/customer_invoices/partials/form' , invoice: @invoice
+.row
+  %br
+  %br
+  %hr
+  .line
+  .col-md-12
+    %table.table.table-responsive.image-table
+      %thead
+        %tr
+          %th Title
+          %th Assigned To
+          %th Start
+          %th Qty
+          %th Rate
+          %th Status
+          %th.text-center Actions
+      %tbody
+        - @events.each do |job|
+          %tr
+            %td.user-thumb= job.title
+            %td.user-thumb= job.employee.full_name rescue "--"
+            %td.user-thumb= job.formatted_start_date
+            %td.user-thumb= job.time_diff_in_hours
+            %td.user-thumb= job.formatted_event_cost
+            %td= best_in_place [:admin , job], :status, :as => :select , url: [:admin,job] , collection: Event.statuses.keys.map { |w| [w, w.humanize] } ,  :ok_button => 'Save', :cancel_button => 'Cancel'
+            %td.text-center
+              = job.edit_link
+    %nav.text-center-xs
+      %center
+        = render_pagination @events
