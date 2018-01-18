@@ -51,6 +51,13 @@ class Event < ApplicationRecord
   #   super(:only => [:id, :title , :start , :end]
   #   )
   # end
+  class << self
+    Event.statuses.keys.each do |key|
+      define_method("not_#{key}") do
+        where.not(status: key)
+      end
+    end
+  end
 
   def master?
     recurring? &&  parent_id.nil? && root?

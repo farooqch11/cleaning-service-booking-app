@@ -244,8 +244,6 @@ GEM
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     ice_cube (0.16.2)
-    invoicing (1.0.1)
-      rails (>= 3.2.13)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -516,7 +514,6 @@ DEPENDENCIES
   haml-rails
   happy_seed
   ice_cube
-  invoicing
   jbuilder (~> 2.5)
   jquery-datetimepicker-rails
   jquery-rails

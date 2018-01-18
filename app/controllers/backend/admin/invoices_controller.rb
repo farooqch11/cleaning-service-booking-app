@@ -1,7 +1,7 @@
 class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
 
 
-  before_action :find_invoice , only: [:show , :download , :destroy ,  :edit , :show]
+  before_action :find_invoice , only: [:show , :download , :destroy ,  :edit , :show , :update]
 
   def new
     @invoice = Invoice.new

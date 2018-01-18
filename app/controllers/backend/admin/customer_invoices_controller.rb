@@ -12,6 +12,20 @@ class Backend::Admin::CustomerInvoicesController < Backend::Admin::InvoicesContr
     @events = @invoice.events.includes(:customer , :employee).paginate(page: params[:page], per_page: PER_PAGE).decorate || []
   end
 
+  def update
+    @invoice.line_items.each do |line_item|
+      line_item.set_net_amount_quantity
+      line_item.save
+    end
+    @invoice.total_amount = @invoice.events.not_cancelled.sum(:event_cost)
+    if @invoice.save!
+      flash[:success] = "Invoice was successfully updated."
+    else
+      flash[:errors] = @invoice.errors.full_messages
+    end
+    redirect_to :back
+  end
+
   def new
     @invoice = current_user.customer_invoices.new.decorate
   end

@@ -1,7 +1,7 @@
 class InvoicingLedgerItem < ActiveRecord::Base
 
   enum status: [:pending , :paid , :cancelled]
-  acts_as_ledger_item
+  # acts_as_ledger_item
 
   validates :period_start, :period_end , presence: true
   validate :end_after_start
@@ -19,6 +19,14 @@ class InvoicingLedgerItem < ActiveRecord::Base
   accepts_nested_attributes_for :line_items
 
   default_scope -> {order created_at: :desc}
+
+  def calculate_net_amount
+    self.total_amount = events.not_cancelled.sum(:event_cost)
+    self.tax_amount   = 0.0
+    self.save!
+  end
+
+
   private
 
   def due_date_after_issue_date
@@ -32,12 +40,6 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   def set_identifier
     self.identifier = SecureRandom.hex(5)
-  end
-
-  def calculate_net_amount
-    total_amount = line_items.sum(:net_amount)
-    tax_amount   = line_items.sum(:tax_amount)
-    self.save
   end
 
   def set_currency

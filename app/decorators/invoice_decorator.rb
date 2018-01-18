@@ -7,6 +7,10 @@ class InvoiceDecorator < ApplicationDecorator
     h.link_to 'Delete', [:admin , self], class: 'btn btn-primary',method: :delete , remote: true
   end
 
+  def save_link
+    h.link_to 'Save', [:admin , self], class: 'btn btn-primary',method: :put
+  end
+
   def formatted_net_amount
     amount_in_currency(object.net_amount)
   end
@@ -34,6 +38,10 @@ class InvoiceDecorator < ApplicationDecorator
 
   def download_button
     h.link_to h.content_tag(:i , '' , class: 'entypo-download'), h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+  end
+
+  def updated_button
+    h.link_to "Save",[:admin , self], class: 'btn btn-primary' , method: :put
   end
 
   def pdf_download_name
