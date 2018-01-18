@@ -35,7 +35,8 @@ class Event < ApplicationRecord
   after_create :set_job_id
   after_save :schedule_events , if: Proc.new { |event| event.master? && event.recurring_changed? && event.recurring_was.empty? }
 
-  # def as_json(options={})
+  scope :monthly , -> lambda { where("created_at >= ? and created_at <= ? " , lambda.to_date.beginning_of_month , lambda.to_date.end_of_month )}
+  # def as_json(options={}
   #   # date_format = event.all_day_event? ? '%Y-%m-%d' : '%Y-%m-%dT%H:%M:%S'
   #   #
   #   # json.id event.id

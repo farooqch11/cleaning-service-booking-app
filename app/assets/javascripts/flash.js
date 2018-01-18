@@ -5,7 +5,8 @@ function flash(color , msg , icon){
         var opts = {
             "closeButton": true,
             "debug": false,
-            "positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+            //"positionClass": rtl() || public_vars.$pageContainer.hasClass('right-sidebar') ? "toast-top-left" : "toast-top-right",
+            "positionClass": "toast-top-right",
             "toastClass": "black",
             "onclick": null,
             "showDuration": "300",

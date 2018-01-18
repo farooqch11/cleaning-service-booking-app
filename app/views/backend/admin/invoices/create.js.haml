@@ -1,3 +1,9 @@
-$('#invoice_table').prepend("#{ j @invoice.decorate.row }");
-$('#new_invoice').modal_success();
-flash_success("#{flash[:success]}");
+- if flash[:success].present?
+  $('#invoice_table').prepend("#{ j @invoice.decorate.row }");
+  $('#new_invoice').modal_success();
+  flash_success("#{flash[:success]}");
+- else
+  $('#new_invoice').clear_previous_errors();
+  - @invoice.errors.full_messages.each do |error|
+    flash_error("#{error}");
+    -#$('#new_invoice').show_error_message("#{error}", "#{msg}");
