@@ -41,7 +41,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def updated_button
-    h.link_to "Save",[:admin , self], class: 'btn btn-primary' , method: :put
+    h.link_to "Save Changes",[:admin , self], class: 'btn btn-primary' , method: :put
   end
 
   def pdf_download_name

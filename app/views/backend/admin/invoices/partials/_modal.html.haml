@@ -12,24 +12,19 @@
             = f.select :recipient_id, @recipients.collect { |s| [s.full_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
             %span.help-block
           .form-group
-            = f.label :period_start, class: 'control-label'
+            = f.label "Invoicing Month", class: 'control-label'
             %br/
             = f.text_field :period_start, class: 'form-control' , data: {"validate": "required" ,"message-required": "This is custom message for required field."}
             %span.help-block
           .form-group
-            = f.label :period_end, class: 'control-label'
-            %br/
-            = f.text_field :period_end, class: 'form-control datepicker' , data: {"format": 'D, dd MM yyyy'}
-            %span.help-block
-          .form-group
             = f.label :issue_date, class: 'control-label'
             %br/
-            = f.text_field :issue_date, class: 'form-control'
+            = f.text_field :issue_date, class: 'form-control datepicker'
             %span.help-block
           .form-group
             = f.label :due_date, class: 'control-label'
             %br/
-            = f.text_field :due_date, class: 'form-control'
+            = f.text_field :due_date, class: 'form-control datepicker'
             %span.help-block
           .form-group
             = f.label :description, class: 'control-label'
