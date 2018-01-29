@@ -46,6 +46,7 @@
         %th AMOUNT
     %tbody
       - @invoice.line_items.each do |line_item|
+        - next if line_item.event.cancelled?
         %tr
           %td.text-center= line_item.event.title
           %td= line_item.event.formatted_start_date
