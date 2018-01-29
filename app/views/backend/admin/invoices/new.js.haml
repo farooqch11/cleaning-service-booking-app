@@ -1,5 +1,5 @@
 console.log("New Customer Invoice");
 $('#remote_container').empty().html("#{ j @invoice.modal_form }");
 $('#new_invoice').modal('show');
-$('.datepicker').datepicker();
-$('#invoice_period_start').datepicker({minViewMode: 1,calendarWeeks: true,autoclose: true,todayHighlight: true,toggleActive: true});
+$('#invoice_period_start').datepicker({format: 'dd/mm/yyyy' , minViewMode: 1,calendarWeeks: true,autoclose: true,todayHighlight: true,toggleActive: true});
+$('.datepicker').datepicker( { format: 'dd/mm/yyyy' } );

@@ -2,12 +2,12 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   enum status: [:pending , :paid , :cancelled]
   # acts_as_ledger_item
-
   validates_date :period_end, :after => :period_start # Method symbol
-  # validates_date :due_date, :after => :issue_date # Method symbol
+  validates_date :due_date, :on_or_after => :issue_date # Method symbol
   # validates_date :period_end, :on_or_before => lambda { Date.current }
   # validates_date :period_start, :on_or_before => lambda { Date.current }
 
+  validates :period_end , :due_date  ,:period_start ,  :issue_date  , presence: true
   validates_inclusion_of :status, in: statuses.keys
 
   belongs_to :sender, class_name: 'Admin'
@@ -34,8 +34,8 @@ class InvoicingLedgerItem < ActiveRecord::Base
   private
 
   def set_invoice_period
-      self.period_start = self.period_start.beginning_of_month
-      self.period_end = self.period_start.end_of_month
+      self.period_start = self.period_start.beginning_of_month if not period_start.nil?
+      self.period_end = self.period_start.end_of_month if not period_start.nil?
   end
 
   def set_identifier
