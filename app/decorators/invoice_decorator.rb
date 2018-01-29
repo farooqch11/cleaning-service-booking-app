@@ -12,7 +12,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def formatted_net_amount
-    amount_in_currency(object.net_amount)
+    amount_in_currency(object.total_amount)
   end
 
   def formatted_tax_amount
