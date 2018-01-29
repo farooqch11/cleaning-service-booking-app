@@ -45,7 +45,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def pdf_download_name
-    "JCS-#{object.identifier }.pdf"
+    "JCS-#{object.id} - #{invoice.recipient.full_name} - #{invoice.issue_date.strftime("%B %d, %Y")}.pdf"
   end
 
   def previous_balance
