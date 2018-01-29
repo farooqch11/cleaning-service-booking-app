@@ -5,7 +5,8 @@
     %meta{:content => "”IE=edge”", "http-equiv" => "”X-UA-Compatible”"}/
     %meta{:content => "”width=device-width,", "initial-scale" => "1″", :name => "”viewport”"}/
     %title Invoices
-    = stylesheet_link_tag wicked_pdf_asset_base64('backend.scss')
+    -#= stylesheet_link_tag wicked_pdf_asset_base64('backend.scss')
+    = stylesheet_link_tag "http://#{request.host_with_port}/#{asset_path('backend.scss')}" , rel: "stylesheet" , media: "all"
     = wicked_pdf_javascript_include_tag 'backend'
     -#= render 'backend/shared/head'
 

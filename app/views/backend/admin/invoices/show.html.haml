@@ -1,3 +1,6 @@
+%a.btn.btn-success.btn-icon.icon-left.hidden-print.pull-right.margin-bottom{:href => "javascript:window.print();"}
+  Print Invoice
+  %i.entypo-doc-text
 .invoice
   .row
     .col-sm-6.invoice-left
@@ -47,8 +50,8 @@
           %td.text-center= line_item.event.title
           %td= line_item.event.formatted_start_date
           %td= line_item.quantity
-          %td.text-right= amount_in_currency line_item.event.event_cost
-          %td.text-right= amount_in_currency line_item.total_amount
+          %td.text-right= "£ " + line_item.event.event_cost.to_s
+          %td.text-right= "£ " + line_item.total_amount.to_s
   .margin
   .row
     .col-sm-6
@@ -69,10 +72,3 @@
             Total Due:
             %strong= @invoice.formatted_total_amount
         %br/
-        %a.btn.btn-primary.btn-icon.icon-left.hidden-print{:href => "javascript:window.print();"}
-          Print Invoice
-          %i.entypo-doc-text
-         
-        %a.btn.btn-success.btn-icon.icon-left.hidden-print{:href => "mailbox-compose.html"}
-          Send Invoice
-          %i.entypo-mail

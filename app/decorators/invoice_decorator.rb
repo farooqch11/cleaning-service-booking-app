@@ -22,7 +22,7 @@ class InvoiceDecorator < ApplicationDecorator
     amount_in_currency(object.total_amount)
   end
   def invoice_no
-    h.content_tag(:h3 , "INVOICE NO. # #{object.identifier }")
+    h.content_tag(:h3 , "INVOICE NO. # JSC-#{object.id }")
   end
   def formatted_issue_date
     object.issue_date.present? ? object.issue_date.strftime('%B %d, %Y') : '-'
@@ -33,11 +33,15 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def download_link
-    h.link_to 'Download', h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+    h.link_to 'Print', h.admin_invoice_path(self), class: 'btn btn-primary' , target: "_blank"
   end
 
   def download_button
     h.link_to h.content_tag(:i , '' , class: 'entypo-download'), h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+  end
+
+  def preview_button
+    h.link_to "Preview", h.admin_invoice_path(self), class: 'btn btn-default'
   end
 
   def updated_button

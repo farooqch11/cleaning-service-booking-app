@@ -13,9 +13,6 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
 
   def create
     @invoice = current_user.invoices.new(invoice_params)
-    load_events.each do |event|
-      @invoice.line_items.build(event: event)
-    end
     respond_to do |format|
       if @invoice.save
         flash.now[:success] = 'Invoice was successfully created.'
@@ -23,6 +20,7 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
         format.json { render action: 'show', status: :created, location: @invoice }
         format.js   { }
       else
+        puts @invoice.errors.full_messages
         format.html { render action: 'new' }
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
         format.js   { render json: @invoice.errors, status: :unprocessable_entity }
@@ -44,7 +42,7 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
   end
 
   def download
-    html = render_to_string(:action => :show, :layout => "pdf.html.haml")
+    html = render_to_string(:action => :show, :layout => "pdf.html.haml" , encoding: 'utf8')
     pdf = WickedPdf.new.pdf_from_string(html)
     send_data(pdf,
               :filename => @invoice.pdf_download_name,
