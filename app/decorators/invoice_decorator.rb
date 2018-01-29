@@ -41,7 +41,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def preview_button
-    h.link_to "Preview", h.admin_invoice_path(self), class: 'btn btn-default'
+    h.link_to "Preview", h.admin_invoice_path(self), class: 'btn btn-default', target: "_blank"
   end
 
   def updated_button
