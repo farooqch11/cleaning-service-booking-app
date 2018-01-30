@@ -12,17 +12,16 @@
       %h4= @invoice.recipient_type
       = @invoice.recipient_full_name
       %br/
-      Mr Nilson Otto
+      = @invoice.recipient.email
       %br/
-      FoodMaster Ltd
     .col-sm-3.invoice-left
       %h4  
-      1982 OOP
+      = @invoice.recipient.street
       %br/
-      Madrid, Spain
+      = @invoice.recipient.city
       %br/
       = @invoice.recipient_phone
-    .col-md-6.invoice-right
+    .col-sm-6.invoice-right
       %h4 Bank Details:
       %strong JOANNA'S CLEANING SERVICES LTD
       %br/

@@ -7,7 +7,16 @@
     -#= stylesheet_link_tag 'backend'
     -#= stylesheet_link_tag "http://#{request.host_with_port}#{asset_path('backend.scss')}" , rel: "stylesheet" , media: "all"
     = wicked_pdf_javascript_include_tag 'backend'
-
+    :css
+      body{
+        color: #303641;
+      }
+      .table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+          background-color: #f5f5f6;
+          border-bottom-width: 0px;
+          color: #303641;
+          border-bottom: 0 !important;
+      }
   %body.page-body
     .main-content
       = yield
