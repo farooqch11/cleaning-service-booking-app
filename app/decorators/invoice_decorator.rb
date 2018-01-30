@@ -53,7 +53,7 @@ class InvoiceDecorator < ApplicationDecorator
 
   def preview_button
     _id = "invoice-" + object.id.to_s
-    h.link_to "Print", '#', class: 'btn btn-success' , onClick: "PrintElem(#{_id})"
+    h.link_to "Print", '#', class: 'btn btn-success' , onClick: "PrintElem('#{_id}')"
   end
 
   def updated_button
