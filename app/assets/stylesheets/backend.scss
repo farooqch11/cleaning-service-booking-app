@@ -139,3 +139,6 @@ padding-top: 35px!important;
   color:red;
   margin-left: 3px;
 }
+.modal.fade {
+  z-index: 10000000 !important;
+}

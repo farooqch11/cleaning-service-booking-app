@@ -4,7 +4,7 @@ class InvoiceDecorator < ApplicationDecorator
   decorates_association :line_items
 
   def delete_button_link
-    h.link_to 'Delete', [:admin , self], class: 'btn btn-primary',method: :delete , remote: true
+    h.link_to 'Delete', [:admin , self], class: 'btn btn-primary',method: :delete , remote: true , data: {:confirm => "Do you really want to delete INVOICE NO. # JSC-#{object.id }?" , commit: 'Sure!'}
   end
 
   def save_link
@@ -41,7 +41,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def preview_button
-    h.link_to "Preview", h.admin_invoice_path(self), class: 'btn btn-default', target: "_blank"
+    h.link_to "Print", '#', class: 'btn btn-default' , onClick: "PrintElem('invoice')"
   end
 
   def updated_button
