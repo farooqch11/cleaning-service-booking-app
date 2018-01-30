@@ -1,0 +1,14 @@
+.row
+  .col-md-12
+    .panel.panel-primary{"data-collapsed" => "0"}
+      .panel-heading
+        .panel-title
+          Employee Information
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.entypo-down-open
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.entypo-arrows-ccw
+      .panel-body{:style => "display: block;"}
+        .tab-content
+          #tab2-1.tab-pane.active

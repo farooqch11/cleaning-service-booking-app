@@ -20,4 +20,8 @@ class CustomerInvoiceDecorator < InvoiceDecorator
     object.new_record? ? 'Create Customer Invoice' : 'Edit Customer Invoice'
   end
 
+  def recipient_detail
+    h.render 'backend/admin/customer_invoices/partials/recipient' , invoice: self
+  end
+
 end

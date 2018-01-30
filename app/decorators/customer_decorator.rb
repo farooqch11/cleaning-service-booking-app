@@ -19,4 +19,8 @@ class CustomerDecorator < ApplicationDecorator
   def invoices_link
     h.link_to 'Invoices' , h.admin_customer_customer_invoices_path(self), class: 'btn btn-primary' , title: 'Invoices'
   end
+
+  def address
+    "#{object.street} #{object.city}"
+  end
 end

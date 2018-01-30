@@ -18,18 +18,29 @@ class InvoiceDecorator < ApplicationDecorator
   def formatted_tax_amount
     amount_in_currency(object.tax_amount)
   end
+
   def formatted_total_amount
     amount_in_currency(object.total_amount)
   end
+
   def invoice_no
     h.content_tag(:h3 , "INVOICE NO. # JSC-#{object.id }")
   end
+
   def formatted_issue_date
     object.issue_date.present? ? object.issue_date.strftime('%B %d, %Y') : '-'
   end
 
   def formatted_due_date
     object.due_date.present? ? object.due_date.strftime('%d %B %Y') : '-'
+  end
+
+  def formatted_duration
+     object.period_start.strftime('%d %B %Y') + " - " + object.period_end.strftime('%d %B %Y')
+  end
+
+  def formatted_invoicing_month
+    object.period_start.strftime('%B %Y')
   end
 
   def download_link
@@ -41,11 +52,12 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def preview_button
-    h.link_to "Print", '#', class: 'btn btn-default' , onClick: "PrintElem('invoice')"
+    _id = "invoice-" + object.id.to_s
+    h.link_to "Print", '#', class: 'btn btn-success' , onClick: "PrintElem(#{_id})"
   end
 
   def updated_button
-    h.link_to "Save Changes",[:admin , self], class: 'btn btn-primary' , method: :put
+    h.link_to "Save",[:admin , self], class: 'btn btn-primary' , method: :put
   end
 
   def pdf_download_name
@@ -64,4 +76,7 @@ class InvoiceDecorator < ApplicationDecorator
     h.render 'backend/admin/invoices/partials/table_row' , invoice: self
   end
 
+  def employee_detail
+    h.render 'backend/admin/invoices/partials/employee' , invoice: self
+  end
 end

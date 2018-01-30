@@ -1,0 +1,28 @@
+.row
+  .col-md-12
+    .panel.panel-primary{"data-collapsed" => "0"}
+      .panel-heading
+        .panel-title
+          Customer Information
+        .panel-options
+          %a{"data-rel" => "collapse", :href => "#"}
+            %i.entypo-down-open
+          %a{"data-rel" => "reload", :href => "#"}
+            %i.entypo-arrows-ccw
+      .panel-body{:style => "display: block;"}
+        .tab-content
+          #tab2-1.tab-pane.active
+            .col-md-12
+              %table.table
+                %tr
+                  %th Name
+                  %td= invoice.recipient_full_name
+                %tr
+                  %th Email
+                  %td= invoice.recipient.email
+                %tr
+                  %th Phone
+                  %td= invoice.recipient_phone
+                %tr
+                  %th Address
+                  %td= invoice.recipient.address
