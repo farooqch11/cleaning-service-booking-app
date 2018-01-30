@@ -1,7 +1,7 @@
 .row
-  .col-md-2.pull-right.margin-bottom
+  .col-md-3.pull-right.margin-bottom
+    = @invoice.download_button
     = @invoice.preview_button
-    -#= @invoice.download_button
     = @invoice.updated_button
 .row
   .col-md-6
@@ -78,9 +78,9 @@
               %nav.text-center-xs
                 %center
                   = render_pagination @events
-= render 'backend/admin/invoices/partials/invoice'
+= render 'backend/admin/invoices/partials/invoice' , hidden: true
 .row
-  .col-md-2.pull-right.margin-bottom
+  .col-md-3.pull-right.margin-bottom
+    = @invoice.download_button
     = @invoice.preview_button
-    -#= @invoice.download_button
     = @invoice.updated_button

@@ -121,15 +121,9 @@ padding-top: 35px!important;
   color: black;
 
 }
-
+//
 @media print {
-  .page-break {
-    display: block;
-    page-break-before: always;
-  }
-  .hide_in_pdf {
-    display:none;
-  }
+
 }
 .datepicker.datepicker-dropdown {
   z-index: 10000001 !important;
@@ -141,4 +135,7 @@ padding-top: 35px!important;
 }
 .modal.fade {
   z-index: 10000000 !important;
+}
+table, tr, td, th, tbody, thead, tfoot {
+  page-break-inside: avoid !important;
 }

@@ -8,7 +8,7 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def save_link
-    h.link_to 'Save', [:admin , self], class: 'btn btn-primary',method: :put
+    h.link_to h.content_tag(:i , '' , class: 'entypo-floppy'), [:admin , self], class: 'btn btn-primary', method: :put , title: "Print"
   end
 
   def formatted_net_amount
@@ -48,16 +48,16 @@ class InvoiceDecorator < ApplicationDecorator
   end
 
   def download_button
-    h.link_to h.content_tag(:i , '' , class: 'entypo-download'), h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post
+    h.link_to h.content_tag(:i , '' , class: 'entypo-download'), h.admin_invoice_download_path(self), class: 'btn btn-primary' , method: :post , title: "Download"
   end
 
   def preview_button
     _id = "invoice-" + object.id.to_s
-    h.link_to "Print", '#', class: 'btn btn-success' , onClick: "PrintElem('#{_id}')"
+    h.link_to h.content_tag(:i , '' , class: 'entypo-print'), '#', class: 'btn btn-success' , onClick: "PrintElem('#{_id}')" , title: "Print"
   end
 
   def updated_button
-    h.link_to "Save",[:admin , self], class: 'btn btn-primary' , method: :put
+    h.link_to h.content_tag(:i , '' , class: 'entypo-floppy'),[:admin , self], class: 'btn btn-primary' , method: :put , title: "Save"
   end
 
   def pdf_download_name

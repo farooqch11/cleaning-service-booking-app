@@ -1,15 +1,13 @@
 !!! 5
-%html.no-js
+%html
   %head
-    %meta{:charset => "”utf-8″"}/
-    %meta{:content => "”IE=edge”", "http-equiv" => "”X-UA-Compatible”"}/
-    %meta{:content => "”width=device-width,", "initial-scale" => "1″", :name => "”viewport”"}/
+    %meta{:charset => "utf-8"}/
     %title Invoices
-    -#= stylesheet_link_tag wicked_pdf_asset_base64('backend.scss')
-    = stylesheet_link_tag "http://#{request.host_with_port}#{asset_path('backend.scss')}" , rel: "stylesheet" , media: "all"
+    = stylesheet_link_tag wicked_pdf_asset_base64('backend.scss')
+    -#= stylesheet_link_tag 'backend'
+    -#= stylesheet_link_tag "http://#{request.host_with_port}#{asset_path('backend.scss')}" , rel: "stylesheet" , media: "all"
     = wicked_pdf_javascript_include_tag 'backend'
 
-  %body.page-body.page-fade
-    .page-container
-      .main-content
-        = yield
+  %body.page-body
+    .main-content
+      = yield

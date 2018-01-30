@@ -42,10 +42,9 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
   end
 
   def download
-    html = render_to_string(:action => :show, :layout => "pdf.html.haml" , encoding: 'utf8')
-    pdf = WickedPdf.new.pdf_from_string(html)
+    pdf = WickedPdf.new.pdf_from_string(render_to_string(:action => :show, :layout => "pdf.html.haml"))
     send_data(pdf,
-              :filename => @invoice.pdf_download_name,
+              :filename => @invoice.pdf_download_name,encoding:                       'TEXT',
               :disposition => 'attachment')
   end
 
