@@ -1,8 +1,8 @@
-.invoice.hidden{id: "invoice-#{@invoice.id}"}
+.invoice{id: "invoice-#{@invoice.id}" , class: "#{hidden ? 'hidden' : ''}"}
   .row
     .col-sm-6.invoice-left
       %a{:href => "#"}
-        = image_tag 'logo_1.png' , :width => "70"
+        = wicked_pdf_image_tag 'logo_1.png' , :width => "70"
     .col-sm-6.invoice-right
       = @invoice.invoice_no
       %span= @invoice.formatted_due_date
