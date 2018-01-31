@@ -17,8 +17,8 @@ class Backend::Admin::CustomerInvoicesController < Backend::Admin::InvoicesContr
       line_item.set_net_amount_quantity
       line_item.save
     end
-    @invoice.total_amount = @invoice.events.not_cancelled.sum(:event_cost)
-    if @invoice.save!
+    # @invoice.total_amount = @invoice.events.not_cancelled.sum(:event_cost)
+    if @invoice.calculate_net_amount
       flash[:success] = "Invoice was successfully updated."
     else
       flash[:errors] = @invoice.errors.full_messages
