@@ -25,7 +25,11 @@ class InvoicingLedgerItem < ActiveRecord::Base
   default_scope -> {order created_at: :desc}
 
   def calculate_net_amount
-    self.total_amount = events.not_cancelled.sum(:event_cost)
+    sum = 0.0
+    line_items.each do |line_item|
+      sum += line_item.total_amount
+    end
+    self.total_amount = sum
     self.tax_amount   = 0.0
     self.save!
   end

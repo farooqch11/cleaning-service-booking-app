@@ -20,6 +20,10 @@ class EventDecorator < ApplicationDecorator
     amount_in_currency(object.event_cost)
   end
 
+  def formatted_total_cost
+    amount_in_currency(object.event_cost * object.time_diff_in_hours)
+  end
+
   def formatted_start_date
     object.start.strftime('%d/%m/%Y - %H:%M')
   end

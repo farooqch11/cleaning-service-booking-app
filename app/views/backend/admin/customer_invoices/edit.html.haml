@@ -62,6 +62,7 @@
                     %th Start
                     %th Qty
                     %th Rate
+                    %th Total
                     %th Status
                     %th.text-center Actions
                 %tbody
@@ -72,6 +73,7 @@
                       %td.user-thumb= job.formatted_start_date
                       %td.user-thumb= job.time_diff_in_hours
                       %td.user-thumb= job.formatted_event_cost
+                      %td.user-thumb= job.formatted_total_cost
                       %td= best_in_place [:admin , job], :status, :as => :select , url: [:admin,job] , collection: Event.statuses.keys.map { |w| [w, w.humanize] } ,  :ok_button => 'Save', :cancel_button => 'Cancel'
                       %td.text-center
                         = job.edit_link
