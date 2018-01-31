@@ -137,7 +137,7 @@ padding-top: 35px!important;
   }
 }
 .datepicker.datepicker-dropdown {
-  z-index: 10000001 !important;
+  z-index: 100001 !important;
 }
 .form-group.required .control-label:after {
   content:"*";
@@ -145,7 +145,10 @@ padding-top: 35px!important;
   margin-left: 3px;
 }
 .modal.fade {
-  z-index: 10000000 !important;
+  z-index: 100000 !important;
+}
+.xdsoft_datetimepicker{
+  z-index: 100001 !important;
 }
 //table { page-break-inside:auto }
 //tr    { page-break-inside:avoid; page-break-after:auto }
