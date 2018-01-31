@@ -44,11 +44,12 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   def set_line_items
     puts recipient.events.count
-    _events = recipient.events.not_cancelled.where("created_at >= ? and created_at <= ? " , self.period_start , period_end)
+    _events = Event.not_cancelled.where("created_at >= ? and created_at <= ? and customer_id = ? " , self.period_start , period_end , recipient.id)
     _events.each do |event|
       self.line_items.create!({event_id: event.id})
     end
   end
+  
   def set_currency
     self.currency ='£'
   end
