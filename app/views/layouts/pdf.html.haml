@@ -17,6 +17,9 @@
           color: #303641;
           border-bottom: 0 !important;
       }
+      table, tr, td, th, tbody, thead, tfoot {
+        page-break-inside: avoid !important;
+      }
   %body.page-body
     .main-content
       = yield

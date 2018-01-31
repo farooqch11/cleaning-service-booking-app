@@ -123,6 +123,18 @@ padding-top: 35px!important;
 }
 //
 @media print {
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+  .page-break { display:block; clear:both; page-break-after:always; }
+  .hide_in_pdf {
+    display:none;
+  }
+  @page {
+    size: auto;   /* auto is the initial value */
+    margin: 25px auto;  /* this affects the margin in the printer settings */
+  }
 }
 .datepicker.datepicker-dropdown {
   z-index: 10000001 !important;
@@ -135,6 +147,5 @@ padding-top: 35px!important;
 .modal.fade {
   z-index: 10000000 !important;
 }
-table, tr, td, th, tbody, thead, tfoot {
-  page-break-inside: avoid !important;
-}
+//table { page-break-inside:auto }
+//tr    { page-break-inside:avoid; page-break-after:auto }
