@@ -31,7 +31,7 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
         flash.now[:success] = 'You have successfully created an customer.'
         format.html { redirect_to admin_customers_url }
         format.json { render action: 'show', status: :created, location: @customer }
-        format.js   { create_ajax_render @customer }
+        format.js   { create_render @customer }
       else
         puts @customer.errors.full_messages
         format.html { render action: 'new' }
