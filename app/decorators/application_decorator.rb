@@ -13,4 +13,11 @@ class ApplicationDecorator < Draper::Decorator
     h.number_to_currency(price, :unit => "£")
   end
 
+  def modal_title
+    object.new_record? ? "Create #{object.class.name}" : "Edit #{object.class.name}"
+  end
+
+  def modal
+    h.render 'backend/admin/shared/modal' , object: self
+  end
 end

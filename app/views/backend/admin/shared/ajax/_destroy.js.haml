@@ -1,0 +1,3 @@
+- if flash[:success].present?
+  $("##{dom_id(resource)}").remove();
+  flash_success("#{flash[:success]}");

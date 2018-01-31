@@ -1,0 +1,13 @@
+%tr{id: "#{dom_id(customer)}"}
+  %td
+    %aside.user-thumb
+      %a{:href => "#"}
+        = image_tag customer.image ,width: '44px', class: 'img-circle'
+        %b.publisher
+          = customer.profile_link
+  %td.user-thumb= customer.phone
+  %td.user-thumb= customer.full_address
+
+  %td.text-center
+    = customer.edit_link
+    = customer.delete_link

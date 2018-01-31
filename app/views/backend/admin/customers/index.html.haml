@@ -10,7 +10,7 @@
     %h2 Customers
 .row
   .col-md-6.col-sm-6
-    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_customer_path}" , style: 'margin-top: 15px !important;'}
+    = link_to  new_admin_customer_path , remote: true , class: 'btn btn-md btn-primary btn-icon icon-left pull-left', style: 'margin-top: 15px !important;' do
       %i.entypo-plus
       New Customer
   .col-md-6.col-sm-6
@@ -24,7 +24,7 @@
   %hr
   .line
   .col-md-12
-    %table.table.table-responsive.image-table
+    %table.table.table-responsive.image-table#remote_table
       %thead
         %tr
           %th= sort_link @search, :first_name, "Name"
@@ -35,21 +35,7 @@
           %th.text-center Actions
       %tbody
         - @customers.each do |customer|
-          %tr
-            %td
-              %aside.user-thumb
-                %a{:href => "#"}
-                  = image_tag customer.image ,width: '44px', class: 'img-circle'
-                  %b.publisher
-                    = customer.profile_link
-            %td.user-thumb= customer.phone
-            %td.user-thumb= customer.full_address
-            -#%td= 0.0
-            -#%td= 0.0
-            %td.text-center
-              -#= customer.invoices_link
-              = customer.edit_link
-              = customer.delete_link
+          = customer.row
     %nav.text-center-xs
       %center
         = render_pagination @customers

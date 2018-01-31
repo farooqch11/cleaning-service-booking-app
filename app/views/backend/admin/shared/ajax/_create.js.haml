@@ -1,0 +1,4 @@
+- if flash[:success].present?
+  $('#remote_table').prepend("#{ j resource.decorate.row }");
+  $('#remote_modal').modal_success();
+  flash_success("#{flash[:success]}");

@@ -1,0 +1,4 @@
+- if flash[:success].present?
+  $("##{dom_id(resource)}").replaceWith("#{ j resource.row }");
+  $('#remote_modal').modal_success();
+  flash_success("#{flash[:success]}");
