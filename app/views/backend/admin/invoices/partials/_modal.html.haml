@@ -9,7 +9,7 @@
           .form-group.required
             = f.label :customer, class: 'control-label'
             %br/
-            = f.select :recipient_id, @recipients.collect { |s| [s.full_name, s.id] } , {prompt: 'Select Customer(s)'} , required: true , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
+            = f.select :recipient_id, @recipients.decorate.collect { |s| [s.full_name, s.id] } , {prompt: 'Select Customer(s)'} , required: true , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
             %span.help-block
           .form-group.required
             = f.label "Invoicing Month", class: 'control-label'

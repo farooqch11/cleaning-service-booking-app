@@ -20,4 +20,13 @@ class ApplicationDecorator < Draper::Decorator
   def modal
     h.render 'backend/admin/shared/modal' , object: self
   end
+
+  def edit_link
+    h.link_to 'Edit', [:admin , self], class: 'btn btn-primary' , title: 'Edit' , remote: true
+  end
+
+  def delete_link
+    h.link_to 'Delete', [:admin , self], class: 'btn btn-primary',method: :delete, data: {confirm: "Do you really want to delete this #{object.class.name}?" , commit: "Yes" , cancel: 'No'} ,  remote: true
+  end
+
 end
