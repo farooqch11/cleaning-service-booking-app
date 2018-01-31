@@ -44,7 +44,8 @@ class InvoicingLedgerItem < ActiveRecord::Base
 
   def set_line_items
     puts recipient.events.count
-    _events = Event.not_cancelled.where("created_at >= ? and created_at <= ? and customer_id = ? " , self.period_start , self.period_end , self.recipient_id)
+    key = type == "CustomerInvoice" ? 'events.customer_id' : 'events.employee_id'
+    _events = Event.not_cancelled.where("events.created_at >= ? and events.created_at <= ? and #{key} = ? " , self.period_start , self.period_end , self.recipient_id)
     _events.each do |event|
       self.line_items.create!({event_id: event.id})
     end
