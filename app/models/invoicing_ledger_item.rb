@@ -25,11 +25,7 @@ class InvoicingLedgerItem < ActiveRecord::Base
   default_scope -> {order created_at: :desc}
 
   def calculate_net_amount
-    sum = 0.0
-    line_items.each do |line_item|
-      sum += line_item.total_amount
-    end
-    self.total_amount = sum
+    self.total_amount = line_items.total_amount || 0.0
     self.tax_amount   = 0.0
     self.save!
   end

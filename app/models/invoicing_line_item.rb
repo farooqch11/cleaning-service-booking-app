@@ -10,6 +10,10 @@ class InvoicingLineItem < ActiveRecord::Base
     (quantity * net_amount)
   end
 
+  def self.total_amount
+    sum('net_amount * quantity') || 0.0
+  end
+
   def set_net_amount_quantity
     self.net_amount = self.event.event_cost
     self.quantity   = self.event.time_diff_in_hours
