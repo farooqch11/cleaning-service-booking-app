@@ -91,8 +91,8 @@ function addZero(temp)
 function setEventEndDateTime(){
     var value           =  $('#event_job_duration').val();
     var duration_type   =  $('#event_job_duration_type').val();
-    var d2        = moment($('#event_start').val());
-    $('#event_end').val(d2.add(value,duration_type).format('YYYY/MM/DD HH:mm'));
+    var d2        = moment($('#event_start').val() , "DD/MM/YYYY");
+    $('#event_end').val(d2.add(value,duration_type).format('DD/MM/YYYY HH:mm'));
 }
 function bootstrapWizard()
 {
