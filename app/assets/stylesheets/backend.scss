@@ -136,7 +136,7 @@ padding-top: 35px!important;
     margin: 25px auto;  /* this affects the margin in the printer settings */
   }
 }
-.datepicker.datepicker-dropdown {
+.datepicker.datepicker-dropdown , .rs_dialog_holder {
   z-index: 100001 !important;
 }
 .form-group.required .control-label:after {

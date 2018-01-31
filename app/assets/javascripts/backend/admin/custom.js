@@ -3,9 +3,10 @@ var zone = "Europe/London";
 
 function setDuration()
 {
-    var d1        = new Date($('#event_start').val());
-    var d2        = new Date($('#event_end').val());
+    var d1        = momentToDate($('#event_start').val());
+    var d2        = momentToDate($('#event_end').val());
     var diffMs = (d2 - d1); // milliseconds between now & Christmas
+
     var diffDays = Math.floor(diffMs / 86400000); // days
     var diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
     var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
@@ -46,7 +47,7 @@ function setDateTimepicker(strat_date , end_date){
         },
         onShow:function( ct ){
             this.setOptions({
-                maxDate: jQuery('#event_end').val() ? jQuery('#event_end').val() : false
+                maxDate: momentToDate($('#event_end').val()) ? momentToDate($('#event_end').val()) : false
             })
         }
     });
@@ -91,8 +92,12 @@ function addZero(temp)
 function setEventEndDateTime(){
     var value           =  $('#event_job_duration').val();
     var duration_type   =  $('#event_job_duration_type').val();
-    var d2        = moment($('#event_start').val() , "DD/MM/YYYY");
+    var d2        = moment($('#event_start').val() , "DD/MM/YYYY HH:mm");
     $('#event_end').val(d2.add(value,duration_type).format('DD/MM/YYYY HH:mm'));
+}
+
+function momentToDate(date) {
+    return moment(date , 'DD/MM/YYYY HH:mm').toDate();
 }
 function bootstrapWizard()
 {
