@@ -2,6 +2,7 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
 
   before_action :set_resource ,only: [:edit ,:update , :destroy,:show]
   before_action :new_resource ,only: [:new]
+
   def index
     @search    = Customer.all.search(params[:q])
     @customers = @search.result.paginate(page: params[:page], per_page: PER_PAGE).decorate || []
