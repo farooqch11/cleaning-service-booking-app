@@ -18,7 +18,7 @@
     %ul#main-menu.main-menu
       / add class "multiple-expanded" to allow multiple submenus to open
       / class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active"
-      %li.active.opened.active.has-sub
+      %li
         %a{:href => "#{current_user.admin? ? admin_dashboard_path : employee_dashboard_path }"}
           %i.entypo-gauge
           %span.title Dashboard

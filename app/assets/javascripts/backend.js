@@ -111,3 +111,11 @@ function PrintElem(id)
     }
 
 }(jQuery));
+
+$(function() {
+    var pgurl = window.location.pathname;
+    $("#main-menu li a").each(function() {
+        if ($(this).attr("href") == pgurl)
+            $(this).parent().addClass("active");
+    })
+});
