@@ -33,7 +33,7 @@ class Event < ApplicationRecord
   before_create :set_recurring_end_date , if: Proc.new {|event| !event.on_date? && event.master?}
   before_create :set_event_cost , if: Proc.new { |event| event.master?}
   after_create :set_job_id
-  after_save :schedule_events , if: Proc.new { |event| event.master? && event.recurring_changed? && event.recurring_was.empty? }
+  after_save :schedule_future_events , if: Proc.new { |event| event.master? && event.recurring_changed? && event.recurring_was.empty? }
 
   scope :monthly , -> lambda { where("created_at >= ? and created_at <= ? " , lambda.to_date.beginning_of_month , lambda.to_date.end_of_month )}
   # def as_json(options={}
@@ -63,6 +63,7 @@ class Event < ApplicationRecord
   def master?
     recurring? &&  parent_id.nil? && root?
   end
+
   def all_day_event?
     self.start == self.start.midnight && self.end == self.end.midnight ? true : false
   end
@@ -95,7 +96,9 @@ class Event < ApplicationRecord
   def duration
     "#{start.strftime('%d/%m/%Y - %H:%M')} #{self.end.strftime('%d/%m/%Y - %H:%M')}"
   end
-
+  def schedule_future_events
+    delay.schedule_events
+  end
   def schedule_events start_date = nil , end_date = nil
     s_date = start_date.nil? ? start : start_date
     e_date = end_date.nil? ? recurring_end_at : end_date
@@ -146,11 +149,10 @@ class Event < ApplicationRecord
     end
 
     def set_recurring_end_date
-      self.recurring_end_at = after? ? schedule(start).first(recurring_end_time.to_i).last : start + 2.month
+      self.recurring_end_at = after? ? schedule(start).first(recurring_end_time.to_i).last : start + 10.year
     end
 
     def set_future_events
-
       parent = root? ? self : root
       parent.update_columns({title: self.title  , total_cost: self.total_cost ,cost_type: self.cost_type, end: self.end , customer_id: self.customer_id , employee_id: self.employee_id , contact: self.contact , description: self.description , recurring: self.recurring})
       parent.reload

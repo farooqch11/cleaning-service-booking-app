@@ -23,7 +23,7 @@ module JoaanaCleaningService
     config.time_zone = 'Europe/London'
     config.active_record.time_zone_aware_types = [:datetime, :time]
     config.exceptions_app = self.routes
-
+    config.active_job.queue_adapter = :delayed_job
     # config.time_zone = 'Asia/Karachi'
   end
 end

@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'rails', '~> 5.0.3'
+
 gem 'pg'
 #***************************
 # Layoutb & rendering
@@ -25,7 +26,6 @@ gem 'modernizr-rails'
 gem 'meta-tags', require: 'meta_tags'
 gem 'responders', '~> 2.0'
 gem 'bh'
-gem 'simple_form'
 gem 'premailer-rails'
 gem 'figaro'
 gem 'momentjs-rails'
@@ -44,6 +44,11 @@ gem 'best_in_place', '~> 3.0.1'
 gem 'mailgun-ruby', '~>1.1.6'
 
 #------------------------------------------
+# For QUEUES AND MESSAGING
+#------------------------------------------
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.2'
+
+#------------------------------------------
 # For Searching
 #------------------------------------------
 gem 'ransack'
@@ -59,6 +64,9 @@ gem 'wkhtmltopdf-binary'
 #------------------------------------------
 gem 'validates_timeliness', '~> 4.0'
 
+#------------------------------------------
+# DATE AND TIME PROCESSING
+#------------------------------------------
 gem 'time_difference'
 
 gem 'puma', '~> 3.0'
@@ -102,6 +110,7 @@ end
 group :production do
   gem 'rails_12factor'
   gem 'lograge'
+  gem 'daemons'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
