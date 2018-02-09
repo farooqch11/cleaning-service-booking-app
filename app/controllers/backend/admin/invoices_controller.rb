@@ -8,7 +8,7 @@ class Backend::Admin::InvoicesController < Backend::Admin::AdminsController
   end
 
   def show
-    render :layout => 'pdf'
+
   end
 
   def create

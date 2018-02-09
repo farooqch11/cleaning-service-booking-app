@@ -7,8 +7,11 @@ class Backend::Admin::CustomerInvoicesController < Backend::Admin::InvoicesContr
     @invoices = @search.result.includes(:recipient).paginate(page: params[:page], per_page: PER_PAGE).decorate || []
   end
 
+  def show
+    @events = @invoice.events.includes(:customer , :employee).paginate(page: params[:page], per_page: PER_PAGE).decorate || []
+  end
+
   def edit
-    @customer = @invoice.recipient
     @events = @invoice.events.includes(:customer , :employee).paginate(page: params[:page], per_page: PER_PAGE).decorate || []
   end
 
