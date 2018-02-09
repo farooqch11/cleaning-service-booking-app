@@ -1,5 +1,5 @@
 = javascript_include_tag 'backend'
-= javascript_include_tag current_user.admin? ? 'admin_full_calender' : 'employee_full_calender'
+= javascript_include_tag current_user.admin? ? 'admin_full_calender' : 'employee_full_calender' if current_user.present?
 = render 'backend/shared/flashes'
 -#= javascript_include_tag :defaults, "rails.validations"
 = yield :javascripts

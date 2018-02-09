@@ -22,6 +22,7 @@ module JoaanaCleaningService
     # end
     config.time_zone = 'Europe/London'
     config.active_record.time_zone_aware_types = [:datetime, :time]
+    config.exceptions_app = self.routes
 
     # config.time_zone = 'Asia/Karachi'
   end

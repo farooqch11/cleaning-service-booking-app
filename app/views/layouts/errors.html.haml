@@ -1,0 +1,9 @@
+!!! 5
+%html.no-js
+  = render 'backend/shared/head'
+  %body.page-body.page-fade
+    = render 'backend/shared/chromeframe'
+    .page-container
+      .main-content
+        = yield
+    = render 'backend/shared/javascripts'

@@ -1,0 +1,12 @@
+.page-error-404
+  .error-symbol
+    %i.entypo-attention
+  .error-text
+    %h2= code
+    %p= title
+  %hr/
+  .error-text
+    %br/
+    %br/
+    .input-group.minimal
+      = link_to "Go to Home page" ,root_path , class: 'btn btn-primary btn-lg'
