@@ -5,26 +5,26 @@
         %i.entypo-users
       .num{"data-delay" => "0", "data-duration" => "1500", "data-end" => "#{Employee.all.count}", "data-postfix" => "", "data-start" => "0"}= Employee.all.count
       %h3 Employees
-      %p so far in our blog, and our website.
+      %p on our site right now.
   .col-sm-3.col-xs-6
     .tile-stats.tile-green
       .icon
-        %i.entypo-chart-bar
+        %i.entypo-users
       .num{"data-delay" => "600", "data-duration" => "1500", "data-end" => "#{Customer.all.count}", "data-postfix" => "", "data-start" => "0"}= Customer.all.count
       %h3 Customers
-      %p this is the average value.
+      %p on our site right now.
   .clear.visible-xs
   .col-sm-3.col-xs-6
     .tile-stats.tile-aqua
       .icon
-        %i.entypo-mail
+        %i.entypo-calendar
       .num{"data-delay" => "1200", "data-duration" => "1500", "data-end" => "#{Event.all.count}", "data-postfix" => "", "data-start" => "0"}= Event.all.count
       %h3 Events
-      %p messages per day.
+      %p on our site right now.
   .col-sm-3.col-xs-6
     .tile-stats.tile-blue
       .icon
-        %i.entypo-rss
-      .num{"data-delay" => "1800", "data-duration" => "1500", "data-end" => "52", "data-postfix" => "", "data-start" => "0"} 52
-      %h3 Subscribers
+        %i.entypo-doc-text
+      .num{"data-delay" => "1800", "data-duration" => "1500", "data-end" => "#{CustomerInvoice.all.count}", "data-postfix" => "", "data-start" => "0"} #{CustomerInvoice.all.count}
+      %h3 Invoices
       %p on our site right now.
