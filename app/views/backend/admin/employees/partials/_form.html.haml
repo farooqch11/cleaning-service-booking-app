@@ -1,55 +1,6 @@
-= form_for [:admin ,@employee ] , class: 'form-horizontal form-groups-bordered validate' do |f|
-  .row
-    .col-md-12
-      .panel.panel-primary{"data-collapsed" => "0"}
-        .panel-heading
-          .panel-title
-            Employee Details
-          .panel-options
-            %a{"data-rel" => "collapse", :href => "#"}
-              %i.entypo-down-open
-            %a{"data-rel" => "reload", :href => "#"}
-              %i.entypo-arrows-ccw
-        .panel-body{:style => "display: block;"}
-
-          .tab-content
-            #tab2-1.tab-pane.active
-              .row
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} First name
-                    =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name' , data: {"validate": "required"}
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Last name
-                    =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name' , data: {"validate": "required"}
-              .row
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Email
-                    =f.email_field :email , class: 'form-control' , placeholder: 'Enter email' , data: {"validate": "required"}
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Hourly Rate£
-                    =f.number_field :hourly_rate , class: 'form-control' , step: :any , placeholder: 'Enter Hourly Rate' , data: {"validate": "required"}
-              .row
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Role
-                    = f.select :role, options_for_select(User.roles.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "color"} Color
-                    =f.color_field :color , class: 'form-control'
-              .row
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Password
-                    =f.password_field :password , class: 'form-control' , placeholder: 'Password' , data: {"validate": "required"}
-                .col-md-6
-                  .form-group
-                    %label.control-label{:for => "full_name"} Confirm Password
-                    =f.password_field :password_confirmation , class: 'form-control' , placeholder: 'Confirm Password' , data: {"validate": "required"}
-        .form-group.default-padding.pull-right{style: 'margin-top: 15px;'}
-          = f.submit "Submit" , class: 'btn btn-success'
-          %button.btn{:type => "reset"} Reset
+= form_for([:admin ,employee ] , remote: true, html: {class: 'ajax validate' ,role: :form, 'data-model': 'employee'}) do |form|
+  .modal-body
+    = render 'backend/admin/employees/partials/fields' , f: form
+  .modal-footer
+    = form.button "Submit", class: "btn btn-large btn-danger", "data-disable-with" => "Submitting.."
+    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

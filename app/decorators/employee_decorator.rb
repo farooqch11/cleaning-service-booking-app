@@ -10,4 +10,15 @@ class EmployeeDecorator < ApplicationDecorator
   #     end
   #   end
 
+  def form
+    h.render 'backend/admin/employees/partials/form' , employee: self
+  end
+
+  def row
+    h.render 'backend/admin/employees/partials/table_row' , employee: self
+  end
+
+  def edit_link
+    h.link_to 'Edit', h.edit_admin_employee_path(self), class: 'btn btn-primary' , title: 'Edit' , remote: true
+  end
 end

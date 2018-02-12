@@ -1,0 +1,44 @@
+.row
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} First name
+      =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name' , data: {"validate": "required"}
+      %span.help-block
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Last name
+      =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name' , data: {"validate": "required"}
+      %span.help-block
+.row
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Email
+      =f.email_field :email , class: 'form-control' , placeholder: 'Enter email' , data: {"validate": "required"}
+      %span.help-block
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Hourly Rate£
+      =f.number_field :hourly_rate , class: 'form-control' , step: :any , placeholder: 'Enter Hourly Rate' , data: {"validate": "required"}
+      %span.help-block
+.row
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Role
+      = f.select :role, options_for_select(User.roles.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+      %span.help-block
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "color"} Color
+      =f.color_field :color , class: 'form-control'
+      %span.help-block
+.row
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Password
+      =f.password_field :password , class: 'form-control' , placeholder: 'Password' , data: {"validate": "required"}
+      %span.help-block
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Confirm Password
+      =f.password_field :password_confirmation , class: 'form-control' , placeholder: 'Confirm Password' , data: {"validate": "required"}
+      %span.help-block

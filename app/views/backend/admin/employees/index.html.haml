@@ -10,7 +10,7 @@
     %h2 Employees
 .row
   .col-md-6.col-sm-6
-    %a#add-note.btn.btn-md.btn-primary.btn-icon.icon-left.pull-left{href: "#{new_admin_employee_path}" , style: 'margin-top: 15px !important;'}
+    = link_to  new_admin_employee_path , remote: true , class: 'btn btn-md btn-primary btn-icon icon-left pull-left', style: 'margin-top: 15px !important;' do
       %i.entypo-plus
       New Employee
   .col-md-6.col-sm-6
@@ -24,7 +24,7 @@
   %hr
   .line
   .col-md-12
-    %table.table.table-responsive.image-table
+    %table.table.table-responsive.image-table#remote_table
       %thead
         %tr
           %th= sort_link @search, :first_name, "Name"
@@ -34,21 +34,7 @@
           %th.text-center Actions
       %tbody
         - @employees.each do |employee|
-          %tr
-            %td
-              %aside.user-thumb
-                %a{:href => "#{admin_employee_path(employee)}"}
-                  = image_tag employee.image ,width: '44px', class: 'img-circle'
-                  %b.publisher
-                    %a{:href => "#{admin_employee_path(employee)}"}= employee.full_name
-                  -#%b
-                    %em= employee.email
-            %td.user-thumb= employee.phone
-            %td.user-thumb= employee.full_address
-            %td= amount_in_currency employee.hourly_rate
-            %td.text-center
-              = link_to 'Edit', edit_admin_employee_path(employee),class: 'btn btn-primary'
-              = link_to 'Delete',admin_employee_path(employee), class: 'btn btn-primary',:method => :delete, data: {:confirm => "Are you sure?"}
+          = employee.row
     %nav.text-center-xs
       %center
         = will_paginate @employees,:page_links => false, renderer: BootstrapPagination::Rails

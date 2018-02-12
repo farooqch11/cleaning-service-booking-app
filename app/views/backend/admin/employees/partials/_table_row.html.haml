@@ -1,0 +1,15 @@
+%tr{id: "#{dom_id(employee)}"}
+  %td
+    %aside.user-thumb
+      %a{:href => "#{admin_employee_path(employee)}"}
+        = image_tag employee.image ,width: '44px', class: 'img-circle'
+        %b.publisher
+          %a{:href => "#{admin_employee_path(employee)}"}= employee.full_name
+          -#%br
+            %em= employee.email
+  %td.user-thumb= employee.phone
+  %td.user-thumb= employee.full_address
+  %td= amount_in_currency employee.hourly_rate
+  %td.text-center
+    = employee.edit_link
+    = employee.delete_link
