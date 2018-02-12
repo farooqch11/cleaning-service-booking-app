@@ -1,6 +1,8 @@
 -#%form#rootwizard-2.form-wizard.validate{:action => "", :method => "post"}
 - url = @event.new_record? ? admin_events_path : admin_event_path(@event)
-= simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch)  , html: { class: 'form-wizard validate'} , remote: true do |f|
+-#= form_for([:admin ,customer ] , remote: true, html: {class: 'ajax' ,role: :form, 'data-model': 'customer'}) do |form|
+
+= simple_form_for [:admin , @event] , as: :event , url: url , method: (@event.new_record? ? :post : :patch)  , html: { class: 'form-wizard validate ajax' ,  'data-model': 'event'} , remote: true do |f|
   = f.hidden_field :type , value: "Job"
   .steps-progress
     .progress-indicator
@@ -32,7 +34,8 @@
           .form-group.required
             %label.control-label{:for => "full_name"}
               Job Title
-            =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true
+            =f.text_field :title , class: 'form-control' , placeholder: 'Job Title' , required: true , data: {"validate": "required" , "message-required": "can't be blank."}
+            %span.help-block
       .row
         .col-md-6
           .form-group
@@ -63,7 +66,7 @@
           .form-group.required
             %label.control-label{:for => "customer"}
               Cutomer
-            = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , data: {"validate": "required" , "message-required": "This is custom message for required field."}
+            = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , required: true ,  data: {"validate": "required" , "message-required": "This is custom message for required field."}
       .row
         .col-md-8
           .form-group
@@ -92,11 +95,10 @@
     #tab2-3.tab-pane
       .row
         .col-md-12
-          .form-group
+          .form-group.required
             %label.control-label{:for => "full_name"}
               Assigned To
-              %span.text-danger *
-            = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control"
+            = f.select :employee_id, Employee.all.collect { |s| [s.full_name, s.id] }, {prompt: 'Select Employee(s)'} , class: "form-control" , required: true , data: {"validate": "required" , "message-required": "can't be blank."}
     #tab2-4.tab-pane
       .row
         .col-md-12
@@ -111,17 +113,15 @@
       %hr
       .row
         .col-md-12
-          .form-group
+          .form-group.required
             %label.control-label{:for => "full_name"}
               Start
-              %span.text-danger *
             = f.text_field :start, class: 'form-control input-sm start_date' , label: false , required: true
       .row
         .col-md-12
-          .form-group
+          .form-group.required
             %label.control-label{:for => "full_name"}
               End
-              %span.text-danger *
             = f.text_field :end, class: 'form-control input-sm end_date' , label: false
       %hr
       .row{class: "#{(@event.new_record? || (!@event.recurring? || !@event.parent_id.nil? || !@event.children.nil?  ? 'hidden' : ''))}"}
@@ -152,14 +152,9 @@
 
       .row
         .col-md-12
-          .form-group
+          .form-group.required
             %label.control-label{:for => "Recurrence"} Cost
             =f.number_field :total_cost , class: 'form-control' , placeholder: "#{amount_in_currency 0.0}"
-
-      -#.form-group
-        .checkbox.checkbox-replace
-          %input#chk-rules{"data-message-message" => "You must accept rules in order to complete this registration.", "data-validate" => "required", :name => "chk-rules", :type => "checkbox"}/
-          %label{:for => "chk-rules"} By registering I accept terms and conditions.
       .form-group
         %button.btn.btn-primary{:type => "submit"} Finish Registration
     %ul.pager.wizard

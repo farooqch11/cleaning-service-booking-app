@@ -1,21 +1,20 @@
 class Backend::Admin::EventsController < Backend::Admin::AdminsController
   # respond_to :json , :js , :html
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :new_resource , only: [:new]
   def index
     @calendar_events = Event.includes(:employee , :customer).where(start: params[:start]..params[:end])
     # respond_with @events ,  each_serializer: EventSerializer
+  end
+
+  def new
+
   end
 
   def show
   end
 
   def edit
-  end
-
-
-  def new
-    @event = Event.new(start: params[:start].to_time , end: params[:start].to_time + 1.hour)
   end
 
   def create
@@ -60,6 +59,10 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
   end
 
   private
+
+  def new_resource
+    @event = Event.new(start: params[:start].to_time , end: params[:start].to_time + 1.hour)
+  end
 
   def set_event
     @event = Event.find_by_id(params[:id])
