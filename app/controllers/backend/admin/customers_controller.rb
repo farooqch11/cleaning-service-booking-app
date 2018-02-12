@@ -43,7 +43,7 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
   end
 
   def set_resource
-    @customer ||=  Customer.find_by_id(params[:id]).decorate
+    @customer ||=  Customer.find(params[:id]).decorate
   end
 
   private
