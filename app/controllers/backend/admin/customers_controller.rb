@@ -53,7 +53,7 @@ class Backend::Admin::CustomersController < Backend::Admin::AdminsController
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name , :email ,:phone , :street , :city , :postcode , :gender)
+    params.require(:customer).permit(:first_name, :last_name , :email ,:phone , :street , :city , :postcode , :nickname)
   end
 
 end

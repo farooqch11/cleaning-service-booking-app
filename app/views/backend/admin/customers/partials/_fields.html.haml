@@ -1,25 +1,26 @@
 .row
-  .col-md-6
-    .form-group.required
-      %label.control-label{:for => "full_name"} First name
-      =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name'
-      %span.help-block
-  .col-md-6
-    .form-group.required
-      %label.control-label{:for => "full_name"} Last name
-      =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name'
-      %span.help-block
-.row
   .col-md-12
     .form-group.required
-      %label.control-label{:for => "full_name"} Email
-      =f.email_field :email , class: 'form-control' , placeholder: 'Enter email'
+      %label.control-label{:for => "full_name"} Nickname
+      =f.text_field :nickname , class: 'form-control' , placeholder: 'Enter nickname'
       %span.help-block
 .row
   .col-md-6
     .form-group
-      %label.control-label{:for => "full_name"} Gender
-      = f.select :gender, options_for_select(Customer.genders.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
+      %label.control-label{:for => "full_name"} First name
+      =f.text_field :first_name , class: 'form-control' , placeholder: 'Enter first name'
+      %span.help-block
+  .col-md-6
+    .form-group
+      %label.control-label{:for => "full_name"} Last name
+      =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name'
+      %span.help-block
+.row
+  .col-md-6
+    .form-group.required
+      %label.control-label{:for => "full_name"} Email
+      =f.email_field :email , class: 'form-control' , placeholder: 'Enter email'
+      %span.help-block
   .col-md-6
     .form-group
       %label.control-label{:for => "full_name"} Telephone

@@ -1,12 +1,10 @@
 class Customer < ApplicationRecord
 
-  enum gender: [:male , :female]
-  
   has_many :events
 
-  validates :first_name , :last_name  , length: {minimum: 2, maximum: 50}   , presence: true
-  validates :email   , length: {minimum: 5, maximum: 100}   , presence: true , uniqueness: true
-  validates_inclusion_of :gender, in: genders.keys
+  validates :first_name , :last_name  , length: {minimum: 2, maximum: 50}, allow_blank: true
+  validates :nickname  , length: {minimum: 2, maximum: 50}   , presence: true
+  validates :email   , length: {minimum: 5, maximum: 100}, allow_blank: true , uniqueness: true
 
 
   def image

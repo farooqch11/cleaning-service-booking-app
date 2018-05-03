@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213202451) do
+ActiveRecord::Schema.define(version: 20180503175614) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -18,16 +21,33 @@ ActiveRecord::Schema.define(version: 20171213202451) do
     t.string   "email"
     t.string   "phone"
     t.string   "image"
-    t.integer  "gender"
     t.string   "city"
     t.string   "street"
-    t.datetime "postcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "postcode"
+    t.string   "nickname"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
+    t.datetime "start"
+    t.datetime "end"
     t.string   "color"
     t.integer  "employee_id"
     t.integer  "customer_id"
@@ -45,8 +65,6 @@ ActiveRecord::Schema.define(version: 20171213202451) do
     t.string   "zip"
     t.string   "address_line"
     t.text     "recurring"
-    t.datetime "end"
-    t.datetime "start"
     t.integer  "priority",           default: 0
     t.time     "start_time"
     t.time     "end_time"
@@ -61,8 +79,8 @@ ActiveRecord::Schema.define(version: 20171213202451) do
     t.string   "job_id"
     t.float    "job_duration",       default: 1.0
     t.integer  "job_duration_type",  default: 1
-    t.index ["customer_id"], name: "index_events_on_customer_id"
-    t.index ["employee_id"], name: "index_events_on_employee_id"
+    t.index ["customer_id"], name: "index_events_on_customer_id", using: :btree
+    t.index ["employee_id"], name: "index_events_on_employee_id", using: :btree
   end
 
   create_table "invoicing_ledger_items", force: :cascade do |t|
@@ -70,10 +88,10 @@ ActiveRecord::Schema.define(version: 20171213202451) do
     t.integer  "recipient_id"
     t.string   "type"
     t.datetime "issue_date"
-    t.string   "currency",     limit: 3,                           null: false
+    t.string   "currency",     limit: 3,                                       null: false
     t.decimal  "total_amount",            precision: 20, scale: 4
     t.decimal  "tax_amount",              precision: 20, scale: 4
-    t.string   "status",       limit: 20
+    t.integer  "status",                                           default: 0
     t.string   "identifier",   limit: 50
     t.string   "description"
     t.datetime "period_start"
@@ -86,6 +104,7 @@ ActiveRecord::Schema.define(version: 20171213202451) do
   create_table "invoicing_line_items", force: :cascade do |t|
     t.integer  "ledger_item_id"
     t.integer  "event_id"
+    t.string   "type"
     t.decimal  "net_amount",     precision: 20, scale: 4
     t.decimal  "tax_amount",     precision: 20, scale: 4
     t.datetime "tax_point"
@@ -151,11 +170,11 @@ ActiveRecord::Schema.define(version: 20171213202451) do
     t.float    "hourly_rate"
     t.string   "picture"
     t.string   "color"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invitations_count"], name: "index_users_on_invitations_count"
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+    t.index ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end
