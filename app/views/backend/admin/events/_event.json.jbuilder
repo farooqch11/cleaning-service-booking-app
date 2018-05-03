@@ -11,4 +11,4 @@ json.backgroundColor event.employee.color if event.employee.present?
 json.update_url admin_event_path(event, method: :patch)
 json.edit_url edit_admin_event_path(event)
 json.employee_name event.employee.first_name if event.employee.present?
-json.customer_name event.customer.first_name if event.customer.present?
+json.customer_name event.customer.nickname if event.customer.present?
