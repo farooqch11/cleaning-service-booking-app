@@ -66,7 +66,7 @@
           .form-group.required
             %label.control-label{:for => "customer"}
               Cutomer
-            = f.select :customer_id, Customer.all.collect { |s| [s.first_name, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , required: true ,  data: {"validate": "required" , "message-required": "This is custom message for required field."}
+            = f.select :customer_id, Customer.all.collect { |s| [s.nickname, s.id] } , {prompt: 'Select Customer(s)'} , class: "form-control" , required: true ,  data: {"validate": "required" , "message-required": "This is custom message for required field."}
       .row
         .col-md-8
           .form-group
@@ -149,7 +149,11 @@
           .form-group
             %label.control-label{:for => "Recurrence"} Cost Type
             = f.select :cost_type, options_for_select(Event.cost_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
-
+      .row
+        .col-md-12
+          .form-group
+            %label.control-label{:for => "Recurrence"} Payment Type
+            = f.select :payment_type, options_for_select(Event.payment_types.collect { |s| [s[0].humanize, s[0]] }), {} , class: "form-control"
       .row
         .col-md-12
           .form-group.required

@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   enum recurring_type: [:never , :after ,  :on_date]
   enum priority: [:normal , :low ,  :urgent]
   enum job_duration_type: [:minutes , :hours , :days]
+  enum payment_type: [:transfer , :cheque , :cash]
   enum status: [:pending , :external , :scheduled , :travelling , :completed , :cancelled , :in_progress , :on_hold , :attention]
   acts_as_tree order: "created_at"
   serialize :recurring, Hash
@@ -16,6 +17,7 @@ class Event < ApplicationRecord
   validates_inclusion_of    :status           , in: statuses.keys
   validates_inclusion_of    :priority         , in: priorities.keys
   validates_inclusion_of    :job_duration_type, in: job_duration_types.keys
+  validates_inclusion_of    :payment_type, in: payment_types.keys
   validates_numericality_of :event_cost       , :job_duration , :total_cost , greater_than_or_equal_to: 0.0
   validates_numericality_of :recurring_end_time,  greater_than_or_equal_to: 0
   #
@@ -154,7 +156,7 @@ class Event < ApplicationRecord
 
     def set_future_events
       parent = root? ? self : root
-      parent.update_columns({title: self.title  , total_cost: self.total_cost ,cost_type: self.cost_type, end: self.end , customer_id: self.customer_id , employee_id: self.employee_id , contact: self.contact , description: self.description , recurring: self.recurring})
+      parent.update_columns({title: self.title  , total_cost: self.total_cost ,payment_type: self.payment_type, cost_type: self.cost_type, end: self.end , customer_id: self.customer_id , employee_id: self.employee_id , contact: self.contact , description: self.description , recurring: self.recurring})
       parent.reload
       parent.delete_future_schedule_events_from  Time.now
       parent.schedule_events  Time.now
