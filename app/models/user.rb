@@ -8,8 +8,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
-  validates :first_name , :last_name , presence: true , length: { maximum: 25 }
+  # validates :first_name , :last_name, presence: true , length: { maximum: 25 }
+  validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }
   validates_inclusion_of :status, in: statuses.keys
   validates_inclusion_of :role, in: roles.keys
   # validates_inclusion_of :role, in: roles.keys
@@ -29,7 +29,14 @@ class User < ApplicationRecord
     self.type == "Employee"
   end
   def full_name
-    "#{first_name} #{last_name}"
+    # "#{first_name} #{last_name}"
+    username
+  end
+
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    puts "Condition is: #{conditions}"
+    where(["lower(username) = :value OR lower(email) = :value", { :value => conditions[:email].downcase }]).first
   end
 
   def full_address
