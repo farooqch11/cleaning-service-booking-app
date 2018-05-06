@@ -34,7 +34,7 @@ gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
 gem 'pry-rails', :group => :development
 gem 'jquery-datetimepicker-rails'
 gem 'draper'
-gem 'jquery-rails'
+# gem 'jquery-rails' already added above
 gem 'simple_form'
 gem 'best_in_place', '~> 3.0.1'
 
@@ -114,7 +114,7 @@ group :production do
   gem 'daemons'
 end
 
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] #already added above
 gem 'nokogiri'
 gem 'devise', '~> 4.2'
 gem 'cancancan'
