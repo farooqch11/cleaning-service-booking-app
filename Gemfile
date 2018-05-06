@@ -46,7 +46,8 @@ gem 'mailgun-ruby', '~>1.1.6'
 #------------------------------------------
 # For QUEUES AND MESSAGING
 #------------------------------------------
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.2'
+gem 'delayed_job_active_record'
+# gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.2'
 
 #------------------------------------------
 # For Searching
