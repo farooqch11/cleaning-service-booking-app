@@ -9,6 +9,8 @@
       %label.control-label{:for => "full_name"} Last name
       =f.text_field :last_name , class: 'form-control' , placeholder: 'Enter last name' , data: {"validate": "required"}
       %span.help-block
+- is_new_object = f.object.new_record?
+
 .row
   .col-md-12
     .form-group.required
@@ -39,12 +41,12 @@
       %span.help-block
 .row
   .col-md-6
-    .form-group.required
+    .form-group{class: "#{is_new_object ? 'required' : ''}"}
       %label.control-label{:for => "full_name"} Password
-      =f.password_field :password , class: 'form-control' , placeholder: 'Password' , data: {"validate": "required"}
+      =f.password_field :password , class: 'form-control' , placeholder: 'Password' , data: {"validate": {class: "#{is_new_object ? 'required' : ''}"}}
       %span.help-block
   .col-md-6
-    .form-group.required
+    .form-group{class: "#{is_new_object ? 'required' : ''}"}
       %label.control-label{:for => "full_name"} Confirm Password
-      =f.password_field :password_confirmation , class: 'form-control' , placeholder: 'Confirm Password' , data: {"validate": "required"}
+      =f.password_field :password_confirmation , class: 'form-control' , placeholder: 'Confirm Password' , data: {"validate": {class: "#{is_new_object ? 'required' : ''}"}}
       %span.help-block

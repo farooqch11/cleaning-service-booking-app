@@ -14,10 +14,15 @@ class Backend::Admin::EmployeesController < Backend::Admin::AdminsController
 
 
   def update
-    employee_params.delete(:password) if employee_params[:password].blank?
-    employee_params.delete(:password_confirmation) if employee_params[:password].blank?
+    if params[:employee][:password].empty? and params[:employee][:password_confirmation].empty?
+      params[:employee].delete(:password)
+      params[:employee].delete(:password_confirmation)
+    end
+
+    puts "Password is #{employee_params}"
+
     respond_to do |format|
-      if@employee.update(employee_params)
+      if @employee.update(employee_params)
         flash.now[:success] = 'Employee was successfully updated.'
         format.html { redirect_to admin_employees_url }
         format.json { render action: 'show', status: :created, location: @employee }
