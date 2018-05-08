@@ -1,6 +1,7 @@
 class Customer < ApplicationRecord
 
-  has_many :events
+  has_many :events, dependent: :destroy
+  has_many :invoices , foreign_key: :recipient_id, class_name: 'CustomerInvoice', dependent: :destroy
 
   validates :first_name , :last_name  , length: {minimum: 2, maximum: 50}, allow_blank: true
   validates :nickname  , length: {minimum: 2, maximum: 50}   , presence: true
