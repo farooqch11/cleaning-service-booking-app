@@ -22,3 +22,20 @@
         %a.color-orange{"data-event-class" => "color-orange", :href => "#"} Event
       %li
         %a.color-primary{"data-event-class" => "color-primary", :href => "#"} Meeting
+  / Modal 4 (Confirm)
+#modal-4.modal.fade{"data-backdrop" => "static"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h2.modal-title Change Job date?
+      .modal-body
+        Change the date and time to only this job, or this and all future jobs?
+        %br
+        %br
+        %button.btn.btn-success#updateThisAndFutureChildern{:type => "button"} This and all future jobs
+        %button.btn.btn-info#updateOnlyThisJob{:type => "button"} Only This Job
+
+
+      .modal-footer
+        %button.btn.btn-danger#cancelEvent{ :type => "button"} Cancel
+

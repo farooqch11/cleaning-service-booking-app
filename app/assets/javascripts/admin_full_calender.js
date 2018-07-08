@@ -48,9 +48,11 @@ function edit_event(calEvent){
 
 function update_event(event , revertFunc){
     //dataConfirmModal.confirm({
-    //    title: 'Are you sure?',
-    //    text: 'Do you really want to update??',
-    //    commit: 'Save',
+    //    backdrop: 'static',
+    //    keyboard: false,
+    //    title: 'Change Job date?',
+    //    text: 'Change the date and time to only this job, or this and all future jobs?',
+    //    commit: 'Only This Job',
     //    cancel: 'Cancel',
     //    zIindex: 10099,
     //
@@ -74,9 +76,9 @@ function update_event(event , revertFunc){
     //        revertFunc();
     //    }
     //});
-    if (!confirm("Do you really want to update?")) {
-        revertFunc();
-    }else {
+    //if (!confirm("Do you really want to update this event?")) {
+    //    revertFunc();
+    //}else {
 
         var event_data = {
             event: {
@@ -94,6 +96,7 @@ function update_event(event , revertFunc){
                 console.log(JSON.stringify(doc , null ,2 ));
                 console.log(doc['success']);
                 if(doc.success){
+                    $("#modal-4").modal('hide');
                     flash_success(doc.message);
                     updateEvent(doc.data);
                 }else{
@@ -107,7 +110,7 @@ function update_event(event , revertFunc){
                     revertFunc();
                 }
         });
-    }
+    //}
 }
 var neonCalendar2 = neonCalendar2 || {};
 
@@ -138,7 +141,7 @@ var neonCalendar2 = neonCalendar2 || {};
             });
 
             // Highlight
-            neonCalendar2.$body.find('table tbody input[type="checkbox"]').on('change', function () {
+            neonCalendar2.$body.find('table tbody input[+="checkbox"]').on('change', function () {
                 $(this).closest('tr')[this.checked ? 'addClass' : 'removeClass']('highlight');
             });
 
@@ -184,7 +187,19 @@ var neonCalendar2 = neonCalendar2 || {};
                     },
                     eventDrop: function(event, delta, revertFunc) {
                         console.log("Event Drop: " + event.end);
-                        update_event(event , revertFunc);
+                        $("#modal-4").modal('show');
+                        $("#cancelEvent").click(function(){
+                            revertFunc();
+                            $("#modal-4").modal('hide');
+                        });
+                        $('#updateThisAndFutureChildern').click(function (){
+                            console.log("Update this Event and future only.");
+                        });
+
+                        $('#updateOnlyThisJob').click(function (){
+                            console.log("Update this Event only.");
+                            update_event(event , revertFunc);
+                        });
                     },
 
                     eventClick: function (calEvent, jsEvent, view) {
