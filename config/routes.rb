@@ -31,7 +31,9 @@ Rails.application.routes.draw do
       end
       resources :employee_invoices
       resources :customer_invoices
-      resources :events
+      resources :events do
+        post   "update_all_future_events",      as: :update_all_future_events
+      end
       resources :jobs do
         match :search, to: 'jobs#index', via: [:post , :get ], on: :collection
       end

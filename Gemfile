@@ -31,7 +31,7 @@ gem 'figaro'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
-gem 'pry-rails', :group => :development
+# gem 'pry-rails', :group => :development
 gem 'jquery-datetimepicker-rails'
 gem 'draper'
 # gem 'jquery-rails' already added above
@@ -79,6 +79,8 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'sqlite3'
+  gem 'rails_db'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

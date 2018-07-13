@@ -194,6 +194,36 @@ var neonCalendar2 = neonCalendar2 || {};
                         });
                         $('#updateThisAndFutureChildern').click(function (){
                             console.log("Update this Event and future only.");
+                            var event_data = {
+                                event: {
+                                    id: event.id,
+                                    start: moment(event.start).format("DD-MM-YYYY HH:mm"),
+                                    end: moment(event.end).format("DD-MM-YYYY HH:mm")
+                                }
+                            };
+                            $.ajax({
+                                url: " /admin/events/"+ event.id +"/update_all_future_events",
+                                dataType: 'json',
+                                data: event_data,
+                                type: 'POST',
+                                success: function(doc) {
+                                    console.log(JSON.stringify(doc , null ,2 ));
+                                    console.log(doc['success']);
+                                    if(doc.success){
+                                        $("#modal-4").modal('hide');
+                                        flash_success(doc.message);
+                                        updateEvent(doc.data);
+                                    }else{
+                                        revertFunc();
+                                        $.each(doc.errors, function (i, error) {
+                                            flash_error(error);
+                                        });
+                                    }
+                                },
+                                error: function() {
+                                    revertFunc();
+                                }
+                            });
                         });
 
                         $('#updateOnlyThisJob').click(function (){
