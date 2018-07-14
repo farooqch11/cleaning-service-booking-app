@@ -90,34 +90,51 @@ class Backend::Admin::EventsController < Backend::Admin::AdminsController
         else
           end_date = all_events.last.end
           diff_date = diffdate_in_days start_date,  Time.zone.parse(event_params[:end]).to_date
-          diff_date = diff_date * -1 if diff_date < 0
+          # diff_date = diff_date * -1 if diff_date < 0
           puts "Start Date is #{start_date}"
           puts "End date is #{end_date}"
           puts "Diff date is #{diff_date}"
           i = 1
+          _events = []
           is_terminate = true
-          while (is_terminate and diff_date > 0 and start_date <= end_date)  do
-            start_date = start_date + 7.day + diff_date.day
+          check_date = start_date
+          while (is_terminate and start_date <= end_date)  do
             puts("Inside the loop i = #{i}" )
             puts "Start Date is #{start_date}"
-            # start_date = start_date + (i * diff_date).day
-            if Event.where("parent_id = #{@event.parent_id} and events.start >= '#{start_date.beginning_of_day.strftime("%Y-%m-%d %I:%M%P")}' and events.end <= '#{start_date.end_of_day.strftime("%Y-%m-%d %I:%M%P")}'").present?
-              is_terminate = false
-              puts "terminating on  #{start_date}"
+            _event = Event.where("parent_id = #{@event.parent_id} and events.start >= '#{start_date.beginning_of_day.strftime("%Y-%m-%d %I:%M%P")}' and events.end <= '#{start_date.end_of_day.strftime("%Y-%m-%d %I:%M%P")}'")
+            if _event.present?
+              check_date = start_date + diff_date.day
+              _events.push(_event)
+              puts "Check Date is #{check_date}"
+              # start_date = start_date + (i * diff_date).day
+              if Event.where("parent_id = #{@event.parent_id} and events.start >= '#{check_date.beginning_of_day.strftime("%Y-%m-%d %I:%M%P")}' and events.end <= '#{check_date.end_of_day.strftime("%Y-%m-%d %I:%M%P")}'").present?
+                is_terminate = false
+                puts "terminating date is  #{check_date}"
+              end
             end
+            start_date = start_date + 7.day
             i = i + 1
           end
-          if not is_terminate
-            puts "Event Exist"
-          else
-            puts "Event Not Exist"
-          end
+          respond_to do |format|
+            if not is_terminate
+              puts "Event Exist"
+              format.json { render json: {success: false , errors: ["Error! Event already exist on #{check_date}"]} }
+            else
+              puts "Event Not Exist"
+              format.js do
+                flash.now[:success] = "Successfully Updated."
+                @calendar_events = []
+                _events.each do |events|
+                  events.each do |event|
+                    event.update_attributes({start:  event.start + diff_date.day, end: event.end + diff_date.day})
+                    @calendar_events.push(event)
+                  end
+                end
+              end
 
-          # if check_event_already_exist_future_day? all_events, start_date
-          #   puts "Event Exist"
-          # else
-          #   puts "Event Not Exist"
-          # end
+              format.json { render json: {success: true } }
+            end
+          end
         end
       end
     end

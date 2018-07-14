@@ -210,9 +210,13 @@ var neonCalendar2 = neonCalendar2 || {};
                                     console.log(JSON.stringify(doc , null ,2 ));
                                     console.log(doc['success']);
                                     if(doc.success){
+                                        console.log(JSON.stringify(doc, null, 2));
                                         $("#modal-4").modal('hide');
                                         flash_success(doc.message);
-                                        updateEvent(doc.data);
+                                        $.each(doc.data, function (i, event) {
+                                            updateEvent(event);
+                                        });
+
                                     }else{
                                         revertFunc();
                                         $.each(doc.errors, function (i, error) {
