@@ -118,7 +118,7 @@ end
 
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby] #already added above
 gem 'nokogiri'
-gem 'devise', '~> 4.2'
+gem 'devise', '~> 4.7'
 gem 'cancancan'
 gem 'devise_invitable', github: 'scambra/devise_invitable'
 gem 'data-confirm-modal'
