@@ -70,7 +70,7 @@ gem 'validates_timeliness', '~> 4.0'
 #------------------------------------------
 gem 'time_difference'
 
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 gem 'active_model_serializers', '0.9.3'
 
 group :development do
